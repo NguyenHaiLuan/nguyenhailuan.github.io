@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hải Luân — Copywriter</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  /* ══ DESIGN TOKENS — LIGHT MODE (default) ══ */
+  :root {
+    --bg:         #FAFAF8;
+    --surface:    #FFFFFF;
+    --surface2:   #F4F2EE;
+    --ink:        #141210;
+    --ink-muted:  #6B6660;
+    --green:      #16A34A;
+    --green-dim:  #DCFCE7;
+    --green-glow: rgba(22,163,74,.1);
+    --border:     #E5E2DC;
+    --border-lit: #D6D2CC;
+    --shadow:     0 2px 16px rgba(0,0,0,.06);
+    --serif-en:   'DM Serif Display', Georgia, serif;
+    --sans:       'Be Vietnam Pro', system-ui, sans-serif;
+  }
+
+  /* ══ DARK MODE ══ */
+  html.dark {
+    --bg:         #0D0D0D;
+    --surface:    #141414;
+    --surface2:   #1A1A1A;
+    --ink:        #F0EDE8;
+    --ink-muted:  #888580;
+    --green:      #4ADE80;
+    --green-dim:  #1a3327;
+    --green-glow: rgba(74,222,128,.1);
+    --border:     #242424;
+    --border-lit: #2e2e2e;
+    --shadow:     0 2px 16px rgba(0,0,0,.4);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; transition: background .3s, color .3s; }
+  body { background: var(--bg); color: var(--ink); font-family: var(--sans); font-size: 16px; line-height: 1.75; overflow-x: hidden; transition: background .3s, color .3s; }
+
+  /* ══ LANG ══ */
+  [data-vi]   { display: none; }
+  [data-en]   { display: unset; }
+  body.vi [data-vi] { display: unset; }
+  body.vi [data-en] { display: none; }
+  [data-vi-b] { display: none; }
+  [data-en-b] { display: block; }
+  body.vi [data-vi-b] { display: block; }
+  body.vi [data-en-b] { display: none; }
+
+  /* Font strategy */
+  body.en .hl-serif { font-family: var(--serif-en); font-style: italic; font-weight: 400; }
+  body.vi .hl-serif { font-family: var(--sans); font-weight: 700; font-style: normal; letter-spacing: -.025em; }
+
+  /* ══ NAV ══ */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.1rem 3rem;
+    background: rgba(250,250,248,.88);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    transition: background .3s, border-color .3s;
+  }
+  html.dark nav { background: rgba(13,13,13,.88); }
+  .nav-logo { font-family: var(--serif-en); font-size: 1.2rem; color: var(--ink); text-decoration: none; transition: color .3s; }
+  .nav-logo span { color: var(--green); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { text-decoration: none; font-size: .8rem; font-weight: 500; color: var(--ink-muted); letter-spacing: .05em; text-transform: uppercase; transition: color .2s; }
+  .nav-links a:hover { color: var(--green); }
+
+  .nav-controls { display: flex; align-items: center; gap: .6rem; }
+
+  /* Theme toggle button */
+  .theme-btn {
+    width: 34px; height: 34px; border-radius: 50%;
+    border: 1px solid var(--border); background: var(--surface);
+    cursor: pointer; font-size: .95rem;
+    display: flex; align-items: center; justify-content: center;
+    transition: all .2s; color: var(--ink);
+  }
+  .theme-btn:hover { border-color: var(--green); background: var(--green-dim); }
+
+  /* Lang buttons */
+  .lang-row { display: flex; gap: .4rem; }
+  .lang-btn { background: none; border: 1px solid var(--border); padding: .22rem .65rem; border-radius: 99px; font-size: .72rem; font-weight: 700; cursor: pointer; color: var(--ink-muted); font-family: var(--sans); transition: all .18s; letter-spacing: .05em; }
+  .lang-btn.active { background: var(--green); color: #fff; border-color: var(--green); }
+  html.dark .lang-btn.active { color: #0D0D0D; }
+  .lang-btn:not(.active):hover { border-color: var(--ink-muted); color: var(--ink); }
+
+  /* ══ HERO ══ */
+  #hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 9rem 3rem 5rem; max-width: 1100px; margin: 0 auto; position: relative; }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: .55rem;
+    background: var(--green-dim); color: var(--green);
+    font-size: .72rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+    padding: .3rem 1rem; border-radius: 99px; border: 1px solid rgba(22,163,74,.25);
+    margin-bottom: 2.5rem; opacity: 0; animation: up .5s .1s forwards;
+  }
+  html.dark .hero-badge { border-color: rgba(74,222,128,.2); }
+  .hero-badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--green); animation: blink 2s infinite; }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.25} }
+
+  .hero-h1 { font-size: clamp(2.6rem, 6vw, 5.2rem); line-height: 1.08; margin-bottom: 2rem; opacity: 0; animation: up .7s .2s forwards; }
+  .hero-h1 .green { color: var(--green); }
+  .hero-h1 .sub-line { display: block; font-size: .48em; font-family: var(--sans); font-style: normal; font-weight: 300; color: var(--ink-muted); margin-top: .6rem; line-height: 1.5; letter-spacing: 0; }
+
+  .hero-sub { max-width: 520px; color: var(--ink-muted); font-size: 1rem; font-weight: 300; line-height: 1.85; margin-bottom: 2.75rem; opacity: 0; animation: up .7s .35s forwards; }
+  .hero-sub strong { color: var(--ink); font-weight: 600; }
+
+  .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; opacity: 0; animation: up .7s .5s forwards; }
+  .btn { display: inline-flex; align-items: center; gap: .5rem; padding: .8rem 1.9rem; border-radius: 99px; text-decoration: none; font-weight: 700; font-size: .87rem; letter-spacing: .01em; transition: all .2s; }
+  .btn-green { background: var(--green); color: #fff; }
+  html.dark .btn-green { color: #0D0D0D; }
+  .btn-green:hover { opacity: .88; transform: translateY(-2px); box-shadow: 0 4px 20px var(--green-glow); }
+  .btn-ghost { border: 1.5px solid var(--border); color: var(--ink); }
+  .btn-ghost:hover { border-color: var(--green); color: var(--green); transform: translateY(-2px); }
+
+  .hero-scroll { position: absolute; bottom: 2.5rem; left: 3rem; display: flex; align-items: center; gap: .75rem; color: var(--ink-muted); font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; opacity: 0; animation: up .6s .8s forwards; }
+  .scroll-bar { width: 36px; height: 1px; background: var(--border); position: relative; overflow: hidden; }
+  .scroll-bar::after { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: var(--green); animation: slid 2s 1.4s infinite; }
+  .hero-deco { position: absolute; right: -1rem; top: 50%; transform: translateY(-50%); font-family: var(--serif-en); font-size: 22vw; font-style: italic; color: transparent; -webkit-text-stroke: 1px var(--border); pointer-events: none; user-select: none; line-height: 1; z-index: -1; }
+
+  /* ══ DIVIDER ══ */
+  .div { border: none; border-top: 1px solid var(--border); max-width: 100%; transition: border-color .3s; }
+
+  /* ══ COMMON ══ */
+  .sec-label { display: inline-flex; align-items: center; gap: .6rem; font-size: .72rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--green); margin-bottom: 1.25rem; }
+  .sec-label::before { content: ''; width: 20px; height: 1px; background: var(--green); }
+  h2.sec-title { font-size: clamp(1.8rem, 3.5vw, 2.6rem); line-height: 1.2; margin-bottom: 2rem; }
+  h2.sec-title .green { color: var(--green); }
+
+  /* ══ ABOUT ══ */
+  #about { padding: 6rem 3rem; background: var(--surface); transition: background .3s; }
+  .about-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+  .about-body p { color: var(--ink-muted); font-weight: 300; margin-bottom: 1.15rem; }
+  .about-body p strong { color: var(--ink); font-weight: 600; }
+  .about-body p em { color: var(--green); font-style: normal; font-weight: 500; }
+  .pull-quote { margin: 1.75rem 0; padding: 1.25rem 1.5rem; border-left: 2px solid var(--green); background: var(--green-dim); border-radius: 0 8px 8px 0; font-size: .98rem; color: var(--ink); line-height: 1.7; font-style: italic; transition: background .3s; }
+  html.dark .pull-quote { color: var(--ink-muted); }
+  .stat-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 2rem; }
+  .stat-box { padding: 1.25rem; border: 1px solid var(--border); border-radius: 10px; transition: border-color .2s, background .3s; background: var(--bg); }
+  .stat-box:hover { border-color: var(--green); }
+  .stat-n { font-family: var(--serif-en); font-size: 2.2rem; color: var(--green); line-height: 1; }
+  .stat-l { font-size: .77rem; color: var(--ink-muted); margin-top: .2rem; }
+  .skills-col h3 { font-size: .95rem; font-weight: 700; margin-bottom: 1.5rem; }
+  .skill-row { margin-bottom: 1.1rem; }
+  .skill-top { display: flex; justify-content: space-between; font-size: .82rem; margin-bottom: .4rem; color: var(--ink-muted); }
+  .skill-top span:first-child { color: var(--ink); font-weight: 500; }
+  .bar { height: 2px; background: var(--border); border-radius: 99px; overflow: hidden; }
+  .bar-fill { height: 100%; background: var(--green); border-radius: 99px; width: 0; transition: width 1.2s cubic-bezier(.4,0,.2,1); }
+  .bar-fill.on { width: var(--w); }
+  .tags { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: 1.75rem; }
+  .tag { padding: .25rem .75rem; border-radius: 99px; font-size: .74rem; font-weight: 500; border: 1px solid var(--border); color: var(--ink-muted); transition: all .2s; }
+  .tag:hover { border-color: var(--green); color: var(--green); }
+
+  /* ══ PORTFOLIO ══ */
+  #portfolio { padding: 6rem 3rem; background: var(--bg); transition: background .3s; }
+  .port-inner { max-width: 1100px; margin: 0 auto; }
+  .port-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.25rem; }
+  .port-card { border: 1px solid var(--border); border-radius: 14px; overflow: hidden; cursor: pointer; transition: border-color .25s, transform .25s, box-shadow .25s, background .3s; background: var(--surface); }
+  .port-card:hover { border-color: var(--green); transform: translateY(-4px); box-shadow: 0 8px 32px rgba(22,163,74,.1); }
+  html.dark .port-card:hover { box-shadow: 0 8px 32px rgba(74,222,128,.07); }
+  .port-top { padding: 1.75rem; min-height: 155px; display: flex; flex-direction: column; justify-content: space-between; }
+  .port-type { align-self: flex-start; font-size: .68rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--green); background: var(--green-dim); padding: .2rem .65rem; border-radius: 99px; border: 1px solid rgba(22,163,74,.2); transition: background .3s; }
+  html.dark .port-type { border-color: rgba(74,222,128,.2); }
+  .port-title { font-size: 1rem; font-weight: 600; line-height: 1.35; margin-top: 1rem; }
+  .port-bottom { padding: .9rem 1.75rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+  .port-meta { font-size: .76rem; color: var(--ink-muted); }
+  .port-arrow { width: 28px; height: 28px; border-radius: 50%; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: .8rem; transition: all .2s; }
+  .port-card:hover .port-arrow { background: var(--green); color: #fff; border-color: var(--green); }
+  html.dark .port-card:hover .port-arrow { color: #0D0D0D; }
+
+  /* ══ MODAL ══ */
+  .modal-overlay { position: fixed; inset: 0; z-index: 500; background: rgba(0,0,0,.55); backdrop-filter: blur(8px); display: flex; align-items: center; justify-content: center; padding: 2rem; opacity: 0; pointer-events: none; transition: opacity .3s; }
+  html.dark .modal-overlay { background: rgba(0,0,0,.75); }
+  .modal-overlay.open { opacity: 1; pointer-events: all; }
+  .modal { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; max-width: 760px; width: 100%; max-height: 88vh; overflow-y: auto; transform: translateY(20px); transition: transform .3s, background .3s; box-shadow: var(--shadow); }
+  .modal-overlay.open .modal { transform: translateY(0); }
+  .modal-head { padding: 2.25rem 2.5rem 1.75rem; border-bottom: 1px solid var(--border); position: sticky; top: 0; background: var(--surface); z-index: 1; transition: background .3s; }
+  .modal-close { position: absolute; top: 1.5rem; right: 1.75rem; background: var(--bg); border: 1px solid var(--border); color: var(--ink-muted); width: 32px; height: 32px; border-radius: 50%; font-size: 1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all .2s; }
+  .modal-close:hover { border-color: var(--green); color: var(--green); }
+  .modal-type { font-size: .7rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--green); margin-bottom: .6rem; }
+  .modal-title { font-size: 1.4rem; font-weight: 700; line-height: 1.25; }
+  .modal-body { padding: 2rem 2.5rem 2.5rem; }
+  .modal-sec { margin-bottom: 2rem; }
+  .modal-sec h4 { font-size: .7rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--green); margin-bottom: 1rem; display: flex; align-items: center; gap: .5rem; }
+  .modal-sec h4::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  .brief-text { font-size: .88rem; color: var(--ink-muted); line-height: 1.8; }
+  .brief-text em { color: var(--ink); font-style: normal; font-weight: 500; }
+  .copy-sample { background: var(--bg); border: 1px solid var(--border); border-radius: 12px; padding: 1.75rem; transition: background .3s; }
+  .copy-hl { font-size: 1.15rem; font-weight: 700; line-height: 1.35; margin-bottom: .65rem; }
+  .copy-hook { color: var(--ink-muted); font-size: .88rem; font-style: italic; margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border); }
+  .copy-body p { font-size: .9rem; color: var(--ink-muted); line-height: 1.8; margin-bottom: .8rem; }
+  .copy-body p strong { color: var(--ink); }
+  .copy-cta { display: inline-block; margin-top: 1.25rem; padding: .85rem 1.5rem; background: var(--green); color: #fff; border-radius: 8px; font-weight: 700; font-size: .9rem; }
+  html.dark .copy-cta { color: #0D0D0D; }
+  .bk-list { list-style: none; display: flex; flex-direction: column; gap: .8rem; }
+  .bk-list li { display: flex; gap: .75rem; align-items: flex-start; font-size: .86rem; color: var(--ink-muted); line-height: 1.65; }
+  .bk-tag { background: var(--green-dim); color: var(--green); padding: .15rem .6rem; border-radius: 4px; font-size: .68rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; flex-shrink: 0; margin-top: .2rem; transition: background .3s; }
+
+  /* ══ BLOG ══ */
+  #blog { padding: 6rem 3rem; background: var(--surface); transition: background .3s; }
+  .blog-inner { max-width: 1100px; margin: 0 auto; }
+  .blog-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .blog-card { padding: 1.75rem; border: 1px solid var(--border); border-radius: 14px; transition: border-color .2s, transform .2s, background .3s; background: var(--bg); }
+  .blog-card:hover { border-color: var(--green); transform: translateY(-2px); }
+  .blog-meta { display: flex; align-items: center; gap: .75rem; margin-bottom: .9rem; font-size: .76rem; color: var(--ink-muted); }
+  .blog-cat { background: var(--green-dim); color: var(--green); padding: .15rem .6rem; border-radius: 99px; font-weight: 700; font-size: .68rem; transition: background .3s; }
+  .blog-title { font-size: 1rem; font-weight: 600; line-height: 1.38; margin-bottom: .65rem; }
+  .blog-excerpt { font-size: .84rem; color: var(--ink-muted); line-height: 1.72; font-weight: 300; }
+  .blog-read { display: inline-flex; align-items: center; gap: .4rem; margin-top: 1rem; font-size: .8rem; font-weight: 700; color: var(--green); text-decoration: none; transition: gap .2s; }
+  .blog-read:hover { gap: .7rem; }
+
+  /* ══ CONTACT ══ */
+  #contact { padding: 6rem 3rem; background: var(--bg); transition: background .3s; }
+  .contact-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+  .contact-l p { color: var(--ink-muted); font-weight: 300; margin-bottom: 2rem; font-size: .95rem; line-height: 1.85; }
+  .contact-items { display: flex; flex-direction: column; gap: .75rem; }
+  .contact-item { display: flex; align-items: center; gap: .9rem; padding: .9rem 1.1rem; border: 1px solid var(--border); border-radius: 10px; text-decoration: none; color: var(--ink); font-size: .87rem; transition: border-color .2s, background .2s; background: var(--surface); }
+  .contact-item:hover { border-color: var(--green); background: var(--green-dim); }
+  .contact-form { display: flex; flex-direction: column; gap: .9rem; }
+  .fg { display: flex; flex-direction: column; gap: .35rem; }
+  .fg label { font-size: .77rem; font-weight: 600; letter-spacing: .03em; color: var(--ink-muted); }
+  .fg input, .fg textarea { padding: .8rem 1rem; border: 1.5px solid var(--border); border-radius: 8px; background: var(--surface); color: var(--ink); font-family: var(--sans); font-size: .9rem; outline: none; resize: vertical; transition: border-color .2s, background .3s; }
+  .fg input:focus, .fg textarea:focus { border-color: var(--green); }
+  .form-row2 { display: grid; grid-template-columns: 1fr 1fr; gap: .9rem; }
+  .form-submit { background: var(--green); color: #fff; border: none; padding: .85rem 2rem; border-radius: 99px; font-family: var(--sans); font-size: .9rem; font-weight: 700; cursor: pointer; align-self: flex-start; transition: opacity .2s, transform .2s; }
+  html.dark .form-submit { color: #0D0D0D; }
+  .form-submit:hover:not(:disabled) { opacity: .88; transform: translateY(-1px); }
+  .form-submit:disabled { opacity: .5; cursor: not-allowed; }
+
+  /* Form states */
+  .form-msg { display: none; padding: .85rem 1.1rem; border-radius: 8px; font-size: .88rem; font-weight: 500; margin-top: .25rem; }
+  .form-msg.success { background: var(--green-dim); color: var(--green); border: 1px solid rgba(22,163,74,.2); display: block; }
+  .form-msg.error { background: #FEE2E2; color: #DC2626; border: 1px solid rgba(220,38,38,.2); display: block; }
+  html.dark .form-msg.error { background: #2d1515; color: #f87171; border-color: rgba(248,113,113,.2); }
+
+  /* ══ FOOTER ══ */
+  footer { border-top: 1px solid var(--border); padding: 1.75rem 3rem; display: flex; justify-content: space-between; align-items: center; color: var(--ink-muted); font-size: .77rem; transition: border-color .3s; }
+  footer a { color: var(--ink-muted); text-decoration: none; }
+  footer a:hover { color: var(--green); }
+
+  /* ══ ANIMATIONS ══ */
+  @keyframes up { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:none} }
+  @keyframes slid { 0%{left:-100%} 50%{left:0} 100%{left:100%} }
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity .65s, transform .65s; }
+  .reveal.on { opacity: 1; transform: none; }
+
+  /* Portfolio card top gradient — light mode versions */
+  .port-top-1 { background: linear-gradient(135deg, #e8f5ee, #f0faf4); }
+  .port-top-2 { background: linear-gradient(135deg, #e8edf5, #f0f4fa); }
+  .port-top-3 { background: linear-gradient(135deg, #f5e8e8, #faf0f0); }
+  .port-top-4 { background: linear-gradient(135deg, #f0e8f5, #f7f0fa); }
+  .port-top-5 { background: linear-gradient(135deg, #e8f0f5, #f0f5fa); }
+  .port-top-6 { background: linear-gradient(135deg, #edf5e8, #f4faf0); }
+  html.dark .port-top-1 { background: linear-gradient(135deg,#0f1f15,#0d0d0d); }
+  html.dark .port-top-2 { background: linear-gradient(135deg,#111620,#0d0d0d); }
+  html.dark .port-top-3 { background: linear-gradient(135deg,#1a1010,#0d0d0d); }
+  html.dark .port-top-4 { background: linear-gradient(135deg,#151215,#0d0d0d); }
+  html.dark .port-top-5 { background: linear-gradient(135deg,#101520,#0d0d0d); }
+  html.dark .port-top-6 { background: linear-gradient(135deg,#131a10,#0d0d0d); }
+
+  /* ══ RESPONSIVE ══ */
+  @media (max-width: 880px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    #hero { padding: 7rem 1.5rem 4rem; }
+    .hero-deco { display: none; }
+    #about, #portfolio, #blog, #contact { padding: 4rem 1.5rem; }
+    .about-inner, .contact-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    .port-grid { grid-template-columns: 1fr; }
+    .blog-grid { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: .75rem; text-align: center; padding: 1.5rem; }
+    .modal-head, .modal-body { padding: 1.5rem; }
+  }
+</style>
+</head>
+<body class="en">
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-logo">Hải <span>Luân</span></a>
+  <ul class="nav-links">
+    <li><a href="#about" data-en>About</a><a href="#about" data-vi>Về tôi</a></li>
+    <li><a href="#portfolio" data-en>Portfolio</a><a href="#portfolio" data-vi>Portfolio</a></li>
+    <li><a href="#blog" data-en>Blog</a><a href="#blog" data-vi>Blog</a></li>
+    <li><a href="#contact" data-en>Contact</a><a href="#contact" data-vi>Liên hệ</a></li>
+  </ul>
+  <div class="nav-controls">
+    <!-- Light/Dark toggle -->
+    <button class="theme-btn" id="themeBtn" onclick="toggleTheme()" title="Toggle dark mode" aria-label="Toggle theme">🌙</button>
+    <!-- Lang toggle -->
+    <div class="lang-row">
+      <button class="lang-btn active" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" onclick="setLang('vi')">VI</button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-badge">
+    <span data-en>Open to projects</span><span data-vi>Đang nhận dự án</span>
+  </div>
+  <h1 class="hero-h1 hl-serif" data-en-b>
+    Your product is good.<br>
+    <span class="green">People just don't know yet.</span>
+    <span class="sub-line">That's where I come in.</span>
+  </h1>
+  <h1 class="hero-h1 hl-serif" data-vi-b>
+    Sản phẩm của bạn<br>
+    <span class="green">xứng đáng được nhiều người biết hơn.</span>
+    <span class="sub-line" style="font-weight:300;">Và mình ở đây để làm điều đó.</span>
+  </h1>
+  <p class="hero-sub" data-en-b>
+    I'm <strong>Hải Luân</strong> — a copywriter who used to build mobile apps.<br>
+    A back injury changed my plans. But it didn't change the one thing I was good at: <strong>understanding how people actually think.</strong> Now I turn that into copy that sells.
+  </p>
+  <p class="hero-sub" data-vi-b>
+    Mình là <strong>Hải Luân</strong> — một copywriter từng làm mobile dev.<br>
+    Đau lưng thay đổi kế hoạch của mình. Nhưng không thay đổi điều mình giỏi nhất: <strong>hiểu người dùng thật sự nghĩ gì.</strong> Và mình dùng điều đó để viết copy bán được hàng.
+  </p>
+  <div class="hero-cta">
+    <a href="#portfolio" class="btn btn-green" data-en>See my work →</a>
+    <a href="#portfolio" class="btn btn-green" data-vi>Xem portfolio →</a>
+    <a href="#contact" class="btn btn-ghost" data-en>Let's talk</a>
+    <a href="#contact" class="btn btn-ghost" data-vi>Liên hệ ngay</a>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-bar"></div>
+    <span data-en>scroll</span><span data-vi>cuộn xuống</span>
+  </div>
+  <div class="hero-deco">HL</div>
+</section>
+
+<hr class="div">
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-inner">
+    <div class="about-body reveal">
+      <div class="sec-label" data-en>About me</div>
+      <div class="sec-label" data-vi>Về tôi</div>
+      <h2 class="sec-title hl-serif" data-en-b>A developer who <span class="green">learned to write</span><br>because life made him.</h2>
+      <h2 class="sec-title hl-serif" data-vi-b>Một lập trình viên học viết<br><span class="green">vì hoàn cảnh, ở lại vì đam mê.</span></h2>
+      <p data-en-b>I spent two years building mobile apps — thinking in logic, systems, user flows. I genuinely loved it. Then my back gave out, and sitting at a desk for 10 hours became impossible.</p>
+      <p data-vi-b>Hai năm viết code mobile — tư duy theo logic, hệ thống, và luồng người dùng. Mình thực sự yêu nó. Rồi lưng không chịu được nữa, ngồi 10 tiếng mỗi ngày trở thành điều không thể.</p>
+      <div class="pull-quote" data-en-b>"I didn't plan to become a copywriter. I was just looking for something I could do lying down — and discovered I was actually good at it."</div>
+      <div class="pull-quote" data-vi-b>"Mình không có kế hoạch trở thành copywriter. Mình chỉ đang tìm thứ có thể làm khi nằm — và phát hiện ra mình làm được tốt hơn mình nghĩ."</div>
+      <p data-en-b>What I brought from coding: <strong>empathy for users, clarity of thinking, and no patience for fluff.</strong> Every line I write has a job. Just like every line of code.</p>
+      <p data-vi-b>Thứ mình mang từ coding sang: <strong>đồng cảm với người dùng, tư duy rõ ràng, và không chịu được sự vô nghĩa.</strong> Mỗi câu mình viết đều có nhiệm vụ. Giống như mỗi dòng code.</p>
+      <p data-en-b>Bilingual in <em>Vietnamese & English.</em> Based in Vietnam, working with clients anywhere.</p>
+      <p data-vi-b>Song ngữ <em>Việt & Anh.</em> Đang ở Việt Nam, làm việc với khách hàng khắp nơi.</p>
+      <div class="stat-row">
+        <div class="stat-box reveal"><div class="stat-n">2+</div><div class="stat-l" data-en>Years mobile dev</div><div class="stat-l" data-vi>Năm làm mobile dev</div></div>
+        <div class="stat-box reveal"><div class="stat-n">🌏</div><div class="stat-l" data-en>Bilingual EN / VI</div><div class="stat-l" data-vi>Song ngữ Anh / Việt</div></div>
+        <div class="stat-box reveal"><div class="stat-n">0</div><div class="stat-l" data-en>Excuses made</div><div class="stat-l" data-vi>Lý do bỏ cuộc</div></div>
+        <div class="stat-box reveal"><div class="stat-n">∞</div><div class="stat-l" data-en>Curiosity</div><div class="stat-l" data-vi>Sự tò mò</div></div>
+      </div>
+    </div>
+    <div class="skills-col reveal">
+      <h3 data-en>Core skills</h3><h3 data-vi>Kỹ năng</h3>
+      <div class="skill-row"><div class="skill-top"><span data-en>Copywriting (VI)</span><span data-vi>Copywriting (tiếng Việt)</span><span>85%</span></div><div class="bar"><div class="bar-fill" style="--w:85%"></div></div></div>
+      <div class="skill-row"><div class="skill-top"><span data-en>Copywriting (EN)</span><span data-vi>Copywriting (tiếng Anh)</span><span>70%</span></div><div class="bar"><div class="bar-fill" style="--w:70%"></div></div></div>
+      <div class="skill-row"><div class="skill-top"><span data-en>Tech product knowledge</span><span data-vi>Hiểu sản phẩm tech</span><span>90%</span></div><div class="bar"><div class="bar-fill" style="--w:90%"></div></div></div>
+      <div class="skill-row"><div class="skill-top"><span data-en>Brand storytelling</span><span data-vi>Kể chuyện thương hiệu</span><span>75%</span></div><div class="bar"><div class="bar-fill" style="--w:75%"></div></div></div>
+      <div class="skill-row"><div class="skill-top"><span>UX Writing</span><span>78%</span></div><div class="bar"><div class="bar-fill" style="--w:78%"></div></div></div>
+      <div class="skill-row"><div class="skill-top"><span>Facebook / Google Ads</span><span>72%</span></div><div class="bar"><div class="bar-fill" style="--w:72%"></div></div></div>
+      <div class="tags">
+        <span class="tag">PAS</span><span class="tag">AIDA</span><span class="tag">StoryBrand</span>
+        <span class="tag">SEO</span><span class="tag">Email Copy</span><span class="tag">Landing Page</span>
+        <span class="tag">React Native</span><span class="tag">Figma</span><span class="tag">Notion</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- PORTFOLIO -->
+<section id="portfolio">
+  <div class="port-inner">
+    <div class="sec-label">Portfolio</div>
+    <h2 class="sec-title hl-serif reveal" style="margin-bottom:2.5rem">
+      <span data-en-b>Sample <span class="green">works</span></span>
+      <span data-vi-b>Sản phẩm <span class="green">mẫu</span></span>
+    </h2>
+    <div class="port-grid">
+      <div class="port-card reveal" onclick="openModal()">
+        <div class="port-top port-top-1">
+          <span class="port-type" data-en>Facebook Ad</span><span class="port-type" data-vi>Quảng cáo Facebook</span>
+          <div class="port-title" data-en>"The plant that doesn't need you" — Succulent ad for a local plant shop</div>
+          <div class="port-title" data-vi>"Cây không cần bạn tưới" — Bài quảng cáo sen đá cho shop cây địa phương</div>
+        </div>
+        <div class="port-bottom"><span class="port-meta">Local biz · PAS · VI/EN</span><span class="port-arrow">→</span></div>
+      </div>
+      <div class="port-card reveal">
+        <div class="port-top port-top-2">
+          <span class="port-type">Landing Page</span>
+          <div class="port-title" data-en>SaaS Hero Copy — B2B Product Launch</div>
+          <div class="port-title" data-vi>Hero Copy — Ra mắt sản phẩm SaaS B2B</div>
+        </div>
+        <div class="port-bottom"><span class="port-meta">SaaS · EN</span><span class="port-arrow">→</span></div>
+      </div>
+      <div class="port-card reveal">
+        <div class="port-top port-top-3">
+          <span class="port-type">Email Sequence</span>
+          <div class="port-title" data-en>5-Email Welcome Flow — Mobile App</div>
+          <div class="port-title" data-vi>Chuỗi 5 email chào mừng — App Mobile</div>
+        </div>
+        <div class="port-bottom"><span class="port-meta">SaaS · Bilingual</span><span class="port-arrow">→</span></div>
+      </div>
+      <div class="port-card reveal">
+        <div class="port-top port-top-4">
+          <span class="port-type">Brand Story</span>
+          <div class="port-title" data-en>About Page Rewrite — Fintech Startup</div>
+          <div class="port-title" data-vi>Viết lại trang About — Fintech Startup</div>
+        </div>
+        <div class="port-bottom"><span class="port-meta">Fintech · EN</span><span class="port-arrow">→</span></div>
+      </div>
+      <div class="port-card reveal">
+        <div class="port-top port-top-5">
+          <span class="port-type">UX Copy</span>
+          <div class="port-title" data-en>Onboarding Flow — Health App</div>
+          <div class="port-title" data-vi>Copy Onboarding — App Sức Khỏe</div>
+        </div>
+        <div class="port-bottom"><span class="port-meta">Health · Bilingual</span><span class="port-arrow">→</span></div>
+      </div>
+      <div class="port-card reveal">
+        <div class="port-top port-top-6">
+          <span class="port-type">Google Ads</span>
+          <div class="port-title" data-en>10 Headlines — Tech Product</div>
+          <div class="port-title" data-vi>10 Headlines — Sản phẩm Tech</div>
+        </div>
+        <div class="port-bottom"><span class="port-meta">Tech · EN</span><span class="port-arrow">→</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal" onclick="closeIfOutside(event)">
+  <div class="modal">
+    <div class="modal-head">
+      <button class="modal-close" onclick="closeModal()">✕</button>
+      <div class="modal-type" data-en>Case Study — Facebook Ad Copy</div>
+      <div class="modal-type" data-vi>Case Study — Bài quảng cáo Facebook</div>
+      <div class="modal-title" data-en>"The plant that doesn't need you" — Succulent campaign for a local plant shop</div>
+      <div class="modal-title" data-vi>"Cây không cần bạn tưới" — Chiến dịch sen đá cho cửa hàng địa phương</div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-sec">
+        <h4 data-en>Brief</h4><h4 data-vi>Bối cảnh</h4>
+        <p class="brief-text" data-en-b>A small local plant shop wants to promote their succulent collection on Facebook. Target: busy urban people (25–40), mostly women, who <em>want greenery at home but think they'll kill every plant they touch.</em> Goal: drive walk-ins + direct messages. Budget: small. Tone: warm, relatable, lightly humorous.</p>
+        <p class="brief-text" data-vi-b>Một cửa hàng cây nhỏ ở địa phương muốn quảng bá bộ sưu tập sen đá trên Facebook. Đối tượng: người bận rộn (25–40 tuổi), chủ yếu nữ, <em>muốn có cây nhưng tự nhận "tay mình héo cây".</em> Mục tiêu: kéo khách đến shop + inbox hỏi mua. Ngân sách nhỏ. Giọng điệu: gần gũi, thật, hơi dí dỏm.</p>
+      </div>
+      <div class="modal-sec">
+        <h4 data-en>The copy (Vietnamese)</h4><h4 data-vi>Bài viết</h4>
+        <div class="copy-sample">
+          <div class="copy-hl">🌵 Loại cây duy nhất không ghét bạn dù bạn quên tưới nó 3 tuần.</div>
+          <div class="copy-hook">Sen đá — sống sót qua mọi thứ, kể cả sự bận rộn của bạn.</div>
+          <div class="copy-body">
+            <p>Bạn đã bao giờ mua cây về, đặt lên bàn, thề sẽ chăm sóc cẩn thận — rồi 2 tuần sau nhìn lại thấy nó đã trở thành rơm chưa?</p>
+            <p>Mình hiểu cảm giác đó.</p>
+            <p>Sen đá thì khác. <strong>Tưới ít, sáng nhiều, yêu thương vừa phải — đó là tất cả những gì nó cần.</strong> Thực ra tưới nhiều mới giết nó nhanh hơn quên tưới.</p>
+            <p>Cây phù hợp nhất với những ai:<br>✔ Hay quên tưới cây<br>✔ Bận việc, ít ở nhà<br>✔ Muốn góc nhà xanh mà không cần bỏ công chăm</p>
+            <p>Shop hiện có hơn <strong>30 loại sen đá</strong>, giá từ <strong>15.000đ</strong> — nhỏ đủ để đặt lên bàn làm việc, bàn học, kệ phòng ngủ.</p>
+            <p style="font-size:.83rem;color:var(--ink-muted);font-style:italic">📍 [Địa chỉ shop] · Mở cửa 8h–20h mỗi ngày</p>
+          </div>
+          <div class="copy-cta">💬 Inbox shop để được tư vấn chọn cây →</div>
+        </div>
+      </div>
+      <div class="modal-sec">
+        <h4 data-en>English version</h4><h4 data-vi>Bản tiếng Anh</h4>
+        <div class="copy-sample">
+          <div class="copy-hl">🌵 The only plant that won't judge you for forgetting to water it. For 3 weeks.</div>
+          <div class="copy-hook">Succulents — built to survive everything, including your schedule.</div>
+          <div class="copy-body">
+            <p>You've done it before. Bought a plant, promised yourself you'd take care of it — then looked up three weeks later to find something that looks more like hay.</p>
+            <p>We've all been there.</p>
+            <p>Succulents are different. <strong>A little light, a little water, zero guilt trips.</strong> In fact, overwatering kills them faster than forgetting.</p>
+            <p>Perfect for you if you:<br>✔ Always forget to water plants<br>✔ Travel or work long hours<br>✔ Want greenery at home without the commitment</p>
+            <p>We have <strong>30+ varieties</strong> starting at <strong>15,000đ</strong> — small enough to sit on your desk, shelf, or windowsill.</p>
+            <p style="font-size:.83rem;color:var(--ink-muted);font-style:italic">📍 [Shop address] · Open daily 8am–8pm</p>
+          </div>
+          <div class="copy-cta">💬 Message us to find your perfect plant →</div>
+        </div>
+      </div>
+      <div class="modal-sec">
+        <h4>Copywriting breakdown</h4>
+        <ul class="bk-list">
+          <li><span class="bk-tag">Hook</span><span>Headline calls out the exact fear ("quên tưới / forgetting to water") then instantly flips it into relief. The plant doesn't mind. Scroll-stopping because it's specific, not generic.</span></li>
+          <li><span class="bk-tag">P — Problem</span><span>"Bạn đã bao giờ..." / "You've done it before" — makes the reader feel seen, not judged. The dead plant story is universal. This is the P in PAS.</span></li>
+          <li><span class="bk-tag">A — Agitate</span><span>"Mình hiểu cảm giác đó" / "We've all been there" — validates the emotion before the solution. Short, human, creates connection.</span></li>
+          <li><span class="bk-tag">S — Solution</span><span>Succulents introduced as the logical answer. The twist ("tưới nhiều mới giết nhanh / overwatering kills faster") adds credibility and gives people a surprising fact to share.</span></li>
+          <li><span class="bk-tag">Social proof</span><span>30+ varieties signals variety. Price anchor (15k) removes the "is this expensive?" barrier before it forms.</span></li>
+          <li><span class="bk-tag">CTA</span><span>Soft "inbox" CTA instead of "buy now" — matches the warm local-shop tone and lowers resistance. Conversation leads to sale.</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="div">
+
+<!-- BLOG -->
+<section id="blog">
+  <div class="blog-inner">
+    <div class="sec-label" data-en>Blog</div><div class="sec-label" data-vi>Blog</div>
+    <h2 class="sec-title hl-serif reveal" style="margin-bottom:2.5rem">
+      <span data-en-b>Thoughts on <span class="green">words</span> & work</span>
+      <span data-vi-b>Suy nghĩ về <span class="green">nghề & câu chữ</span></span>
+    </h2>
+    <div class="blog-grid">
+      <div class="blog-card reveal">
+        <div class="blog-meta"><span class="blog-cat">Copywriting</span><span>·</span><span data-en>5 min</span><span data-vi>5 phút</span></div>
+        <div class="blog-title"><span data-en>Why ex-developers make surprisingly good copywriters</span><span data-vi>Tại sao lập trình viên lại viết copy tốt hơn bạn nghĩ</span></div>
+        <p class="blog-excerpt" data-en-b>We think in user flows and edge cases. Turns out, that's exactly what great copy does — it moves someone from A to B without friction.</p>
+        <p class="blog-excerpt" data-vi-b>Chúng ta nghĩ theo luồng người dùng và các trường hợp ngoại lệ. Hóa ra đó chính xác là những gì copy tốt làm — đưa người đọc từ A đến B mà không có rào cản.</p>
+        <a href="#" class="blog-read"><span data-en>Read →</span><span data-vi>Đọc →</span></a>
+      </div>
+      <div class="blog-card reveal">
+        <div class="blog-meta"><span class="blog-cat" data-en>Career</span><span class="blog-cat" data-vi>Nghề nghiệp</span><span>·</span><span data-en>7 min</span><span data-vi>7 phút</span></div>
+        <div class="blog-title"><span data-en>From back pain to brand voice: my pivot story</span><span data-vi>Từ đau lưng đến brand voice: câu chuyện xoay trục của mình</span></div>
+        <p class="blog-excerpt" data-en-b>A back injury forced me to stop coding. Here's how I turned the worst month of my career into the start of something new — and why I don't regret it.</p>
+        <p class="blog-excerpt" data-vi-b>Cơn đau lưng buộc mình ngừng code. Đây là cách mình biến tháng tệ nhất sự nghiệp thành khởi đầu của điều gì đó mới — và tại sao mình không hối hận.</p>
+        <a href="#" class="blog-read"><span data-en>Read →</span><span data-vi>Đọc →</span></a>
+      </div>
+      <div class="blog-card reveal">
+        <div class="blog-meta"><span class="blog-cat" data-en>Tips</span><span class="blog-cat" data-vi>Mẹo hay</span><span>·</span><span data-en>4 min</span><span data-vi>4 phút</span></div>
+        <div class="blog-title"><span data-en>The one formula I use for every headline</span><span data-vi>Công thức duy nhất mình dùng cho mọi headline</span></div>
+        <p class="blog-excerpt" data-en-b>Forget AIDA, PAS, and all the acronyms. There's one frame that makes any headline instantly sharper — and it takes 60 seconds.</p>
+        <p class="blog-excerpt" data-vi-b>Quên AIDA, PAS đi. Có một khung đơn giản giúp bất kỳ headline nào sắc ngay lập tức — và chỉ mất 60 giây để áp dụng.</p>
+        <a href="#" class="blog-read"><span data-en>Read →</span><span data-vi>Đọc →</span></a>
+      </div>
+      <div class="blog-card reveal">
+        <div class="blog-meta"><span class="blog-cat">Tech + Copy</span><span>·</span><span data-en>6 min</span><span data-vi>6 phút</span></div>
+        <div class="blog-title"><span data-en>How to write about tech without sounding like a manual</span><span data-vi>Viết về sản phẩm tech mà không nghe như đọc hướng dẫn sử dụng</span></div>
+        <p class="blog-excerpt" data-en-b>Tech teams are too close to the product to explain it simply. Here's how to find the human story inside the feature list.</p>
+        <p class="blog-excerpt" data-vi-b>Đội tech quá gần sản phẩm để giải thích nó đơn giản. Đây là cách tìm câu chuyện con người bên trong danh sách tính năng.</p>
+        <a href="#" class="blog-read"><span data-en>Read →</span><span data-vi>Đọc →</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-inner">
+    <div class="contact-l reveal">
+      <div class="sec-label" data-en>Get in touch</div><div class="sec-label" data-vi>Liên hệ</div>
+      <h2 class="sec-title hl-serif" data-en-b>Let's make something <span class="green">worth reading.</span></h2>
+      <h2 class="sec-title hl-serif" data-vi-b>Cùng tạo ra thứ gì đó <span class="green">đáng để đọc.</span></h2>
+      <p data-en-b>Whether you need a landing page, Facebook ads, email sequences, or a brand story — I'm happy to talk. I work with clients in Vietnam and globally, in Vietnamese and English.</p>
+      <p data-vi-b>Dù bạn cần landing page, quảng cáo Facebook, chuỗi email hay câu chuyện thương hiệu — mình luôn sẵn sàng nói chuyện. Làm việc với khách hàng trong và ngoài nước, bằng tiếng Việt và tiếng Anh.</p>
+      <div class="contact-items">
+        <a href="mailto:hailuan@email.com" class="contact-item">✉️&nbsp; hailuan@email.com</a>
+        <a href="#" class="contact-item">💼&nbsp; LinkedIn</a>
+        <a href="#" class="contact-item">📍&nbsp; <span data-en>Vietnam · Remote worldwide</span><span data-vi>Việt Nam · Remote toàn cầu</span></a>
+      </div>
+    </div>
+
+    <!-- CONTACT FORM — powered by Formspree -->
+    <!-- SETUP: Replace YOUR_FORM_ID below with your Formspree form ID -->
+    <!-- 1. Go to formspree.io → New Form → Copy the form ID from the endpoint URL -->
+    <!-- 2. Replace "YOUR_FORM_ID" with that ID (e.g. "xpwzgkrl") -->
+    <div class="contact-form reveal">
+      <div class="form-row2">
+        <div class="fg">
+          <label data-en>Name</label><label data-vi>Tên</label>
+          <input type="text" id="f-name" placeholder="Your name" required>
+        </div>
+        <div class="fg">
+          <label>Email</label>
+          <input type="email" id="f-email" placeholder="your@email.com" required>
+        </div>
+      </div>
+      <div class="fg">
+        <label data-en>What do you need?</label><label data-vi>Bạn cần gì?</label>
+        <input type="text" id="f-need" placeholder="Landing page, ads, email...">
+      </div>
+      <div class="fg">
+        <label data-en>Message</label><label data-vi>Lời nhắn</label>
+        <textarea id="f-msg" rows="5" placeholder="Tell me about your project..." required></textarea>
+      </div>
+      <button class="form-submit" id="submitBtn" onclick="submitForm(event)">
+        <span data-en>Send message →</span><span data-vi>Gửi tin nhắn →</span>
+      </button>
+      <div class="form-msg" id="formMsg"></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>© 2025 Hải Luân</span>
+  <span><span data-en>Made with ☕ somewhere in Vietnam</span><span data-vi>Làm bằng ☕ đâu đó ở Việt Nam</span></span>
+</footer>
+
+<script>
+  /* ══ THEME ══ */
+  let isDark = false;
+  function toggleTheme() {
+    isDark = !isDark;
+    document.documentElement.classList.toggle('dark', isDark);
+    document.getElementById('themeBtn').textContent = isDark ? '☀️' : '🌙';
+    document.getElementById('themeBtn').title = isDark ? 'Switch to light mode' : 'Switch to dark mode';
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+  }
+  // Restore preference
+  if (localStorage.getItem('theme') === 'dark') { isDark = true; document.documentElement.classList.add('dark'); document.getElementById('themeBtn').textContent = '☀️'; }
+
+  /* ══ LANG ══ */
+  function setLang(lang) {
+    document.body.className = lang;
+    document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.textContent === lang.toUpperCase()));
+  }
+
+  /* ══ SCROLL REVEAL ══ */
+  (() => {
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) { setTimeout(() => e.target.classList.add('on'), i * 75); obs.unobserve(e.target); }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+  })();
+
+  /* ══ SKILL BARS ══ */
+  (() => {
+    const t = document.querySelector('.skills-col');
+    if (!t) return;
+    new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.querySelectorAll('.bar-fill').forEach(b => setTimeout(() => b.classList.add('on'), 300)); });
+    }, { threshold: 0.3 }).observe(t);
+  })();
+
+  /* ══ MODAL ══ */
+  function openModal()  { document.getElementById('modal').classList.add('open'); document.body.style.overflow = 'hidden'; }
+  function closeModal() { document.getElementById('modal').classList.remove('open'); document.body.style.overflow = ''; }
+  function closeIfOutside(e) { if (e.target.id === 'modal') closeModal(); }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+  /* ══ CONTACT FORM ══
+     Uses Formspree — free tier: 50 submissions/month, no backend needed.
+     SETUP: replace YOUR_FORM_ID with your Formspree form ID.
+     Get one free at https://formspree.io
+  ══ */
+  const FORMSPREE_ID = 'YOUR_FORM_ID'; // ← Replace this
+
+  async function submitForm(e) {
+    e.preventDefault();
+    const btn = document.getElementById('submitBtn');
+    const msg = document.getElementById('formMsg');
+    const isVI = document.body.classList.contains('vi');
+
+    const name  = document.getElementById('f-name').value.trim();
+    const email = document.getElementById('f-email').value.trim();
+    const need  = document.getElementById('f-need').value.trim();
+    const text  = document.getElementById('f-msg').value.trim();
+
+    // Basic validation
+    if (!name || !email || !text) {
+      msg.className = 'form-msg error';
+      msg.textContent = isVI ? 'Vui lòng điền đầy đủ tên, email và lời nhắn.' : 'Please fill in your name, email, and message.';
+      return;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      msg.className = 'form-msg error';
+      msg.textContent = isVI ? 'Email không hợp lệ.' : 'Please enter a valid email address.';
+      return;
+    }
+
+    // Check if Formspree is set up
+    if (FORMSPREE_ID === 'YOUR_FORM_ID') {
+      // Dev mode: simulate success
+      msg.className = 'form-msg success';
+      msg.textContent = isVI
+        ? '✅ (Chế độ demo) Cảm ơn! Trong thực tế, tin nhắn sẽ được gửi đến email của bạn. Hãy thiết lập Formspree để kích hoạt.'
+        : '✅ (Demo mode) Message received! In production, this would send to your email. Set up Formspree to activate.';
+      return;
+    }
+
+    // Real submit
+    btn.disabled = true;
+    btn.textContent = isVI ? 'Đang gửi...' : 'Sending...';
+    msg.className = 'form-msg';
+    msg.textContent = '';
+
+    try {
+      const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({ name, email, need, message: text })
+      });
+
+      if (res.ok) {
+        msg.className = 'form-msg success';
+        msg.textContent = isVI
+          ? '✅ Gửi thành công! Mình sẽ liên hệ lại với bạn sớm nhé.'
+          : '✅ Message sent! I\'ll get back to you soon.';
+        ['f-name','f-email','f-need','f-msg'].forEach(id => document.getElementById(id).value = '');
+      } else {
+        throw new Error('Server error');
+      }
+    } catch {
+      msg.className = 'form-msg error';
+      msg.textContent = isVI
+        ? '❌ Có lỗi xảy ra. Vui lòng thử lại hoặc liên hệ trực tiếp qua email.'
+        : '❌ Something went wrong. Please try again or email me directly.';
+    } finally {
+      btn.disabled = false;
+      btn.innerHTML = isVI ? '<span data-vi>Gửi tin nhắn →</span>' : '<span data-en>Send message →</span>';
+    }
+  }
+</script>
+</body>
+</html>
