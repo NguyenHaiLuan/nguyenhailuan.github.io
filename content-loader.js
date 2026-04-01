@@ -1,10 +1,22 @@
 /* HL Portfolio Content Loader v1.0 */
 /* Reads data from localStorage and injects blog + portfolio into the page */
-(function(){
-  try{
-    var raw=localStorage.getItem('hl_cms');
-    if(!raw)return;
-    var D=JSON.parse(raw);
+(function () {
+  var raw = localStorage.getItem('hl_cms');
+
+  if (raw) {
+    renderContent(JSON.parse(raw));
+  } else {
+    fetch('hl-portfolio-data.json')
+      .then(response => {
+        if (!response.ok) throw new Error("Chưa có file JSON");
+        return response.json();
+      })
+      .then(data => renderContent(data))
+      .catch(err => console.log("Đang dùng nội dung mặc định của HTML."));
+  }
+
+  // Chuyển toàn bộ logic cũ vào một hàm render để dùng chung
+  function renderContent(D) {
     function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
     function nl2p(s){return s?s.split(/\n\n+/).map(function(p){return '<p>'+esc(p).replace(/\n/g,'<br>')+'</p>';}).join(''):'';}
 
