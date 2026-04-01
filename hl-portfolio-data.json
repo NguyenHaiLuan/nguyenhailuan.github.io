@@ -1,0 +1,238 @@
+{
+  "blog": [
+    {
+      "id": "b1775038227250",
+      "cat": {
+        "en": "Copywriting",
+        "vi": "Copywriting"
+      },
+      "readTime": {
+        "en": "10 min",
+        "vi": "10 phút"
+      },
+      "title": {
+        "en": "Câu chuyện kinh điển trong marketing mà mình ấn tượng",
+        "vi": "Câu chuyện kinh điển trong marketing mà mình ấn tượng"
+      },
+      "excerpt": {
+        "en": "Câu chuyện kinh điển trong marketing mà mình ấn tượngCâu chuyện kinh điển trong marketing mà mình ấn tượngCâu chuyện kinh điển trong marketing mà mình ấn tượngCâu chuyện kinh điển trong marketing mà mình ấn tượngCâu chuyện kinh điển trong marketing mà mình ấn tượngCâu chuyện kinh điển trong marketing mà mình ấn tượng",
+        "vi": "Câu chuyện kinh điển trong marketing mà mình ấn tượngCâu chuyện kinh điển trong marketing mà mình ấn tượngCâu chuyện kinh điển trong marketing mà mình ấn tượngCâu chuyện kinh điển trong marketing mà mình ấn tượngCâu chuyện kinh điển trong marketing mà mình ấn tượngCâu chuyện kinh điển trong marketing mà mình ấn tượng"
+      },
+      "link": "#hook",
+      "createdAt": "2026-04-01"
+    },
+    {
+      "id": "b1",
+      "cat": {
+        "en": "Copywriting",
+        "vi": "Copywriting"
+      },
+      "readTime": {
+        "en": "5 min",
+        "vi": "5 phút"
+      },
+      "title": {
+        "en": "Why ex-developers make surprisingly good copywriters",
+        "vi": "Tại sao lập trình viên lại viết copy tốt hơn bạn nghĩ"
+      },
+      "excerpt": {
+        "en": "We think in user flows and edge cases. Turns out, that's exactly what great copy does — it moves someone from A to B without friction.",
+        "vi": "Chúng ta nghĩ theo luồng người dùng và các trường hợp ngoại lệ. Hóa ra đó chính xác là những gì copy tốt làm — đưa người đọc từ A đến B mà không có rào cản."
+      },
+      "link": "#",
+      "createdAt": "2025-01-10"
+    },
+    {
+      "id": "b2",
+      "cat": {
+        "en": "Career",
+        "vi": "Nghề nghiệp"
+      },
+      "readTime": {
+        "en": "7 min",
+        "vi": "7 phút"
+      },
+      "title": {
+        "en": "From back pain to brand voice: my pivot story",
+        "vi": "Từ đau lưng đến brand voice: câu chuyện xoay trục của mình"
+      },
+      "excerpt": {
+        "en": "A back injury forced me to stop coding. Here's how I turned the worst month of my career into the start of something new — and why I don't regret it.",
+        "vi": "Cơn đau lưng buộc mình ngừng code. Đây là cách mình biến tháng tệ nhất sự nghiệp thành khởi đầu của điều gì đó mới — và tại sao mình không hối hận."
+      },
+      "link": "#",
+      "createdAt": "2025-01-05"
+    },
+    {
+      "id": "b3",
+      "cat": {
+        "en": "Tips",
+        "vi": "Mẹo hay"
+      },
+      "readTime": {
+        "en": "4 min",
+        "vi": "4 phút"
+      },
+      "title": {
+        "en": "The one formula I use for every headline",
+        "vi": "Công thức duy nhất mình dùng cho mọi headline"
+      },
+      "excerpt": {
+        "en": "Forget AIDA, PAS, and all the acronyms. There's one frame that makes any headline instantly sharper — and it takes 60 seconds.",
+        "vi": "Quên AIDA, PAS đi. Có một khung đơn giản giúp bất kỳ headline nào sắc ngay lập tức — và chỉ mất 60 giây."
+      },
+      "link": "#",
+      "createdAt": "2024-12-28"
+    },
+    {
+      "id": "b4",
+      "cat": {
+        "en": "Tech + Copy",
+        "vi": "Tech + Copy"
+      },
+      "readTime": {
+        "en": "6 min",
+        "vi": "6 phút"
+      },
+      "title": {
+        "en": "How to write about tech without sounding like a manual",
+        "vi": "Viết về sản phẩm tech mà không nghe như đọc hướng dẫn sử dụng"
+      },
+      "excerpt": {
+        "en": "Tech teams are too close to the product to explain it simply. Here's how to find the human story inside the feature list.",
+        "vi": "Đội tech quá gần sản phẩm để giải thích nó đơn giản. Đây là cách tìm câu chuyện con người bên trong danh sách tính năng."
+      },
+      "link": "#",
+      "createdAt": "2024-12-20"
+    }
+  ],
+  "portfolio": [
+    {
+      "id": "p1",
+      "color": "1",
+      "type": {
+        "en": "Facebook Ad",
+        "vi": "Quảng cáo Facebook"
+      },
+      "title": {
+        "en": "\"The plant that doesn't need you\" — Succulent ad for a local plant shop",
+        "vi": "\"Cây không cần bạn tưới\" — Bài quảng cáo sen đá cho shop cây địa phương"
+      },
+      "meta": "Local biz · PAS · VI/EN",
+      "brief": {
+        "en": "A small local plant shop wants to promote their succulent collection on Facebook. Target: busy urban people (25–40), mostly women, who want greenery at home but think they'll kill every plant. Goal: drive walk-ins + DMs. Budget: small. Tone: warm, relatable, lightly humorous.",
+        "vi": "Một cửa hàng cây nhỏ ở địa phương muốn quảng bá bộ sưu tập sen đá trên Facebook. Đối tượng: người bận rộn (25–40 tuổi), chủ yếu nữ, muốn có cây nhưng tự nhận \"tay mình héo cây\". Mục tiêu: kéo khách đến shop + inbox hỏi mua. Ngân sách nhỏ. Giọng điệu: gần gũi, thật, hơi dí dỏm."
+      },
+      "copyVI": "🌵 Loại cây duy nhất không ghét bạn dù bạn quên tưới nó 3 tuần.\n\nSen đá — sống sót qua mọi thứ, kể cả sự bận rộn của bạn.\n\nBạn đã bao giờ mua cây về, đặt lên bàn, thề sẽ chăm sóc cẩn thận — rồi 2 tuần sau nhìn lại thấy nó đã trở thành rơm chưa?\n\nMình hiểu cảm giác đó.\n\nSen đá thì khác. Tưới ít, sáng nhiều, yêu thương vừa phải. Thực ra tưới nhiều mới giết nó nhanh hơn quên tưới.\n\nShop hiện có hơn 30 loại sen đá, giá từ 15.000đ.\n\n💬 Inbox shop để được tư vấn chọn cây →",
+      "copyEN": "🌵 The only plant that won't judge you for forgetting to water it. For 3 weeks.\n\nSucculents — built to survive everything, including your schedule.\n\nYou've done it before. Bought a plant, promised yourself you'd take care of it — then looked up three weeks later to find something that looks more like hay.\n\nWe've all been there.\n\nSucculents are different. A little light, a little water, zero guilt trips. In fact, overwatering kills them faster than forgetting.\n\n30+ varieties starting at 15,000đ.\n\n💬 Message us to find your perfect plant →",
+      "breakdown": "Hook||Headline gọi ra nỗi sợ cụ thể (\"quên tưới\") rồi lật ngược thành cảm giác nhẹ nhõm. Scroll-stopping vì cụ thể, không generic.\nP — Problem||\"Bạn đã bao giờ...\" — làm người đọc cảm thấy được hiểu, không bị phán xét. Đây là P trong PAS.\nA — Agitate||\"Mình hiểu cảm giác đó\" — validate cảm xúc trước khi đưa ra giải pháp. Ngắn, thật, tạo kết nối.\nS — Solution||Sen đá được giới thiệu như câu trả lời logic. Twist bất ngờ (tưới nhiều mới giết nhanh hơn) tạo credibility.\nSocial proof||30+ loại = đa dạng. Price anchor 15k xóa rào cản \"đắt không?\" trước khi nó hình thành.\nCTA||\"Inbox\" mềm thay vì \"mua ngay\" — phù hợp với tone shop local ấm áp. Conversation leads to sale.",
+      "createdAt": "2025-01-15"
+    },
+    {
+      "id": "p2",
+      "color": "2",
+      "type": {
+        "en": "Landing Page",
+        "vi": "Landing Page"
+      },
+      "title": {
+        "en": "SaaS Hero Copy — B2B Product Launch",
+        "vi": "Hero Copy — Ra mắt sản phẩm SaaS B2B"
+      },
+      "meta": "SaaS · EN",
+      "brief": {
+        "en": "",
+        "vi": ""
+      },
+      "copyVI": "",
+      "copyEN": "",
+      "breakdown": "",
+      "createdAt": "2025-01-08"
+    },
+    {
+      "id": "p3",
+      "color": "3",
+      "type": {
+        "en": "Email Sequence",
+        "vi": "Email Sequence"
+      },
+      "title": {
+        "en": "5-Email Welcome Flow — Mobile App",
+        "vi": "Chuỗi 5 email chào mừng — App Mobile"
+      },
+      "meta": "SaaS · Bilingual",
+      "brief": {
+        "en": "",
+        "vi": ""
+      },
+      "copyVI": "",
+      "copyEN": "",
+      "breakdown": "",
+      "createdAt": "2024-12-30"
+    },
+    {
+      "id": "p4",
+      "color": "4",
+      "type": {
+        "en": "Brand Story",
+        "vi": "Brand Story"
+      },
+      "title": {
+        "en": "About Page Rewrite — Fintech Startup",
+        "vi": "Viết lại trang About — Fintech Startup"
+      },
+      "meta": "Fintech · EN",
+      "brief": {
+        "en": "",
+        "vi": ""
+      },
+      "copyVI": "",
+      "copyEN": "",
+      "breakdown": "",
+      "createdAt": "2024-12-15"
+    },
+    {
+      "id": "p5",
+      "color": "5",
+      "type": {
+        "en": "UX Copy",
+        "vi": "UX Copy"
+      },
+      "title": {
+        "en": "Onboarding Flow — Health App",
+        "vi": "Copy Onboarding — App Sức Khỏe"
+      },
+      "meta": "Health · Bilingual",
+      "brief": {
+        "en": "",
+        "vi": ""
+      },
+      "copyVI": "",
+      "copyEN": "",
+      "breakdown": "",
+      "createdAt": "2024-12-01"
+    },
+    {
+      "id": "p6",
+      "color": "6",
+      "type": {
+        "en": "Google Ads",
+        "vi": "Google Ads"
+      },
+      "title": {
+        "en": "10 Headlines — Tech Product",
+        "vi": "10 Headlines — Sản phẩm Tech"
+      },
+      "meta": "Tech · EN",
+      "brief": {
+        "en": "",
+        "vi": ""
+      },
+      "copyVI": "",
+      "copyEN": "",
+      "breakdown": "",
+      "createdAt": "2024-11-20"
+    }
+  ],
+  "lastSaved": "2026-04-01T10:15:53.259Z"
+}

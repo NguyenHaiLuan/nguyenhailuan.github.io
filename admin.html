@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HL Admin — Portfolio CMS</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --green:#16a34a;--green-light:#dcfce7;--green-dim:#166534;
+  --sb:#0d1117;--sb-text:#8b949e;--sb-active:#f0f6fc;--sb-hover:#161b22;--sb-border:#21262d;
+  --bg:#f0f4f8;--card:#fff;--border:#e2e8f0;--text:#1e293b;--muted:#64748b;
+  --danger:#ef4444;--danger-bg:#fee2e2;--danger-border:#fecaca;
+  --purple:#7c3aed;--purple-light:#ede9fe;--purple-border:#ddd6fe;
+  --r:10px;--sh:0 1px 3px rgba(0,0,0,.08),0 1px 2px rgba(0,0,0,.06);
+  --sh-lg:0 10px 25px rgba(0,0,0,.12);--sw:240px;--th:60px;
+  --font:'Plus Jakarta Sans',system-ui,sans-serif;
+}
+body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:100vh;display:flex;font-size:14px;line-height:1.6}
+
+/* ── SIDEBAR ── */
+.sidebar{width:var(--sw);background:var(--sb);height:100vh;position:fixed;top:0;left:0;display:flex;flex-direction:column;z-index:100;border-right:1px solid var(--sb-border)}
+.sb-logo{padding:18px 16px;display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--sb-border)}
+.logo-pill{width:36px;height:36px;background:var(--green);border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;color:#fff;flex-shrink:0;letter-spacing:.05em}
+.logo-name{color:#f0f6fc;font-weight:700;font-size:13.5px}.logo-sub{color:#8b949e;font-size:11px;margin-top:1px}
+.sb-nav{padding:10px 8px;flex:1;overflow-y:auto}
+.sb-label{color:#484f58;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:8px 8px 4px;margin-top:6px}
+.nav-item{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:6px;text-decoration:none;color:var(--sb-text);font-size:13px;font-weight:500;transition:all .15s;cursor:pointer;margin-bottom:1px;user-select:none}
+.nav-item:hover{background:var(--sb-hover);color:#c9d1d9}
+.nav-item.active{background:rgba(22,163,74,.15);color:var(--green)}
+.nav-item svg{width:15px;height:15px;flex-shrink:0;opacity:.7}.nav-item.active svg{opacity:1}
+.nav-badge{margin-left:auto;background:#1a2233;color:#8b949e;font-size:10px;padding:1px 7px;border-radius:10px;font-weight:700}
+.sb-foot{padding:12px;border-top:1px solid var(--sb-border)}
+.view-btn{display:block;text-align:center;padding:8px;border-radius:6px;border:1px solid #30363d;color:#8b949e;text-decoration:none;font-size:12px;font-weight:600;transition:all .15s}
+.view-btn:hover{border-color:var(--green);color:var(--green)}
+
+/* ── MAIN ── */
+.main{margin-left:var(--sw);flex:1;display:flex;flex-direction:column;min-height:100vh}
+.topbar{height:var(--th);background:#fff;border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 24px;gap:12px;position:sticky;top:0;z-index:50;box-shadow:0 1px 0 var(--border)}
+.topbar-title{font-size:15px;font-weight:700;flex:1}
+.topbar-actions{display:flex;gap:8px;align-items:center}
+.saved-ind{font-size:12px;color:var(--green);display:flex;align-items:center;gap:4px;opacity:0;transition:opacity .3s;font-weight:600}
+.saved-ind.show{opacity:1}
+
+/* ── BUTTONS ── */
+.btn{padding:7px 14px;border-radius:7px;border:none;cursor:pointer;font-size:13px;font-weight:600;font-family:var(--font);transition:all .15s;display:inline-flex;align-items:center;gap:6px;text-decoration:none}
+.btn-p{background:var(--green);color:#fff}.btn-p:hover{background:#15803d}
+.btn-s{background:#fff;color:var(--text);border:1px solid var(--border)}.btn-s:hover{background:#f8fafc}
+.btn-d{background:var(--danger-bg);color:var(--danger);border:1px solid var(--danger-border)}.btn-d:hover{background:#fecaca}
+.btn-sm{padding:5px 11px;font-size:12px}
+.btn-icon{padding:5px;border-radius:6px;background:transparent;border:none;cursor:pointer;color:var(--muted);transition:all .15s;font-size:14px}.btn-icon:hover{background:#f1f5f9;color:var(--text)}
+.btn-ai{background:linear-gradient(135deg,#7c3aed,#4f46e5);color:#fff;border:none;padding:4px 10px;border-radius:5px;font-size:11px;font-weight:700;cursor:pointer;font-family:var(--font);transition:opacity .15s;display:inline-flex;align-items:center;gap:4px;white-space:nowrap}
+.btn-ai:hover{opacity:.88}.btn-ai:disabled{opacity:.45;cursor:not-allowed}
+
+/* ── CONTENT ── */
+.content{padding:24px;flex:1}
+.section{display:none}.section.active{display:block}
+
+/* ── STAT GRID ── */
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin-bottom:24px}
+.stat-card{background:#fff;border-radius:var(--r);padding:18px 20px;border:1px solid var(--border);box-shadow:var(--sh)}
+.stat-n{font-size:26px;font-weight:800;line-height:1;margin-bottom:4px}
+.stat-l{font-size:12px;color:var(--muted);font-weight:500}
+.stat-icon{font-size:18px;margin-bottom:8px;display:block}
+
+/* ── QUICK ACTIONS ── */
+.qa-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;margin-bottom:24px}
+.qa-card{background:#fff;border:1px solid var(--border);border-radius:var(--r);padding:14px 18px;cursor:pointer;transition:all .15s;display:flex;align-items:center;gap:14px;box-shadow:var(--sh);text-decoration:none;color:inherit}
+.qa-card:hover{border-color:var(--green);transform:translateY(-2px);box-shadow:var(--sh-lg)}
+.qa-icon{width:38px;height:38px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0}
+.qa-title{font-weight:700;font-size:13px}.qa-sub{font-size:11px;color:var(--muted);margin-top:2px}
+
+/* ── CARD ── */
+.card{background:#fff;border-radius:var(--r);border:1px solid var(--border);box-shadow:var(--sh);overflow:hidden;margin-bottom:16px}
+.card-head{padding:14px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px}
+.card-title{font-weight:700;font-size:13.5px;flex:1}
+.card-body{padding:18px 20px}
+
+/* ── ITEM LIST ── */
+.item-row{display:flex;align-items:center;gap:10px;padding:11px 20px;border-bottom:1px solid #f1f5f9;transition:background .1s;cursor:pointer}
+.item-row:last-child{border-bottom:none}.item-row:hover{background:#f8fafc}
+.item-badge{padding:2px 8px;border-radius:20px;font-size:11px;font-weight:700;background:var(--green-light);color:var(--green-dim);flex-shrink:0;white-space:nowrap}
+.item-badge.bl{background:#dbeafe;color:#1e40af}
+.item-title{flex:1;font-weight:500;font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.item-meta{font-size:11px;color:var(--muted);flex-shrink:0;white-space:nowrap}
+.item-acts{display:flex;gap:3px;opacity:0;transition:opacity .15s;flex-shrink:0}.item-row:hover .item-acts{opacity:1}
+
+/* ── SECTION HEADER ── */
+.sec-head{display:flex;align-items:center;gap:12px;margin-bottom:18px}
+.sec-head h2{font-size:17px;font-weight:800;flex:1}
+
+/* ── EDITOR OVERLAY ── */
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:200;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .2s}
+.overlay.open{opacity:1;pointer-events:all}
+.ed-modal{background:#fff;border-radius:14px;width:100%;max-width:680px;max-height:90vh;display:flex;flex-direction:column;box-shadow:0 20px 60px rgba(0,0,0,.22);transform:scale(.95) translateY(12px);transition:transform .2s;overflow:hidden}
+.ed-modal.wide{max-width:780px}
+.overlay.open .ed-modal{transform:scale(1) translateY(0)}
+.ed-head{padding:16px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px}
+.ed-title{font-weight:800;font-size:15px;flex:1}
+.ed-body{padding:20px;overflow-y:auto;flex:1}
+.ed-foot{padding:13px 20px;border-top:1px solid var(--border);display:flex;align-items:center;gap:8px;justify-content:flex-end}
+
+/* ── FORM ── */
+.fg{margin-bottom:15px}
+.fg label,.fg-label{display:flex;align-items:center;gap:8px;font-size:11px;font-weight:700;color:var(--muted);margin-bottom:5px;text-transform:uppercase;letter-spacing:.05em}
+.ai-row{display:flex;align-items:center;gap:8px;margin-bottom:5px}
+.ai-row .fg-label{margin:0;flex:1}
+.fg input,.fg textarea,.fg select{width:100%;padding:8px 11px;border:1.5px solid var(--border);border-radius:7px;font-size:13.5px;font-family:var(--font);color:var(--text);background:#fff;transition:border-color .15s;outline:none;resize:vertical}
+.fg input:focus,.fg textarea:focus,.fg select:focus{border-color:var(--green);box-shadow:0 0 0 3px rgba(22,163,74,.1)}
+.fg textarea{min-height:90px;line-height:1.6}
+.fg-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.field-hint{font-size:11px;color:var(--muted);margin-top:4px}
+.field-hint code{background:#f1f5f9;padding:1px 4px;border-radius:3px;font-family:monospace}
+
+/* ── AI RESULT ── */
+.ai-result-box{background:var(--purple-light);border:1px solid var(--purple-border);border-radius:7px;padding:11px 13px;margin-top:7px;font-size:12.5px;line-height:1.65;color:#3730a3}
+.ai-loading{display:flex;align-items:center;gap:7px;color:var(--purple);font-size:12px;margin-top:6px;padding:8px 0}
+.ai-dot{width:6px;height:6px;border-radius:50%;background:var(--purple);animation:blink 1.1s infinite}
+.ai-dot:nth-child(2){animation-delay:.2s}.ai-dot:nth-child(3){animation-delay:.4s}
+@keyframes blink{0%,100%{opacity:.25}50%{opacity:1}}
+.ai-apply-btn{margin-top:6px;font-size:11px}
+
+/* ── COLOR PICKER ── */
+.color-opts{display:flex;gap:8px;flex-wrap:wrap;margin-top:4px}
+.co{width:26px;height:26px;border-radius:6px;cursor:pointer;border:2.5px solid transparent;transition:all .15s;flex-shrink:0}
+.co.sel{border-color:var(--text);transform:scale(1.12)}
+.co-1{background:linear-gradient(135deg,#2d6a4f,#40916c)}.co-2{background:linear-gradient(135deg,#1e3a5f,#2563eb)}
+.co-3{background:linear-gradient(135deg,#3d1a78,#7c3aed)}.co-4{background:linear-gradient(135deg,#7c2d12,#c2410c)}
+.co-5{background:linear-gradient(135deg,#1e3a2f,#16a34a)}.co-6{background:linear-gradient(135deg,#1e2a4a,#374151)}
+
+/* ── DIVIDER ── */
+.hr{border:none;border-top:1px solid var(--border);margin:18px 0}
+
+/* ── EXPORT ── */
+.export-box{background:#f8fafc;border:1px dashed #cbd5e1;border-radius:8px;padding:14px}
+.export-box pre{font-size:11px;color:var(--muted);overflow-x:auto;white-space:pre-wrap;word-break:break-all;max-height:180px;overflow-y:auto;font-family:monospace;line-height:1.5}
+
+/* ── INSTRUCTIONS ── */
+.info-box{background:#f0fdf4;border:1px solid #bbf7d0;border-radius:10px;padding:15px 18px;margin-bottom:20px}
+.info-box h4{font-size:13px;font-weight:800;color:#166534;margin-bottom:5px}
+.info-box p{font-size:12.5px;color:#15803d;line-height:1.65}
+.info-box code{background:#bbf7d0;padding:1px 5px;border-radius:4px;font-family:monospace;font-size:11.5px}
+.info-box ol{margin-left:18px;margin-top:6px}
+.info-box li{margin-bottom:3px}
+
+/* ── EMPTY ── */
+.empty{text-align:center;padding:48px 24px;color:var(--muted)}
+.empty-icon{font-size:34px;margin-bottom:12px}.empty-title{font-weight:700;font-size:14px;color:var(--text);margin-bottom:4px}.empty-sub{font-size:12.5px;margin-bottom:14px}
+
+/* ── TOAST ── */
+.toast-wrap{position:fixed;bottom:20px;right:20px;z-index:999;display:flex;flex-direction:column;gap:8px}
+.toast{background:#fff;border-radius:8px;padding:11px 15px;box-shadow:0 4px 20px rgba(0,0,0,.14);font-size:13px;font-weight:600;display:flex;align-items:center;gap:8px;transform:translateX(110px);opacity:0;transition:all .25s;border-left:3px solid var(--green)}
+.toast.show{transform:translateX(0);opacity:1}.toast.err{border-left-color:var(--danger)}
+
+/* ── STEP BADGE ── */
+.step{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;background:var(--green);color:#fff;font-size:11px;font-weight:800;flex-shrink:0}
+
+@media(max-width:768px){.sidebar{transform:translateX(-100%)}.main{margin-left:0}.fg-row{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<!-- ═══ SIDEBAR ═══ -->
+<aside class="sidebar">
+  <div class="sb-logo">
+    <div class="logo-pill">HL</div>
+    <div><div class="logo-name">Hải Luân</div><div class="logo-sub">Portfolio CMS</div></div>
+  </div>
+  <nav class="sb-nav">
+    <div class="sb-label">Nội dung</div>
+    <div class="nav-item active" data-section="dashboard">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+      Dashboard
+    </div>
+    <div class="nav-item" data-section="blog">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+      Blog Posts
+      <span class="nav-badge" id="blogCount">0</span>
+    </div>
+    <div class="nav-item" data-section="portfolio">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
+      Portfolio
+      <span class="nav-badge" id="portCount">0</span>
+    </div>
+    <div class="sb-label" style="margin-top:14px">Công cụ</div>
+    <div class="nav-item" data-section="export">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Xuất / Import
+    </div>
+  </nav>
+  <div class="sb-foot">
+    <a href="index.html" target="_blank" class="view-btn">🌐 Xem website →</a>
+  </div>
+</aside>
+
+<!-- ═══ MAIN ═══ -->
+<main class="main">
+  <header class="topbar">
+    <div class="topbar-title" id="pageTitle">Dashboard</div>
+    <div class="topbar-actions">
+      <span class="saved-ind" id="savedInd">✓ Đã lưu</span>
+      <button class="btn btn-s btn-sm" onclick="importJSON()">📂 Import</button>
+      <button class="btn btn-p btn-sm" onclick="saveAll()">💾 Lưu tất cả</button>
+    </div>
+  </header>
+
+  <div class="content">
+
+    <!-- ═══ DASHBOARD ═══ -->
+    <section class="section active" id="section-dashboard">
+      <div class="info-box">
+        <h4>🚀 Hướng dẫn sử dụng nhanh</h4>
+        <p>Chỉnh sửa Blog và Portfolio tại đây → <strong>Lưu tất cả</strong> → mở <code>index.html</code> và dán đoạn script từ trang <strong>Xuất / Import</strong> vào cuối thẻ <code>&lt;body&gt;</code>. Nội dung sẽ tự cập nhật mỗi lần tải trang.</p>
+      </div>
+      <div class="stat-grid">
+        <div class="stat-card"><span class="stat-icon">📝</span><div class="stat-n" id="db-bc">0</div><div class="stat-l">Bài Blog</div></div>
+        <div class="stat-card"><span class="stat-icon">🗂️</span><div class="stat-n" id="db-pc">0</div><div class="stat-l">Dự án mẫu</div></div>
+        <div class="stat-card"><span class="stat-icon">🌐</span><div class="stat-n">EN+VI</div><div class="stat-l">Song ngữ</div></div>
+        <div class="stat-card"><span class="stat-icon">⚡</span><div class="stat-n" id="db-ls">—</div><div class="stat-l">Lần lưu cuối</div></div>
+      </div>
+      <div class="qa-grid">
+        <div class="qa-card" onclick="navigate('blog'); openBlogEd(null)">
+          <div class="qa-icon" style="background:#dcfce7">✍️</div>
+          <div><div class="qa-title">Thêm bài blog mới</div><div class="qa-sub">Tạo post mới ngay</div></div>
+        </div>
+        <div class="qa-card" onclick="navigate('portfolio'); openPortEd(null)">
+          <div class="qa-icon" style="background:#dbeafe">🗂️</div>
+          <div><div class="qa-title">Thêm dự án mới</div><div class="qa-sub">Thêm vào portfolio</div></div>
+        </div>
+        <div class="qa-card" onclick="navigate('export')">
+          <div class="qa-icon" style="background:#fef3c7">📦</div>
+          <div><div class="qa-title">Xuất & tích hợp</div><div class="qa-sub">Lấy script cho site</div></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-head"><div class="card-title">📝 Blog gần đây</div><button class="btn btn-s btn-sm" onclick="navigate('blog')">Xem tất cả</button></div>
+        <div id="db-blog"></div>
+      </div>
+    </section>
+
+    <!-- ═══ BLOG ═══ -->
+    <section class="section" id="section-blog">
+      <div class="sec-head">
+        <h2>📝 Blog Posts</h2>
+        <button class="btn btn-p" onclick="openBlogEd(null)">+ Thêm bài viết</button>
+      </div>
+      <div class="card"><div id="blog-list"></div></div>
+    </section>
+
+    <!-- ═══ PORTFOLIO ═══ -->
+    <section class="section" id="section-portfolio">
+      <div class="sec-head">
+        <h2>🗂️ Portfolio</h2>
+        <button class="btn btn-p" onclick="openPortEd(null)">+ Thêm dự án</button>
+      </div>
+      <div class="card"><div id="port-list"></div></div>
+    </section>
+
+    <!-- ═══ EXPORT ═══ -->
+    <section class="section" id="section-export">
+      <div class="sec-head"><h2>📦 Xuất / Import dữ liệu</h2></div>
+
+      <div class="card">
+        <div class="card-head"><div class="card-title">⚙️ Tích hợp vào index.html</div></div>
+        <div class="card-body">
+          <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:14px">
+            <div style="display:flex;gap:10px;align-items:flex-start">
+              <span class="step">1</span>
+              <span style="font-size:13px">Tải file <strong>content-loader.js</strong> về và bỏ vào cùng thư mục với <code style="background:#f1f5f9;padding:1px 5px;border-radius:3px;font-family:monospace">index.html</code></span>
+            </div>
+            <div style="display:flex;gap:10px;align-items:flex-start">
+              <span class="step">2</span>
+              <span style="font-size:13px">Thêm đoạn script sau vào cuối thẻ <code style="background:#f1f5f9;padding:1px 5px;border-radius:3px;font-family:monospace">&lt;body&gt;</code> trong <code style="background:#f1f5f9;padding:1px 5px;border-radius:3px;font-family:monospace">index.html</code>, ngay trước <code style="background:#f1f5f9;padding:1px 5px;border-radius:3px;font-family:monospace">&lt;/body&gt;</code>:</span>
+            </div>
+          </div>
+          <div class="export-box">
+            <pre id="snippet-pre"></pre>
+          </div>
+          <div style="display:flex;gap:8px;margin-top:10px">
+            <button class="btn btn-s btn-sm" onclick="copySnippet()">📋 Copy snippet</button>
+            <a id="loaderDownloadBtn" class="btn btn-p btn-sm" download="content-loader.js">⬇️ Tải content-loader.js</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div class="card-title">💾 Xuất JSON (backup)</div>
+          <button class="btn btn-p btn-sm" onclick="exportJSON()">⬇️ Tải về JSON</button>
+        </div>
+        <div class="card-body">
+          <p style="font-size:13px;color:var(--muted);margin-bottom:12px">File JSON chứa toàn bộ blog và portfolio. Commit vào git repo để backup, hoặc dùng để chuyển thiết bị.</p>
+          <div class="export-box"><pre id="json-pre"></pre></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head"><div class="card-title">📂 Import JSON</div></div>
+        <div class="card-body">
+          <p style="font-size:13px;color:var(--muted);margin-bottom:12px">Chọn file JSON đã xuất để khôi phục dữ liệu. <strong>Lưu ý: sẽ ghi đè dữ liệu hiện tại.</strong></p>
+          <input type="file" id="import-file" accept=".json" style="display:none" onchange="handleImport(event)">
+          <button class="btn btn-s" onclick="document.getElementById('import-file').click()">📂 Chọn file JSON để import</button>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<!-- ═══ BLOG EDITOR ═══ -->
+<div class="overlay" id="blogOverlay" onclick="if(event.target===this)closeBlogEd()">
+  <div class="ed-modal">
+    <div class="ed-head">
+      <div class="ed-title" id="blogEdTitle">Thêm bài viết mới</div>
+      <button class="btn-icon" onclick="closeBlogEd()">✕</button>
+    </div>
+    <div class="ed-body">
+      <div class="fg-row">
+        <div class="fg"><label>Danh mục (EN)</label><input id="b-cat-en" placeholder="Copywriting, Career, Tips…"></div>
+        <div class="fg"><label>Danh mục (VI)</label><input id="b-cat-vi" placeholder="Copywriting, Nghề nghiệp…"></div>
+      </div>
+      <div class="fg-row">
+        <div class="fg"><label>Thời gian đọc (EN)</label><input id="b-time-en" placeholder="5 min"></div>
+        <div class="fg"><label>Thời gian đọc (VI)</label><input id="b-time-vi" placeholder="5 phút"></div>
+      </div>
+      <div class="fg">
+        <div class="ai-row"><span class="fg-label">Tiêu đề (EN)</span><button class="btn-ai" onclick="aiAssist('btitle-en')">✨ AI gợi ý</button></div>
+        <input id="b-title-en" placeholder="Blog title in English…">
+        <div id="ar-btitle-en"></div>
+      </div>
+      <div class="fg">
+        <div class="ai-row"><span class="fg-label">Tiêu đề (VI)</span><button class="btn-ai" onclick="aiAssist('btitle-vi')">✨ AI gợi ý</button></div>
+        <input id="b-title-vi" placeholder="Tiêu đề bằng tiếng Việt…">
+        <div id="ar-btitle-vi"></div>
+      </div>
+      <div class="fg">
+        <div class="ai-row"><span class="fg-label">Mô tả ngắn (EN)</span><button class="btn-ai" onclick="aiAssist('bexcerpt-en')">✨ AI gợi ý</button></div>
+        <textarea id="b-excerpt-en" rows="3" placeholder="Short preview in English…"></textarea>
+        <div id="ar-bexcerpt-en"></div>
+      </div>
+      <div class="fg">
+        <div class="ai-row"><span class="fg-label">Mô tả ngắn (VI)</span><button class="btn-ai" onclick="aiAssist('bexcerpt-vi')">✨ AI gợi ý</button></div>
+        <textarea id="b-excerpt-vi" rows="3" placeholder="Mô tả ngắn tiếng Việt…"></textarea>
+        <div id="ar-bexcerpt-vi"></div>
+      </div>
+      <div class="fg">
+        <label>Link bài viết</label>
+        <input id="b-link" placeholder="https://… hoặc # nếu chưa có">
+        <div class="field-hint">Dùng <code>#</code> nếu chưa publish, cập nhật sau khi có URL thật</div>
+      </div>
+    </div>
+    <div class="ed-foot">
+      <button class="btn btn-d btn-sm" id="blogDelBtn" onclick="delBlog()" style="margin-right:auto;display:none">🗑️ Xóa bài</button>
+      <button class="btn btn-s" onclick="closeBlogEd()">Huỷ</button>
+      <button class="btn btn-p" onclick="saveBlog()">💾 Lưu bài viết</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ PORTFOLIO EDITOR ═══ -->
+<div class="overlay" id="portOverlay" onclick="if(event.target===this)closePortEd()">
+  <div class="ed-modal wide">
+    <div class="ed-head">
+      <div class="ed-title" id="portEdTitle">Thêm dự án mới</div>
+      <button class="btn-icon" onclick="closePortEd()">✕</button>
+    </div>
+    <div class="ed-body">
+      <div class="fg-row">
+        <div class="fg"><label>Loại content (EN)</label><input id="p-type-en" placeholder="Facebook Ad, Landing Page…"></div>
+        <div class="fg"><label>Loại content (VI)</label><input id="p-type-vi" placeholder="Quảng cáo Facebook…"></div>
+      </div>
+      <div class="fg">
+        <div class="ai-row"><span class="fg-label">Tiêu đề dự án (EN)</span><button class="btn-ai" onclick="aiAssist('ptitle-en')">✨ AI gợi ý</button></div>
+        <input id="p-title-en" placeholder="Project title in English…">
+        <div id="ar-ptitle-en"></div>
+      </div>
+      <div class="fg">
+        <div class="ai-row"><span class="fg-label">Tiêu đề dự án (VI)</span><button class="btn-ai" onclick="aiAssist('ptitle-vi')">✨ AI gợi ý</button></div>
+        <input id="p-title-vi" placeholder="Tên dự án tiếng Việt…">
+        <div id="ar-ptitle-vi"></div>
+      </div>
+      <div class="fg-row">
+        <div class="fg">
+          <label>Meta tag</label>
+          <input id="p-meta" placeholder="Local biz · PAS · VI/EN">
+          <div class="field-hint">Ngành · Framework · Ngôn ngữ</div>
+        </div>
+        <div class="fg">
+          <label>Màu thẻ</label>
+          <div class="color-opts" id="colorOpts">
+            <div class="co co-1 sel" data-c="1" onclick="pickColor(this)"></div>
+            <div class="co co-2" data-c="2" onclick="pickColor(this)"></div>
+            <div class="co co-3" data-c="3" onclick="pickColor(this)"></div>
+            <div class="co co-4" data-c="4" onclick="pickColor(this)"></div>
+            <div class="co co-5" data-c="5" onclick="pickColor(this)"></div>
+            <div class="co co-6" data-c="6" onclick="pickColor(this)"></div>
+          </div>
+        </div>
+      </div>
+      <div class="hr"></div>
+      <div style="font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:12px">📄 Nội dung case study (hiện trong modal khi click vào thẻ)</div>
+      <div class="fg-row">
+        <div class="fg"><label>Brief (EN)</label><textarea id="p-brief-en" rows="3" placeholder="Describe the brief in English…"></textarea></div>
+        <div class="fg"><label>Brief (VI)</label><textarea id="p-brief-vi" rows="3" placeholder="Mô tả bối cảnh dự án…"></textarea></div>
+      </div>
+      <div class="fg">
+        <div class="ai-row"><span class="fg-label">Bài copy mẫu (VI)</span><button class="btn-ai" onclick="aiAssist('pcopy-vi')">✨ AI viết thử</button></div>
+        <textarea id="p-copy-vi" rows="6" placeholder="Bài copy tiếng Việt… (hỗ trợ &lt;strong&gt;, &lt;em&gt;, &lt;p&gt;)"></textarea>
+        <div id="ar-pcopy-vi"></div>
+      </div>
+      <div class="fg">
+        <div class="ai-row"><span class="fg-label">Bài copy mẫu (EN)</span><button class="btn-ai" onclick="aiAssist('pcopy-en')">✨ AI viết thử</button></div>
+        <textarea id="p-copy-en" rows="6" placeholder="English version of the copy…"></textarea>
+        <div id="ar-pcopy-en"></div>
+      </div>
+      <div class="fg">
+        <label>Phân tích copywriting (breakdown)</label>
+        <textarea id="p-breakdown" rows="5" placeholder="Mỗi dòng là 1 mục. Format: Tag||Nội dung phân tích&#10;Ví dụ:&#10;Hook||Headline gọi ra nỗi sợ cụ thể rồi lật ngược thành cảm giác nhẹ nhõm.&#10;P — Problem||Câu hỏi tu từ làm người đọc cảm thấy được hiểu."></textarea>
+        <div class="field-hint">Mỗi dòng: <code>Tag||Nội dung</code> — dùng <code>||</code> để tách tag và nội dung phân tích</div>
+      </div>
+    </div>
+    <div class="ed-foot">
+      <button class="btn btn-d btn-sm" id="portDelBtn" onclick="delPort()" style="margin-right:auto;display:none">🗑️ Xóa dự án</button>
+      <button class="btn btn-s" onclick="closePortEd()">Huỷ</button>
+      <button class="btn btn-p" onclick="savePort()">💾 Lưu dự án</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast-wrap" id="toasts"></div>
+<input type="file" id="import-file" accept=".json" style="display:none" onchange="handleImport(event)">
+
+<script>
+// ═══════════════════════════════════
+// DEFAULT DATA (matches current site)
+// ═══════════════════════════════════
+const DEF = {
+  blog: [
+    { id:'b1', cat:{en:'Copywriting',vi:'Copywriting'}, readTime:{en:'5 min',vi:'5 phút'},
+      title:{en:'Why ex-developers make surprisingly good copywriters',vi:'Tại sao lập trình viên lại viết copy tốt hơn bạn nghĩ'},
+      excerpt:{en:"We think in user flows and edge cases. Turns out, that's exactly what great copy does — it moves someone from A to B without friction.",vi:'Chúng ta nghĩ theo luồng người dùng và các trường hợp ngoại lệ. Hóa ra đó chính xác là những gì copy tốt làm — đưa người đọc từ A đến B mà không có rào cản.'},
+      link:'#', createdAt:'2025-01-10' },
+    { id:'b2', cat:{en:'Career',vi:'Nghề nghiệp'}, readTime:{en:'7 min',vi:'7 phút'},
+      title:{en:'From back pain to brand voice: my pivot story',vi:'Từ đau lưng đến brand voice: câu chuyện xoay trục của mình'},
+      excerpt:{en:"A back injury forced me to stop coding. Here's how I turned the worst month of my career into the start of something new — and why I don't regret it.",vi:'Cơn đau lưng buộc mình ngừng code. Đây là cách mình biến tháng tệ nhất sự nghiệp thành khởi đầu của điều gì đó mới — và tại sao mình không hối hận.'},
+      link:'#', createdAt:'2025-01-05' },
+    { id:'b3', cat:{en:'Tips',vi:'Mẹo hay'}, readTime:{en:'4 min',vi:'4 phút'},
+      title:{en:'The one formula I use for every headline',vi:'Công thức duy nhất mình dùng cho mọi headline'},
+      excerpt:{en:"Forget AIDA, PAS, and all the acronyms. There's one frame that makes any headline instantly sharper — and it takes 60 seconds.",vi:'Quên AIDA, PAS đi. Có một khung đơn giản giúp bất kỳ headline nào sắc ngay lập tức — và chỉ mất 60 giây.'},
+      link:'#', createdAt:'2024-12-28' },
+    { id:'b4', cat:{en:'Tech + Copy',vi:'Tech + Copy'}, readTime:{en:'6 min',vi:'6 phút'},
+      title:{en:"How to write about tech without sounding like a manual",vi:'Viết về sản phẩm tech mà không nghe như đọc hướng dẫn sử dụng'},
+      excerpt:{en:"Tech teams are too close to the product to explain it simply. Here's how to find the human story inside the feature list.",vi:'Đội tech quá gần sản phẩm để giải thích nó đơn giản. Đây là cách tìm câu chuyện con người bên trong danh sách tính năng.'},
+      link:'#', createdAt:'2024-12-20' }
+  ],
+  portfolio: [
+    { id:'p1', color:'1', type:{en:'Facebook Ad',vi:'Quảng cáo Facebook'},
+      title:{en:'"The plant that doesn\'t need you" — Succulent ad for a local plant shop',vi:'"Cây không cần bạn tưới" — Bài quảng cáo sen đá cho shop cây địa phương'},
+      meta:'Local biz · PAS · VI/EN',
+      brief:{en:"A small local plant shop wants to promote their succulent collection on Facebook. Target: busy urban people (25–40), mostly women, who want greenery at home but think they'll kill every plant. Goal: drive walk-ins + DMs. Budget: small. Tone: warm, relatable, lightly humorous.",vi:'Một cửa hàng cây nhỏ ở địa phương muốn quảng bá bộ sưu tập sen đá trên Facebook. Đối tượng: người bận rộn (25–40 tuổi), chủ yếu nữ, muốn có cây nhưng tự nhận "tay mình héo cây". Mục tiêu: kéo khách đến shop + inbox hỏi mua. Ngân sách nhỏ. Giọng điệu: gần gũi, thật, hơi dí dỏm.'},
+      copyVI:'🌵 Loại cây duy nhất không ghét bạn dù bạn quên tưới nó 3 tuần.\n\nSen đá — sống sót qua mọi thứ, kể cả sự bận rộn của bạn.\n\nBạn đã bao giờ mua cây về, đặt lên bàn, thề sẽ chăm sóc cẩn thận — rồi 2 tuần sau nhìn lại thấy nó đã trở thành rơm chưa?\n\nMình hiểu cảm giác đó.\n\nSen đá thì khác. Tưới ít, sáng nhiều, yêu thương vừa phải. Thực ra tưới nhiều mới giết nó nhanh hơn quên tưới.\n\nShop hiện có hơn 30 loại sen đá, giá từ 15.000đ.\n\n💬 Inbox shop để được tư vấn chọn cây →',
+      copyEN:"🌵 The only plant that won't judge you for forgetting to water it. For 3 weeks.\n\nSucculents — built to survive everything, including your schedule.\n\nYou've done it before. Bought a plant, promised yourself you'd take care of it — then looked up three weeks later to find something that looks more like hay.\n\nWe've all been there.\n\nSucculents are different. A little light, a little water, zero guilt trips. In fact, overwatering kills them faster than forgetting.\n\n30+ varieties starting at 15,000đ.\n\n💬 Message us to find your perfect plant →",
+      breakdown:'Hook||Headline gọi ra nỗi sợ cụ thể ("quên tưới") rồi lật ngược thành cảm giác nhẹ nhõm. Scroll-stopping vì cụ thể, không generic.\nP — Problem||"Bạn đã bao giờ..." — làm người đọc cảm thấy được hiểu, không bị phán xét. Đây là P trong PAS.\nA — Agitate||"Mình hiểu cảm giác đó" — validate cảm xúc trước khi đưa ra giải pháp. Ngắn, thật, tạo kết nối.\nS — Solution||Sen đá được giới thiệu như câu trả lời logic. Twist bất ngờ (tưới nhiều mới giết nhanh hơn) tạo credibility.\nSocial proof||30+ loại = đa dạng. Price anchor 15k xóa rào cản "đắt không?" trước khi nó hình thành.\nCTA||"Inbox" mềm thay vì "mua ngay" — phù hợp với tone shop local ấm áp. Conversation leads to sale.',
+      createdAt:'2025-01-15' },
+    { id:'p2', color:'2', type:{en:'Landing Page',vi:'Landing Page'}, title:{en:'SaaS Hero Copy — B2B Product Launch',vi:'Hero Copy — Ra mắt sản phẩm SaaS B2B'}, meta:'SaaS · EN', brief:{en:'',vi:''}, copyVI:'', copyEN:'', breakdown:'', createdAt:'2025-01-08' },
+    { id:'p3', color:'3', type:{en:'Email Sequence',vi:'Email Sequence'}, title:{en:'5-Email Welcome Flow — Mobile App',vi:'Chuỗi 5 email chào mừng — App Mobile'}, meta:'SaaS · Bilingual', brief:{en:'',vi:''}, copyVI:'', copyEN:'', breakdown:'', createdAt:'2024-12-30' },
+    { id:'p4', color:'4', type:{en:'Brand Story',vi:'Brand Story'}, title:{en:'About Page Rewrite — Fintech Startup',vi:'Viết lại trang About — Fintech Startup'}, meta:'Fintech · EN', brief:{en:'',vi:''}, copyVI:'', copyEN:'', breakdown:'', createdAt:'2024-12-15' },
+    { id:'p5', color:'5', type:{en:'UX Copy',vi:'UX Copy'}, title:{en:'Onboarding Flow — Health App',vi:'Copy Onboarding — App Sức Khỏe'}, meta:'Health · Bilingual', brief:{en:'',vi:''}, copyVI:'', copyEN:'', breakdown:'', createdAt:'2024-12-01' },
+    { id:'p6', color:'6', type:{en:'Google Ads',vi:'Google Ads'}, title:{en:'10 Headlines — Tech Product',vi:'10 Headlines — Sản phẩm Tech'}, meta:'Tech · EN', brief:{en:'',vi:''}, copyVI:'', copyEN:'', breakdown:'', createdAt:'2024-11-20' }
+  ],
+  lastSaved: null
+};
+
+// ═══════════════════════════════════
+// STATE
+// ═══════════════════════════════════
+let D = loadData();
+let curBlog = null, curPort = null, selColor = '1';
+
+function loadData(){
+  try{ const r=localStorage.getItem('hl_cms'); return r?JSON.parse(r):JSON.parse(JSON.stringify(DEF)); }catch{ return JSON.parse(JSON.stringify(DEF)); }
+}
+
+function saveAll(){
+  D.lastSaved=new Date().toISOString();
+  localStorage.setItem('hl_cms',JSON.stringify(D));
+  const el=document.getElementById('savedInd');
+  el.classList.add('show'); setTimeout(()=>el.classList.remove('show'),2500);
+  updateCounts(); toast('Đã lưu tất cả thay đổi ✓');
+}
+
+// ═══════════════════════════════════
+// NAVIGATION
+// ═══════════════════════════════════
+const TITLES={dashboard:'Dashboard',blog:'Blog Posts',portfolio:'Portfolio',export:'Xuất / Import'};
+function navigate(s){
+  document.querySelectorAll('.nav-item').forEach(el=>el.classList.toggle('active',el.dataset.section===s));
+  document.querySelectorAll('.section').forEach(el=>el.classList.toggle('active',el.id==='section-'+s));
+  document.getElementById('pageTitle').textContent=TITLES[s]||s;
+  if(s==='blog')renderBlogList();
+  if(s==='portfolio')renderPortList();
+  if(s==='export')renderExport();
+  if(s==='dashboard')renderDash();
+}
+document.querySelectorAll('.nav-item').forEach(el=>el.addEventListener('click',()=>navigate(el.dataset.section)));
+
+// ═══════════════════════════════════
+// COUNTS & DASHBOARD
+// ═══════════════════════════════════
+function updateCounts(){
+  document.getElementById('blogCount').textContent=D.blog.length;
+  document.getElementById('portCount').textContent=D.portfolio.length;
+  document.getElementById('db-bc').textContent=D.blog.length;
+  document.getElementById('db-pc').textContent=D.portfolio.length;
+  if(D.lastSaved){const d=new Date(D.lastSaved);document.getElementById('db-ls').textContent=d.toLocaleTimeString('vi',{hour:'2-digit',minute:'2-digit'});}
+}
+
+function renderDash(){
+  updateCounts();
+  const el=document.getElementById('db-blog');
+  if(!D.blog.length){el.innerHTML='<div class="empty"><div class="empty-icon">📝</div><div class="empty-title">Chưa có bài viết nào</div></div>';return;}
+  el.innerHTML=D.blog.slice(0,3).map(b=>`
+    <div class="item-row" onclick="navigate('blog');openBlogEd('${b.id}')">
+      <span class="item-badge">${h(b.cat.en)}</span>
+      <span class="item-title">${h(b.title.en)}</span>
+      <span class="item-meta">${h(b.readTime.en)}</span>
+    </div>`).join('');
+}
+
+// ═══════════════════════════════════
+// BLOG LIST
+// ═══════════════════════════════════
+function renderBlogList(){
+  const el=document.getElementById('blog-list');
+  if(!D.blog.length){el.innerHTML=`<div class="empty"><div class="empty-icon">📝</div><div class="empty-title">Chưa có bài viết nào</div><div class="empty-sub">Nhấn "+ Thêm bài viết" để tạo bài đầu tiên</div><button class="btn btn-p" onclick="openBlogEd(null)">+ Thêm bài viết</button></div>`;return;}
+  el.innerHTML=D.blog.map(b=>`
+    <div class="item-row" onclick="openBlogEd('${b.id}')">
+      <span class="item-badge">${h(b.cat.en)}</span>
+      <span class="item-title">${h(b.title.en)}</span>
+      <span class="item-meta">${h(b.readTime.en)}</span>
+      <div class="item-acts">
+        <button class="btn-icon" onclick="event.stopPropagation();openBlogEd('${b.id}')">✏️</button>
+        <button class="btn-icon" onclick="event.stopPropagation();confirmDelBlog('${b.id}')">🗑️</button>
+      </div>
+    </div>`).join('');
+}
+
+// ═══════════════════════════════════
+// PORTFOLIO LIST
+// ═══════════════════════════════════
+function renderPortList(){
+  const el=document.getElementById('port-list');
+  if(!D.portfolio.length){el.innerHTML=`<div class="empty"><div class="empty-icon">🗂️</div><div class="empty-title">Chưa có dự án nào</div><div class="empty-sub">Nhấn "+ Thêm dự án" để bắt đầu</div><button class="btn btn-p" onclick="openPortEd(null)">+ Thêm dự án</button></div>`;return;}
+  el.innerHTML=D.portfolio.map(p=>`
+    <div class="item-row" onclick="openPortEd('${p.id}')">
+      <div class="co co-${p.color||1}" style="width:14px;height:14px;border-radius:3px;flex-shrink:0;pointer-events:none"></div>
+      <span class="item-badge bl">${h(p.type.en)}</span>
+      <span class="item-title">${h(p.title.en)}</span>
+      <span class="item-meta">${h(p.meta)}</span>
+      <div class="item-acts">
+        <button class="btn-icon" onclick="event.stopPropagation();openPortEd('${p.id}')">✏️</button>
+        <button class="btn-icon" onclick="event.stopPropagation();confirmDelPort('${p.id}')">🗑️</button>
+      </div>
+    </div>`).join('');
+}
+
+// ═══════════════════════════════════
+// BLOG EDITOR
+// ═══════════════════════════════════
+function openBlogEd(id){
+  curBlog=id;
+  document.getElementById('blogEdTitle').textContent=id?'Chỉnh sửa bài viết':'Thêm bài viết mới';
+  document.getElementById('blogDelBtn').style.display=id?'inline-flex':'none';
+  const b=id?D.blog.find(x=>x.id===id):null;
+  sv('b-cat-en',b?.cat?.en||''); sv('b-cat-vi',b?.cat?.vi||'');
+  sv('b-time-en',b?.readTime?.en||''); sv('b-time-vi',b?.readTime?.vi||'');
+  sv('b-title-en',b?.title?.en||''); sv('b-title-vi',b?.title?.vi||'');
+  sv('b-excerpt-en',b?.excerpt?.en||''); sv('b-excerpt-vi',b?.excerpt?.vi||'');
+  sv('b-link',b?.link||'#');
+  clearAR(['btitle-en','btitle-vi','bexcerpt-en','bexcerpt-vi']);
+  document.getElementById('blogOverlay').classList.add('open');
+}
+function closeBlogEd(){document.getElementById('blogOverlay').classList.remove('open');}
+
+function saveBlog(){
+  const b={
+    id:curBlog||'b'+Date.now(),
+    cat:{en:gv('b-cat-en')||'Uncategorized',vi:gv('b-cat-vi')||'Chưa phân loại'},
+    readTime:{en:gv('b-time-en')||'5 min',vi:gv('b-time-vi')||'5 phút'},
+    title:{en:gv('b-title-en'),vi:gv('b-title-vi')},
+    excerpt:{en:gv('b-excerpt-en'),vi:gv('b-excerpt-vi')},
+    link:gv('b-link')||'#',
+    createdAt:curBlog?(D.blog.find(x=>x.id===curBlog)?.createdAt||today()):today()
+  };
+  if(!b.title.en&&!b.title.vi){toast('Vui lòng nhập tiêu đề bài viết!',true);return;}
+  if(curBlog){const i=D.blog.findIndex(x=>x.id===curBlog);if(i>-1)D.blog[i]=b;}
+  else D.blog.unshift(b);
+  saveAll(); renderBlogList(); closeBlogEd();
+  toast(curBlog?'Đã cập nhật bài viết ✓':'Đã thêm bài viết mới ✓');
+}
+function confirmDelBlog(id){if(confirm('Xóa bài viết này?')){D.blog=D.blog.filter(x=>x.id!==id);saveAll();renderBlogList();toast('Đã xóa bài viết');}}
+function delBlog(){if(curBlog){confirmDelBlog(curBlog);closeBlogEd();}}
+
+// ═══════════════════════════════════
+// PORTFOLIO EDITOR
+// ═══════════════════════════════════
+function openPortEd(id){
+  curPort=id;
+  document.getElementById('portEdTitle').textContent=id?'Chỉnh sửa dự án':'Thêm dự án mới';
+  document.getElementById('portDelBtn').style.display=id?'inline-flex':'none';
+  const p=id?D.portfolio.find(x=>x.id===id):null;
+  sv('p-type-en',p?.type?.en||''); sv('p-type-vi',p?.type?.vi||'');
+  sv('p-title-en',p?.title?.en||''); sv('p-title-vi',p?.title?.vi||'');
+  sv('p-meta',p?.meta||'');
+  sv('p-brief-en',p?.brief?.en||''); sv('p-brief-vi',p?.brief?.vi||'');
+  sv('p-copy-vi',p?.copyVI||''); sv('p-copy-en',p?.copyEN||'');
+  sv('p-breakdown',p?.breakdown||'');
+  selColor=p?.color||'1';
+  document.querySelectorAll('.co').forEach(el=>el.classList.toggle('sel',el.dataset.c===selColor));
+  clearAR(['ptitle-en','ptitle-vi','pcopy-vi','pcopy-en']);
+  document.getElementById('portOverlay').classList.add('open');
+}
+function closePortEd(){document.getElementById('portOverlay').classList.remove('open');}
+function pickColor(el){selColor=el.dataset.c;document.querySelectorAll('.co').forEach(e=>e.classList.remove('sel'));el.classList.add('sel');}
+
+function savePort(){
+  const p={
+    id:curPort||'p'+Date.now(), color:selColor,
+    type:{en:gv('p-type-en')||'Copy',vi:gv('p-type-vi')||'Copy'},
+    title:{en:gv('p-title-en'),vi:gv('p-title-vi')},
+    meta:gv('p-meta'),
+    brief:{en:gv('p-brief-en'),vi:gv('p-brief-vi')},
+    copyVI:gv('p-copy-vi'), copyEN:gv('p-copy-en'),
+    breakdown:gv('p-breakdown'),
+    createdAt:curPort?(D.portfolio.find(x=>x.id===curPort)?.createdAt||today()):today()
+  };
+  if(!p.title.en&&!p.title.vi){toast('Vui lòng nhập tiêu đề dự án!',true);return;}
+  if(curPort){const i=D.portfolio.findIndex(x=>x.id===curPort);if(i>-1)D.portfolio[i]=p;}
+  else D.portfolio.unshift(p);
+  saveAll(); renderPortList(); closePortEd();
+  toast(curPort?'Đã cập nhật dự án ✓':'Đã thêm dự án mới ✓');
+}
+function confirmDelPort(id){if(confirm('Xóa dự án này?')){D.portfolio=D.portfolio.filter(x=>x.id!==id);saveAll();renderPortList();toast('Đã xóa dự án');}}
+function delPort(){if(curPort){confirmDelPort(curPort);closePortEd();}}
+
+// ═══════════════════════════════════
+// AI WRITING ASSISTANT
+// ═══════════════════════════════════
+const AI_P = {
+  'btitle-en': ctx=>`You are a copywriting expert helping a bilingual Vietnamese copywriter with their portfolio blog. Generate 3 punchy, specific blog title options IN ENGLISH. Context/topic: ${ctx||'copywriting tips for tech products'}. Rules: numbered 1-3, each on a new line, no explanations after. Titles should be curiosity-driven, benefit-forward, under 12 words each.`,
+  'btitle-vi': ctx=>`Bạn là chuyên gia copywriting. Tạo 3 tiêu đề blog hấp dẫn BẰNG TIẾNG VIỆT cho portfolio của một copywriter song ngữ. Chủ đề: ${ctx||'kỹ năng copywriting, viết quảng cáo'}. Đánh số 1-3, mỗi tiêu đề một dòng, không giải thích. Tiêu đề phải cụ thể, gây tò mò, dưới 15 từ.`,
+  'bexcerpt-en': ctx=>`Write 3 short blog excerpt options IN ENGLISH (2 sentences each) for the post titled: "${ctx}". The excerpt must hook the reader instantly. Numbered 1-3. No preamble.`,
+  'bexcerpt-vi': ctx=>`Viết 3 đoạn mô tả ngắn BẰNG TIẾNG VIỆT (2 câu mỗi đoạn) cho bài viết: "${ctx}". Thu hút người đọc ngay từ câu đầu. Đánh số 1-3. Không giải thích thêm.`,
+  'ptitle-en': ctx=>`Generate 3 portfolio project title options IN ENGLISH for a copywriting portfolio. Project type: ${ctx||'copywriting project'}. Format: short, specific, memorable. Include the content type and industry. Numbered 1-3.`,
+  'ptitle-vi': ctx=>`Tạo 3 tiêu đề dự án portfolio BẰNG TIẾNG VIỆT. Loại dự án: ${ctx||'dự án copywriting'}. Ngắn gọn, cụ thể, gây tò mò. Đánh số 1-3.`,
+  'pcopy-vi': ctx=>`Bạn là copywriter. Viết một bài copy mẫu TIẾNG VIỆT theo framework PAS dựa trên brief: ${ctx||'sản phẩm/dịch vụ cần quảng bá'}. Viết thẳng vào copy, không label "PAS". Giọng gần gũi, kết bằng CTA. Khoảng 150-200 từ.`,
+  'pcopy-en': ctx=>`You are an expert copywriter. Write a sample copy IN ENGLISH using PAS framework based on: ${ctx||'product/service brief'}. Write the copy directly, no section labels. Conversational tone, end with CTA. Around 150-200 words.`
+};
+
+async function aiAssist(key){
+  const el=document.getElementById('ar-'+key);
+  if(!el)return;
+  const ctxMap={'btitle-en':'b-cat-en','btitle-vi':'b-cat-vi','bexcerpt-en':'b-title-en','bexcerpt-vi':'b-title-vi','ptitle-en':'p-type-en','ptitle-vi':'p-type-vi','pcopy-vi':'p-brief-vi','pcopy-en':'p-brief-en'};
+  const ctx=gv(ctxMap[key]||'')||'';
+  const fn=AI_P[key]; if(!fn)return;
+  el.innerHTML=`<div class="ai-loading"><div class="ai-dot"></div><div class="ai-dot"></div><div class="ai-dot"></div><span>AI đang viết…</span></div>`;
+  const btn=el.closest('.fg')?.querySelector('.btn-ai'); if(btn)btn.disabled=true;
+  try{
+    const res=await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,messages:[{role:'user',content:fn(ctx)}]})
+    });
+    const d=await res.json();
+    const text=d.content?.map(c=>c.text||'').join('')||'Không có kết quả.';
+    el.innerHTML=`<div class="ai-result-box">${h(text).replace(/\n/g,'<br>')}</div><button class="btn btn-s btn-sm ai-apply-btn" onclick="applyAI('${key}',this)">📋 Dùng gợi ý này</button>`;
+  }catch{
+    el.innerHTML=`<div class="ai-result-box" style="background:#fef2f2;border-color:#fecaca;color:#b91c1c">❌ Lỗi kết nối. Thử lại sau.</div>`;
+  }finally{if(btn)btn.disabled=false;}
+}
+
+function applyAI(key,btn){
+  const text=btn.previousElementSibling?.textContent||'';
+  const map={'btitle-en':'b-title-en','btitle-vi':'b-title-vi','bexcerpt-en':'b-excerpt-en','bexcerpt-vi':'b-excerpt-vi','ptitle-en':'p-title-en','ptitle-vi':'p-title-vi','pcopy-vi':'p-copy-vi','pcopy-en':'p-copy-en'};
+  const t=document.getElementById(map[key]); if(t){t.value=text;t.focus();}
+  btn.parentElement.innerHTML='';
+}
+
+// ═══════════════════════════════════
+// EXPORT / IMPORT
+// ═══════════════════════════════════
+const SNIPPET=`<!-- HL Portfolio CMS — paste before </body> in index.html -->
+<script src="content-loader.js"><\/script>`;
+
+function genLoaderJS(){
+  return `/* HL Portfolio Content Loader v1.0 */
+/* Reads data from localStorage and injects blog + portfolio into the page */
+(function(){
+  try{
+    var raw=localStorage.getItem('hl_cms');
+    if(!raw)return;
+    var D=JSON.parse(raw);
+    function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+    function nl2p(s){return s?s.split(/\\n\\n+/).map(function(p){return '<p>'+esc(p).replace(/\\n/g,'<br>')+'</p>';}).join(''):'';}
+
+    /* ── INJECT BLOG ── */
+    var bg=document.querySelector('.blog-grid');
+    if(bg&&D.blog&&D.blog.length){
+      bg.innerHTML=D.blog.map(function(b){return(
+        '<div class="blog-card reveal">'+
+        '<div class="blog-meta">'+
+        '<span class="blog-cat" data-en>'+esc(b.cat.en)+'</span>'+
+        '<span class="blog-cat" data-vi>'+esc(b.cat.vi)+'</span>'+
+        '<span>·</span>'+
+        '<span data-en>'+esc(b.readTime.en)+'</span>'+
+        '<span data-vi>'+esc(b.readTime.vi)+'</span>'+
+        '</div>'+
+        '<div class="blog-title">'+
+        '<span data-en>'+esc(b.title.en)+'</span>'+
+        '<span data-vi>'+esc(b.title.vi)+'</span>'+
+        '</div>'+
+        '<p class="blog-excerpt" data-en-b>'+esc(b.excerpt.en)+'</p>'+
+        '<p class="blog-excerpt" data-vi-b>'+esc(b.excerpt.vi)+'</p>'+
+        '<a href="'+esc(b.link||'#')+'" class="blog-read">'+
+        '<span data-en>Read \u2192</span><span data-vi>\u0110\u1ecdc \u2192</span>'+
+        '</a>'+
+        '</div>'
+      );}).join('');
+    }
+
+    /* ── INJECT PORTFOLIO ── */
+    var pg=document.querySelector('.port-grid');
+    if(pg&&D.portfolio&&D.portfolio.length){
+      /* Store data globally for modal access */
+      window._hlPortData=D.portfolio;
+      pg.innerHTML=D.portfolio.map(function(p,i){
+        var hasModal=!!(p.brief&&(p.brief.en||p.brief.vi)||p.copyVI||p.copyEN);
+        return(
+          '<div class="port-card reveal"'+(hasModal?' onclick="hlOpenModal(\\'' + p.id + '\\')"':'')+'>'+
+          '<div class="port-top port-top-'+(p.color||((i%6)+1))+'">'+
+          '<span class="port-type" data-en>'+esc(p.type.en)+'</span>'+
+          '<span class="port-type" data-vi>'+esc(p.type.vi)+'</span>'+
+          '<div class="port-title" data-en>'+esc(p.title.en)+'</div>'+
+          '<div class="port-title" data-vi>'+esc(p.title.vi)+'</div>'+
+          '</div>'+
+          '<div class="port-bottom">'+
+          '<span class="port-meta">'+esc(p.meta)+'</span>'+
+          '<span class="port-arrow">'+(hasModal?'\u2192':'')+'</span>'+
+          '</div></div>'
+        );
+      }).join('');
+    }
+
+    /* ── DYNAMIC MODAL ── */
+    window.hlOpenModal=function(id){
+      var p=(window._hlPortData||[]).find(function(x){return x.id===id;});
+      if(!p)return;
+      var m=document.getElementById('modal');
+      if(!m)return;
+      function qs(sel){return m.querySelector(sel);}
+      var bds=p.breakdown?p.breakdown.split('\\n').filter(Boolean).map(function(line){
+        var pts=line.split('||');
+        var tag=pts[0]||'';var body=pts[1]||'';
+        return '<li><span class="bk-tag">'+esc(tag)+'</span><span>'+esc(body)+'</span></li>';
+      }).join(''):'';
+      var mh=m.querySelector('.modal-head');
+      if(mh){
+        var mts=mh.querySelectorAll('.modal-type');
+        if(mts[0])mts[0].textContent='Case Study — '+p.type.en;
+        if(mts[1])mts[1].textContent='Case Study — '+p.type.vi;
+        var mtls=mh.querySelectorAll('.modal-title');
+        if(mtls[0])mtls[0].textContent=p.title.en;
+        if(mtls[1])mtls[1].textContent=p.title.vi;
+      }
+      var mb=m.querySelector('.modal-body');
+      if(mb){
+        mb.innerHTML=
+          '<div class="modal-sec">'+
+          '<h4 data-en>Brief</h4><h4 data-vi>B\u1ed1i c\u1ea3nh</h4>'+
+          '<p class="brief-text" data-en-b>'+esc(p.brief&&p.brief.en||'')+'</p>'+
+          '<p class="brief-text" data-vi-b>'+esc(p.brief&&p.brief.vi||'')+'</p>'+
+          '</div>'+
+          (p.copyVI?'<div class="modal-sec"><h4 data-en>The copy (Vietnamese)</h4><h4 data-vi>B\u00e0i vi\u1ebft</h4><div class="copy-sample"><div class="copy-body">'+nl2p(p.copyVI)+'</div></div></div>':'')+(p.copyEN?'<div class="modal-sec"><h4 data-en>English version</h4><h4 data-vi>B\u1ea3n ti\u1ebfng Anh</h4><div class="copy-sample"><div class="copy-body">'+nl2p(p.copyEN)+'</div></div></div>':'')+
+          (bds?'<div class="modal-sec"><h4>Copywriting breakdown</h4><ul class="bk-list">'+bds+'</ul></div>':'');
+      }
+      if(typeof openModal==='function')openModal();
+      else m.classList.add('open');
+      /* re-apply lang */
+      var lang=document.body.className||'en';
+      if(typeof setLang==='function')setLang(lang);
+    };
+
+    /* ── RE-APPLY LANG ── */
+    var lang=document.body.className||'en';
+    if(typeof setLang==='function')setLang(lang);
+
+    /* ── SCROLL REVEAL ── */
+    if(typeof IntersectionObserver!=='undefined'){
+      var obs=new IntersectionObserver(function(entries){
+        entries.forEach(function(e,i){if(e.isIntersecting){setTimeout(function(){e.target.classList.add('on');},i*75);obs.unobserve(e.target);}});
+      },{threshold:0.1});
+      document.querySelectorAll('.blog-grid .reveal,.port-grid .reveal').forEach(function(el){obs.observe(el);});
+    }
+  }catch(e){console.warn('[HL CMS]',e);}
+})();`;
+}
+
+function renderExport(){
+  document.getElementById('snippet-pre').textContent=SNIPPET;
+  document.getElementById('json-pre').textContent=JSON.stringify(D,null,2).slice(0,1200)+'\n\n… (tải về để xem đầy đủ)';
+  // Set download link for loader JS
+  const jsBlob=new Blob([genLoaderJS()],{type:'text/javascript'});
+  const loaderBtn=document.getElementById('loaderDownloadBtn');
+  if(loaderBtn){
+    if(loaderBtn._prevUrl)URL.revokeObjectURL(loaderBtn._prevUrl);
+    loaderBtn._prevUrl=URL.createObjectURL(jsBlob);
+    loaderBtn.href=loaderBtn._prevUrl;
+  }
+}
+
+function exportJSON(){
+  const blob=new Blob([JSON.stringify(D,null,2)],{type:'application/json'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='hl-portfolio-data.json';a.click();
+  toast('Đã tải về file JSON ✓');
+}
+function copySnippet(){navigator.clipboard.writeText(SNIPPET).then(()=>toast('Đã copy snippet ✓'));}
+function importJSON(){document.getElementById('import-file').click();}
+function handleImport(e){
+  const file=e.target.files[0];if(!file)return;
+  const reader=new FileReader();
+  reader.onload=ev=>{
+    try{
+      const imp=JSON.parse(ev.target.result);
+      if(!imp.blog||!imp.portfolio)throw new Error('invalid');
+      if(confirm(`Import sẽ ghi đè dữ liệu hiện tại (${D.blog.length} blog, ${D.portfolio.length} dự án). Tiếp tục?`)){
+        D=imp;saveAll();renderDash();toast('Import thành công ✓');
+      }
+    }catch{toast('File JSON không hợp lệ!',true);}
+  };
+  reader.readAsText(file);e.target.value='';
+}
+
+// ═══════════════════════════════════
+// UTILITIES
+// ═══════════════════════════════════
+function gv(id){return(document.getElementById(id)?.value||'').trim();}
+function sv(id,v){const el=document.getElementById(id);if(el)el.value=v;}
+function h(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function clearAR(keys){keys.forEach(k=>{const el=document.getElementById('ar-'+k);if(el)el.innerHTML='';});}
+function today(){return new Date().toISOString().slice(0,10);}
+function toast(msg,isErr=false){
+  const c=document.getElementById('toasts');
+  const t=document.createElement('div');t.className='toast'+(isErr?' err':'');t.textContent=msg;c.appendChild(t);
+  setTimeout(()=>t.classList.add('show'),10);
+  setTimeout(()=>{t.classList.remove('show');setTimeout(()=>t.remove(),300);},3000);
+}
+
+// Close on Escape
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeBlogEd();closePortEd();}});
+
+// ── INIT ──
+renderDash();
+</script>
+</body>
+</html>
