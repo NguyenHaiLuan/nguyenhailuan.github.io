@@ -1,88 +1,73 @@
 {
   "blog": [
     {
-      "id": "b1775038227250",
+      "id": "b1775056086530",
       "cat": {
-        "en": "Copywriting",
-        "vi": "Copywriting"
-      },
-      "readTime": {
-        "en": "10 min",
-        "vi": "10 phút"
-      },
-      "title": {
-        "en": "Câu chuyện kinh điển trong marketing mà mình ấn tượng",
-        "vi": "Câu chuyện kinh điển trong marketing mà mình ấn tượng"
-      },
-      "excerpt": {
-        "en": "Câu chuyện kinh điển trong marketing mà mình ấn tượngCâu chuyện kinh điển trong marketing mà mình ấn tượngCâu chuyện kinh điển trong marketing mà mình ấn tượngCâu chuyện kinh điển trong marketing mà mình ấn tượngCâu chuyện kinh điển trong marketing mà mình ấn tượngCâu chuyện kinh điển trong marketing mà mình ấn tượng",
-        "vi": "Câu chuyện kinh điển trong marketing mà mình ấn tượngCâu chuyện kinh điển trong marketing mà mình ấn tượngCâu chuyện kinh điển trong marketing mà mình ấn tượngCâu chuyện kinh điển trong marketing mà mình ấn tượngCâu chuyện kinh điển trong marketing mà mình ấn tượngCâu chuyện kinh điển trong marketing mà mình ấn tượng"
-      },
-      "link": "#hook",
-      "createdAt": "2026-04-01"
-    },
-    {
-      "id": "b1",
-      "cat": {
-        "en": "Copywriting",
-        "vi": "Copywriting"
+        "en": "Uncategorized",
+        "vi": "Chưa phân loại"
       },
       "readTime": {
         "en": "5 min",
         "vi": "5 phút"
       },
       "title": {
-        "en": "Why ex-developers make surprisingly good copywriters",
-        "vi": "Tại sao lập trình viên lại viết copy tốt hơn bạn nghĩ"
+        "en": "this is a blog",
+        "vi": "đây là 1 blog"
       },
       "excerpt": {
-        "en": "We think in user flows and edge cases. Turns out, that's exactly what great copy does — it moves someone from A to B without friction.",
-        "vi": "Chúng ta nghĩ theo luồng người dùng và các trường hợp ngoại lệ. Hóa ra đó chính xác là những gì copy tốt làm — đưa người đọc từ A đến B mà không có rào cản."
+        "en": "how to aim correctly",
+        "vi": "đây là cách đặt tâm chuẩn"
       },
-      "link": "#",
-      "createdAt": "2025-01-10"
+      "contentEN": "afdsfae fds ff fdfd **jfjdhajfs** jfhdjafhdjfhkjsfds dhsgfh hfsjhfbs hfsjfb hfsfjsdf hfhdsfj fhjsgdfiur iurh ìu jhbfj fdjsb jhfsdf",
+      "contentVI": "afdsfae fds ff fdfd **jfjdhajfs** jfhdjafhdjfhkjsfds dhsgfh hfsjhfbs hfsjfb hfsfjsdf hfhdsfj fhjsgdfiur iurh ìu jhbfj fdjsb jhfsdf",
+      "link": "",
+      "createdAt": "2026-04-01"
     },
     {
       "id": "b2",
       "cat": {
+        "en": "Copywriting Tips",
+        "vi": "Mẹo Copywriting"
+      },
+      "readTime": {
+        "en": "6 min",
+        "vi": "6 phút"
+      },
+      "title": {
+        "en": "5 headline formulas that work extremely well for local plant shops",
+        "vi": "5 công thức headline cực hiệu quả khi viết cho shop cây cảnh địa phương"
+      },
+      "excerpt": {
+        "en": "How I turned “just another plant ad” into 47 DMs in the first 24 hours.",
+        "vi": "Cách mình biến một bài quảng cáo cây cảnh bình thường thành 47 tin nhắn trong 24 giờ đầu."
+      },
+      "contentEN": "**Most plant shop ads fail because they sound like a bot.**\n\nHere are the 5 headline patterns I actually use for local greenery businesses (and they convert like crazy).\n\n1. Pain + Twist\n2. Curiosity Gap\n3. Social Proof Mini\n4. Promise + Number\n5. Relatable Fail\n\nI’ll show you real examples from the succulent campaign.",
+      "contentVI": "**Hầu hết quảng cáo cây cảnh đều thất bại vì nghe như bot.**\n\nĐây là 5 công thức headline mình thực tế dùng cho shop cây địa phương (và chuyển đổi cực mạnh).\n\n1. Pain + Twist\n2. Curiosity Gap\n3. Social Proof Mini\n4. Promise + Number\n5. Relatable Fail\n\nMình sẽ cho bạn xem ví dụ thật từ campaign sen đá.",
+      "link": "",
+      "createdAt": "2026-03-15"
+    },
+    {
+      "id": "b3",
+      "cat": {
         "en": "Career",
-        "vi": "Nghề nghiệp"
+        "vi": "Sự nghiệp"
       },
       "readTime": {
         "en": "7 min",
         "vi": "7 phút"
       },
       "title": {
-        "en": "From back pain to brand voice: my pivot story",
-        "vi": "Từ đau lưng đến brand voice: câu chuyện xoay trục của mình"
+        "en": "How I got my first 3 local clients as a new copywriter (with zero portfolio)",
+        "vi": "Cách mình kiếm được 3 khách địa phương đầu tiên khi mới làm copywriter (không có portfolio)"
       },
       "excerpt": {
-        "en": "A back injury forced me to stop coding. Here's how I turned the worst month of my career into the start of something new — and why I don't regret it.",
-        "vi": "Cơn đau lưng buộc mình ngừng code. Đây là cách mình biến tháng tệ nhất sự nghiệp thành khởi đầu của điều gì đó mới — và tại sao mình không hối hận."
+        "en": "The exact 3-step method I used to land paid projects in under 30 days.",
+        "vi": "Cách chính xác 3 bước mình dùng để có dự án trả tiền trong chưa đầy 30 ngày."
       },
-      "link": "#",
-      "createdAt": "2025-01-05"
-    },
-    {
-      "id": "b3",
-      "cat": {
-        "en": "Tips",
-        "vi": "Mẹo hay"
-      },
-      "readTime": {
-        "en": "4 min",
-        "vi": "4 phút"
-      },
-      "title": {
-        "en": "The one formula I use for every headline",
-        "vi": "Công thức duy nhất mình dùng cho mọi headline"
-      },
-      "excerpt": {
-        "en": "Forget AIDA, PAS, and all the acronyms. There's one frame that makes any headline instantly sharper — and it takes 60 seconds.",
-        "vi": "Quên AIDA, PAS đi. Có một khung đơn giản giúp bất kỳ headline nào sắc ngay lập tức — và chỉ mất 60 giây."
-      },
-      "link": "#",
-      "createdAt": "2024-12-28"
+      "contentEN": "**I used to think I needed a fancy portfolio first.** Turns out, for local businesses, trust and speed matter more than perfection.\n\nStep 1: Offer a “mini audit” for free\nStep 2: Turn the audit into a paid test project\nStep 3: Ask for referral\n\nAll 3 of my first clients were plant/cafe/gift shops in Da Nang.",
+      "contentVI": "**Mình từng nghĩ phải có portfolio xịn mới dám nhận job.** Hóa ra với doanh nghiệp địa phương, sự tin tưởng và tốc độ quan trọng hơn hoàn hảo.\n\nBước 1: Offer “mini audit” miễn phí\nBước 2: Biến audit thành test project có phí\nBước 3: Xin referral\n\nCả 3 khách đầu tiên của mình đều là shop cây, cà phê, quà tặng ở Đà Nẵng.",
+      "link": "",
+      "createdAt": "2026-03-08"
     },
     {
       "id": "b4",
@@ -91,19 +76,21 @@
         "vi": "Tech + Copy"
       },
       "readTime": {
-        "en": "6 min",
-        "vi": "6 phút"
+        "en": "5 min",
+        "vi": "5 phút"
       },
       "title": {
-        "en": "How to write about tech without sounding like a manual",
-        "vi": "Viết về sản phẩm tech mà không nghe như đọc hướng dẫn sử dụng"
+        "en": "Why ex-developers write better Facebook ads than most copywriters",
+        "vi": "Tại sao lập trình viên cũ lại viết Facebook Ads hay hơn hầu hết copywriter"
       },
       "excerpt": {
-        "en": "Tech teams are too close to the product to explain it simply. Here's how to find the human story inside the feature list.",
-        "vi": "Đội tech quá gần sản phẩm để giải thích nó đơn giản. Đây là cách tìm câu chuyện con người bên trong danh sách tính năng."
+        "en": "User flow thinking + edge-case awareness = copy that actually converts.",
+        "vi": "Tư duy user flow + hiểu rõ edge-case = copy bán được hàng thật."
       },
-      "link": "#",
-      "createdAt": "2024-12-20"
+      "contentEN": "**I spent 2 years thinking in user journeys.** That skill transferred directly to copy.\n\n- I write ads like I write onboarding flows\n- I remove every possible friction point\n- I test 7 variations instead of 1\n\nResult? My plant shop client got 4.2x ROAS on the first campaign.",
+      "contentVI": "**Mình từng mất 2 năm tư duy theo user journey.** Kỹ năng đó chuyển thẳng sang copy.\n\n- Viết ads như viết flow onboarding\n- Loại bỏ mọi điểm gây khó chịu cho người đọc\n- Test 7 biến thể thay vì 1\n\nKết quả? Khách shop cây của mình đạt ROAS 4.2 lần ngay campaign đầu.",
+      "link": "",
+      "createdAt": "2026-02-20"
     }
   ],
   "portfolio": [
@@ -132,107 +119,44 @@
       "id": "p2",
       "color": "2",
       "type": {
-        "en": "Landing Page",
-        "vi": "Landing Page"
+        "en": "Email Sequence",
+        "vi": "Chuỗi Email"
       },
       "title": {
-        "en": "SaaS Hero Copy — B2B Product Launch",
-        "vi": "Hero Copy — Ra mắt sản phẩm SaaS B2B"
+        "en": "3-email welcome & nurture series for new plant parents",
+        "vi": "Chuỗi 3 email chào mừng + nuôi dưỡng khách hàng mới cho shop cây"
       },
-      "meta": "SaaS · EN",
+      "meta": "Local biz · Email Automation · VI/EN",
       "brief": {
-        "en": "",
-        "vi": ""
+        "en": "Same plant shop wanted an automated welcome sequence for people who signed up via Facebook/Instagram. Goal: turn cold leads into repeat buyers. Tone: friendly mentor, not salesperson. Sequence: Welcome → First care tip → Special offer.",
+        "vi": "Cùng shop cây muốn chuỗi email tự động cho khách đăng ký từ Facebook/Instagram. Mục tiêu: biến lead lạnh thành khách mua lại. Giọng điệu: người bạn hướng dẫn, không bán hàng. Thứ tự: Chào mừng → Mẹo chăm sóc đầu tiên → Ưu đãi đặc biệt."
       },
-      "copyVI": "",
-      "copyEN": "",
-      "breakdown": "",
-      "createdAt": "2025-01-08"
+      "copyVI": "Email 1 – Welcome\n🌱 Chào bạn, cây mới của bạn đã sẵn sàng!\n\nMình là Hải từ shop. Cảm ơn bạn đã tin tưởng và cho chúng mình cơ hội đưa một chút xanh vào nhà bạn.\n\nĐây là mã giảm 10% cho lần mua tiếp theo: PLANT10\n\nEmail 2 – First Tip\n💡 Mẹo đơn giản nhất để sen đá sống lâu: “Tưới ít hơn bạn nghĩ”\n\nHầu hết mọi người giết sen đá vì tưới quá nhiều. Đây là cách tưới đúng trong 30 giây...\n\nEmail 3 – Offer\n🎁 Vì bạn là “plant parent” mới, shop tặng bạn bộ kit chăm sen đá mini (trị giá 89k) khi mua 3 cây trở lên.",
+      "copyEN": "Email 1 – Welcome\n🌱 Hey, your new plant is ready!\n\nI'm Hải from the shop. Thank you for trusting us to bring a little green into your home.\n\nHere's 10% off your next purchase: PLANT10\n\nEmail 2 – First Tip\n💡 The simplest way to keep succulents alive: “Water less than you think”\n\nMost people kill succulents by overwatering. Here's the correct way in 30 seconds...\n\nEmail 3 – Offer\n🎁 Because you're a new plant parent, we're gifting you a mini succulent care kit (worth 89k) when you buy 3+ plants.",
+      "breakdown": "Email 1||Build instant relationship + soft incentive (discount code)\nEmail 2||Deliver real value first (educational content) → xây dựng lòng tin\nEmail 3||Gentle offer với gift để tăng cảm giác được quan tâm chứ không phải bán hàng\nOverall||Toàn bộ sequence chỉ có 1 CTA mua hàng, 2 email còn lại tập trung giá trị → chuyển đổi cao mà không gây khó chịu.",
+      "createdAt": "2025-02-28"
     },
     {
       "id": "p3",
       "color": "3",
       "type": {
-        "en": "Email Sequence",
-        "vi": "Email Sequence"
+        "en": "Instagram Carousel",
+        "vi": "Carousel Instagram"
       },
       "title": {
-        "en": "5-Email Welcome Flow — Mobile App",
-        "vi": "Chuỗi 5 email chào mừng — App Mobile"
+        "en": "6-slide carousel: “How to choose the right plant for your apartment”",
+        "vi": "Carousel 6 slide: “Chọn cây cảnh nào phù hợp với căn hộ của bạn”"
       },
-      "meta": "SaaS · Bilingual",
+      "meta": "Local biz · Instagram · VI/EN",
       "brief": {
-        "en": "",
-        "vi": ""
+        "en": "The plant shop needed educational + selling carousel to run as organic + paid content. Target: young professionals living in small apartments in Da Nang. Goal: increase profile visits and DMs.",
+        "vi": "Shop cần carousel vừa giáo dục vừa bán hàng để chạy organic + paid. Đối tượng: người trẻ làm văn phòng sống trong căn hộ nhỏ ở Đà Nẵng. Mục tiêu: tăng visit profile và tin nhắn DM."
       },
-      "copyVI": "",
-      "copyEN": "",
-      "breakdown": "",
-      "createdAt": "2024-12-30"
-    },
-    {
-      "id": "p4",
-      "color": "4",
-      "type": {
-        "en": "Brand Story",
-        "vi": "Brand Story"
-      },
-      "title": {
-        "en": "About Page Rewrite — Fintech Startup",
-        "vi": "Viết lại trang About — Fintech Startup"
-      },
-      "meta": "Fintech · EN",
-      "brief": {
-        "en": "",
-        "vi": ""
-      },
-      "copyVI": "",
-      "copyEN": "",
-      "breakdown": "",
-      "createdAt": "2024-12-15"
-    },
-    {
-      "id": "p5",
-      "color": "5",
-      "type": {
-        "en": "UX Copy",
-        "vi": "UX Copy"
-      },
-      "title": {
-        "en": "Onboarding Flow — Health App",
-        "vi": "Copy Onboarding — App Sức Khỏe"
-      },
-      "meta": "Health · Bilingual",
-      "brief": {
-        "en": "",
-        "vi": ""
-      },
-      "copyVI": "",
-      "copyEN": "",
-      "breakdown": "",
-      "createdAt": "2024-12-01"
-    },
-    {
-      "id": "p6",
-      "color": "6",
-      "type": {
-        "en": "Google Ads",
-        "vi": "Google Ads"
-      },
-      "title": {
-        "en": "10 Headlines — Tech Product",
-        "vi": "10 Headlines — Sản phẩm Tech"
-      },
-      "meta": "Tech · EN",
-      "brief": {
-        "en": "",
-        "vi": ""
-      },
-      "copyVI": "",
-      "copyEN": "",
-      "breakdown": "",
-      "createdAt": "2024-11-20"
+      "copyVI": "Slide 1: Bạn đang tìm cây nhưng sợ “tay héo”?\nSlide 2: 3 tiêu chí chọn cây cho căn hộ chung cư\nSlide 3: Top 5 cây cực dễ sống (có ảnh thật)\nSlide 4: Cây nào hợp ánh sáng yếu?\nSlide 5: Giá chỉ từ 45k – bạn đã có thể có góc xanh\nSlide 6: Comment “CÂY” để mình tư vấn miễn phí theo căn hộ của bạn 💚",
+      "copyEN": "Slide 1: Looking for plants but scared of killing them?\nSlide 2: 3 criteria to choose the right plant for your apartment\nSlide 3: Top 5 almost impossible-to-kill plants (real photos)\nSlide 4: Which plants survive low light?\nSlide 5: Starting at only 45k – you can have your own green corner\nSlide 6: Comment “PLANT” and I’ll recommend the perfect one for your space 💚",
+      "breakdown": "Slide 1-2||Xây dựng vấn đề + framework (giúp người đọc thấy mình chuyên nghiệp)\nSlide 3-4||Deliver giá trị thật (ảnh + thông tin cụ thể)\nSlide 5||Social proof + price anchor\nSlide 6||CTA cực mềm (comment thay vì “mua ngay”) → tăng tương tác + lead chất lượng cao.",
+      "createdAt": "2025-03-20"
     }
   ],
-  "lastSaved": "2026-04-01T10:15:53.259Z"
+  "lastSaved": "2026-04-01T15:12:05.314Z"
 }
