@@ -8,25 +8,30 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
-
 </head>
 
 <body class="en">
 
+<!-- LANG TOOLTIP -->
+<div class="lang-tooltip" id="langTooltip">
+  <span data-en>👆 Switch language here!</span>
+  <span data-vi>👆 Đổi ngôn ngữ ở đây nè!</span>
+  <div class="lang-tooltip-arrow"></div>
+</div>
+
 <!-- NAV -->
-<nav>
-  <a href="#hero" class="nav-logo">Hải <span>Luân</span></a>
-  <ul class="nav-links">
-    <li><a href="#about" data-en>About</a><a href="#about" data-vi>Về tôi</a></li>
-    <li><a href="#portfolio" data-en>Portfolio</a><a href="#portfolio" data-vi>Portfolio</a></li>
-    <li><a href="#blog" data-en>Blog</a><a href="#blog" data-vi>Blog</a></li>
-    <li><a href="#contact" data-en>Contact</a><a href="#contact" data-vi>Liên hệ</a></li>
+<nav id="mainNav">
+  <a href="#about" class="nav-logo">Hải <span>Luân</span></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#about" data-nav="about"><span data-en>About</span><span data-vi>Về tôi</span></a></li>
+    <li><a href="#services" data-nav="services"><span data-en>Services</span><span data-vi>Dịch vụ</span></a></li>
+    <li><a href="#portfolio" data-nav="portfolio"><span data-en>Portfolio</span><span data-vi>Portfolio</span></a></li>
+    <li><a href="#blog" data-nav="blog"><span data-en>Blog</span><span data-vi>Blog</span></a></li>
+    <li><a href="#contact" data-nav="contact"><span data-en>Contact</span><span data-vi>Liên hệ</span></a></li>
   </ul>
   <div class="nav-controls">
-    <!-- Light/Dark toggle -->
     <button class="theme-btn" id="themeBtn" onclick="toggleTheme()" title="Toggle dark mode" aria-label="Toggle theme">🌙</button>
-    <!-- Lang toggle -->
-    <div class="lang-row">
+    <div class="lang-row" id="langRow">
       <button class="lang-btn active" onclick="setLang('en')">EN</button>
       <button class="lang-btn" onclick="setLang('vi')">VI</button>
     </div>
@@ -58,7 +63,7 @@
   </p>
   <div class="hero-cta">
     <a href="#portfolio" class="btn btn-green"><span data-en>See my work →</span><span data-vi>Xem portfolio →</span></a>
-    <a href="#contact" class="btn btn-ghost"></span><span data-en>Let's talk</span><span data-vi>Trò chuyện</span></a>
+    <a href="#contact" class="btn btn-ghost"><span data-en>Let's talk</span><span data-vi>Trò chuyện</span></a>
   </div>
   <div class="hero-scroll">
     <div class="scroll-bar"></div>
@@ -73,18 +78,34 @@
 <section id="about">
   <div class="about-inner">
     <div class="about-body reveal">
-      <div class="sec-label" data-en>About me</div>
-      <div class="sec-label" data-vi>Về tôi</div>
+      <div class="sec-label">
+        <span data-en>About me</span><span data-vi>Về tôi</span>
+      </div>
       <h2 class="sec-title hl-serif" data-en-b>A developer who <span class="green">learned to write</span><br>because life made him.</h2>
       <h2 class="sec-title hl-serif" data-vi-b>Một lập trình viên học viết<br><span class="green">vì hoàn cảnh, ở lại vì đam mê.</span></h2>
+
+      <!-- Photo placeholder — replace img src when ready -->
+      <div class="about-photo-wrap">
+        <div class="about-photo-placeholder">
+          <div class="photo-icon">📷</div>
+          <p data-en>Take a photo</p>
+          <p data-vi>Ảnh ở đây cho đẹp</p>
+          <span class="photo-hint" data-en>Replace with my image</span>
+          <span class="photo-hint" data-vi>Thay bằng ảnh của tui mà tui chưa có cái ảnh nào ra hồn bạn ơi</span>
+        </div>
+        <!-- Uncomment below and replace src to use your photo:
+        <img src="your-photo.jpg" alt="Hải Luân" class="about-photo-img">
+        -->
+      </div>
+
       <p data-en-b>I spent two years building mobile apps — thinking in logic, systems, user flows. I genuinely loved it. Then my back gave out, and sitting at a desk for 10 hours became impossible.</p>
       <p data-vi-b>Hai năm viết code mobile — tư duy theo logic, hệ thống, và luồng người dùng. Mình thực sự yêu nó. Rồi lưng không chịu được nữa, ngồi 10 tiếng mỗi ngày trở thành điều không thể.</p>
       <div class="pull-quote" data-en-b>"I didn't plan to become a copywriter. I was just looking for something I could do lying down — and discovered I was actually good at it."</div>
       <div class="pull-quote" data-vi-b>"Mình không có kế hoạch trở thành copywriter. Mình chỉ đang tìm thứ có thể làm khi nằm — và phát hiện ra mình làm được tốt hơn mình nghĩ."</div>
       <p data-en-b>What I brought from coding: <strong>empathy for users, clarity of thinking, and no patience for fluff.</strong> Every line I write has a job. Just like every line of code.</p>
       <p data-vi-b>Thứ mình mang từ coding sang: <strong>đồng cảm với người dùng, tư duy rõ ràng, và không chịu được sự vô nghĩa.</strong> Mỗi câu mình viết đều có nhiệm vụ. Giống như mỗi dòng code.</p>
-      <p data-en-b>Bilingual in <em>Vietnamese & English.</em> Based in Vietnam, working with clients anywhere.</p>
-      <p data-vi-b>Song ngữ <em>Việt & Anh.</em> Đang ở Việt Nam, làm việc với khách hàng khắp nơi.</p>
+      <p data-en-b>Bilingual in <em>Vietnamese &amp; English.</em> Based in Vietnam, working with clients anywhere.</p>
+      <p data-vi-b>Song ngữ <em>Việt &amp; Anh.</em> Đang ở Việt Nam, làm việc với khách hàng khắp nơi.</p>
       <div class="stat-row">
         <div class="stat-box reveal"><div class="stat-n">2+</div><div class="stat-l" data-en>Years mobile dev</div><div class="stat-l" data-vi>Năm làm mobile dev</div></div>
         <div class="stat-box reveal"><div class="stat-n">🌏</div><div class="stat-l" data-en>Bilingual EN / VI</div><div class="stat-l" data-vi>Song ngữ Anh / Việt</div></div>
@@ -92,8 +113,11 @@
         <div class="stat-box reveal"><div class="stat-n">∞</div><div class="stat-l" data-en>Curiosity</div><div class="stat-l" data-vi>Sự tò mò</div></div>
       </div>
     </div>
+
     <div class="skills-col reveal">
-      <h3 data-en>Core skills</h3><h3 data-vi>Kỹ năng</h3>
+      <div class="sec-label">
+        <span data-en>Core Skills</span><span data-vi>Kỹ năng</span>
+      </div>
       <div class="skill-row"><div class="skill-top"><span data-en>Copywriting (VI)</span><span data-vi>Copywriting (tiếng Việt)</span><span>85%</span></div><div class="bar"><div class="bar-fill" style="--w:85%"></div></div></div>
       <div class="skill-row"><div class="skill-top"><span data-en>Copywriting (EN)</span><span data-vi>Copywriting (tiếng Anh)</span><span>70%</span></div><div class="bar"><div class="bar-fill" style="--w:70%"></div></div></div>
       <div class="skill-row"><div class="skill-top"><span data-en>Tech product knowledge</span><span data-vi>Hiểu sản phẩm tech</span><span>90%</span></div><div class="bar"><div class="bar-fill" style="--w:90%"></div></div></div>
@@ -103,8 +127,89 @@
       <div class="tags">
         <span class="tag">PAS</span><span class="tag">AIDA</span><span class="tag">StoryBrand</span>
         <span class="tag">SEO</span><span class="tag">Email Copy</span><span class="tag">Landing Page</span>
-        <span class="tag">Flutter and Dart</span><span class="tag">Figma</span><span class="tag">Notion</span>
+        <span class="tag">Flutter &amp; Dart</span><span class="tag">Figma</span><span class="tag">Notion</span>
       </div>
+    </div>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="services-inner">
+    <div class="sec-label reveal">
+      <span data-en>What I do</span><span data-vi>Dịch vụ</span>
+    </div>
+    <h2 class="sec-title hl-serif reveal" style="margin-bottom:2.5rem">
+      <span data-en-b>Words that <span class="green">work</span> for your business.</span>
+      <span data-vi-b>Câu chữ <span class="green">làm việc</span> cho doanh nghiệp của bạn.</span>
+    </h2>
+    <div class="srv-grid">
+
+      <div class="srv-card reveal">
+        <div class="srv-icon">📱</div>
+        <div class="srv-content">
+          <h3 class="srv-title">Content Social</h3>
+          <p class="srv-platforms">Facebook · Instagram</p>
+          <p class="srv-desc" data-en-b>Scroll-stopping captions, hooks, and posts that build real audience connection — not just likes.</p>
+          <p class="srv-desc" data-vi-b>Caption cuốn không dừng được, hook bắt mắt, bài đăng xây dựng kết nối thật sự với người theo dõi — không chỉ đơn thuần là lượt thích.</p>
+          <div class="srv-tags">
+            <span class="srv-tag">Hooks</span>
+            <span class="srv-tag">Captions</span>
+            <span class="srv-tag" data-en>Engagement</span><span class="srv-tag" data-vi>Tương tác</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="srv-card reveal">
+        <div class="srv-icon">🎯</div>
+        <div class="srv-content">
+          <h3 class="srv-title">Landing Page Copy</h3>
+          <p class="srv-platforms" data-en>Conversion-optimised</p>
+          <p class="srv-platforms" data-vi>Tối ưu chuyển đổi</p>
+          <p class="srv-desc" data-en-b>Every headline, subhead, and CTA engineered to turn visitors into buyers. No fluff, all persuasion.</p>
+          <p class="srv-desc" data-vi-b>Từng headline, subhead và CTA được thiết kế để biến người xem thành người mua. Không vô nghĩa — toàn bộ là thuyết phục.</p>
+          <div class="srv-tags">
+            <span class="srv-tag">AIDA</span>
+            <span class="srv-tag">PAS</span>
+            <span class="srv-tag" data-en>CRO</span><span class="srv-tag" data-vi>Chuyển đổi</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="srv-card reveal">
+        <div class="srv-icon">✉️</div>
+        <div class="srv-content">
+          <h3 class="srv-title">Email Marketing</h3>
+          <p class="srv-platforms" data-en>Sequences · Newsletters</p>
+          <p class="srv-platforms" data-vi>Chuỗi email · Bản tin</p>
+          <p class="srv-desc" data-en-b>Welcome flows, nurture sequences, and launch emails that people actually want to open and read.</p>
+          <p class="srv-desc" data-vi-b>Chuỗi chào mừng, nuôi dưỡng khách hàng, và email ra mắt sản phẩm mà người nhận thật sự muốn mở ra đọc.</p>
+          <div class="srv-tags">
+            <span class="srv-tag">Welcome series</span>
+            <span class="srv-tag" data-en>Open rates ↑</span><span class="srv-tag" data-vi>Tỉ lệ mở ↑</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="srv-card reveal">
+        <div class="srv-icon">📝</div>
+        <div class="srv-content">
+          <h3 class="srv-title" data-en>Blog / In-depth Articles</h3>
+          <h3 class="srv-title" data-vi>Blog / Bài viết chuyên sâu</h3>
+          <p class="srv-platforms" data-en>SEO · Thought leadership</p>
+          <p class="srv-platforms" data-vi>SEO · Xây dựng uy tín</p>
+          <p class="srv-desc" data-en-b>Long-form content that ranks on Google, builds authority, and actually gets read from start to finish.</p>
+          <p class="srv-desc" data-vi-b>Nội dung dài lên top Google, xây dựng uy tín thương hiệu, và thật sự được đọc từ đầu đến cuối.</p>
+          <div class="srv-tags">
+            <span class="srv-tag">SEO</span>
+            <span class="srv-tag" data-en>Long-form</span><span class="srv-tag" data-vi>Nội dung dài</span>
+            <span class="srv-tag" data-en>Research</span><span class="srv-tag" data-vi>Nghiên cứu</span>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -114,125 +219,32 @@
 <!-- PORTFOLIO -->
 <section id="portfolio">
   <div class="port-inner">
-    <div class="sec-label">Portfolio</div>
+    <div class="sec-label reveal">Portfolio</div>
     <h2 class="sec-title hl-serif reveal" style="margin-bottom:2.5rem">
       <span data-en-b>Sample <span class="green">works</span></span>
       <span data-vi-b>Sản phẩm <span class="green">mẫu</span></span>
     </h2>
     <div class="port-grid">
-      <div class="port-card reveal" onclick="openModal()">
-        <div class="port-top port-top-1">
-          <span class="port-type" data-en>Facebook Ad</span><span class="port-type" data-vi>Quảng cáo Facebook</span>
-          <div class="port-title" data-en>"The plant that doesn't need you" — Succulent ad for a local plant shop</div>
-          <div class="port-title" data-vi>"Cây không cần bạn tưới" — Bài quảng cáo sen đá cho shop cây địa phương</div>
-        </div>
-        <div class="port-bottom"><span class="port-meta">Local biz · PAS · VI/EN</span><span class="port-arrow">→</span></div>
-      </div>
-      <div class="port-card reveal">
-        <div class="port-top port-top-2">
-          <span class="port-type">Landing Page</span>
-          <div class="port-title" data-en>SaaS Hero Copy — B2B Product Launch</div>
-          <div class="port-title" data-vi>Hero Copy — Ra mắt sản phẩm SaaS B2B</div>
-        </div>
-        <div class="port-bottom"><span class="port-meta">SaaS · EN</span><span class="port-arrow">→</span></div>
-      </div>
-      <div class="port-card reveal">
-        <div class="port-top port-top-3">
-          <span class="port-type">Email Sequence</span>
-          <div class="port-title" data-en>5-Email Welcome Flow — Mobile App</div>
-          <div class="port-title" data-vi>Chuỗi 5 email chào mừng — App Mobile</div>
-        </div>
-        <div class="port-bottom"><span class="port-meta">SaaS · Bilingual</span><span class="port-arrow">→</span></div>
-      </div>
-      <div class="port-card reveal">
-        <div class="port-top port-top-4">
-          <span class="port-type">Brand Story</span>
-          <div class="port-title" data-en>About Page Rewrite — Fintech Startup</div>
-          <div class="port-title" data-vi>Viết lại trang About — Fintech Startup</div>
-        </div>
-        <div class="port-bottom"><span class="port-meta">Fintech · EN</span><span class="port-arrow">→</span></div>
-      </div>
-      <div class="port-card reveal">
-        <div class="port-top port-top-5">
-          <span class="port-type">UX Copy</span>
-          <div class="port-title" data-en>Onboarding Flow — Health App</div>
-          <div class="port-title" data-vi>Copy Onboarding — App Sức Khỏe</div>
-        </div>
-        <div class="port-bottom"><span class="port-meta">Health · Bilingual</span><span class="port-arrow">→</span></div>
-      </div>
-      <div class="port-card reveal">
-        <div class="port-top port-top-6">
-          <span class="port-type">Google Ads</span>
-          <div class="port-title" data-en>10 Headlines — Tech Product</div>
-          <div class="port-title" data-vi>10 Headlines — Sản phẩm Tech</div>
-        </div>
-        <div class="port-bottom"><span class="port-meta">Tech · EN</span><span class="port-arrow">→</span></div>
-      </div>
+      <!-- JS injects port-cards here -->
     </div>
   </div>
 </section>
 
-<!-- MODAL -->
+<!-- PORTFOLIO MODAL -->
 <div class="modal-overlay" id="modal" onclick="closeIfOutside(event)">
   <div class="modal">
-    <div class="modal-head">
+    <div class="modal-head" id="modal-head">
+      <div class="modal-lang-row">
+        <button class="modal-lang-btn active" id="mlb-en" onclick="setModalLang('en')">🇬🇧 EN</button>
+        <button class="modal-lang-btn" id="mlb-vi" onclick="setModalLang('vi')">🇻🇳 VI</button>
+      </div>
       <button class="modal-close" onclick="closeModal()">✕</button>
-      <div class="modal-type" data-en>Case Study — Facebook Ad Copy</div>
-      <div class="modal-type" data-vi>Case Study — Bài quảng cáo Facebook</div>
-      <br>
-      <div class="modal-title" data-en>"The plant that doesn't need you" — Succulent campaign for a local plant shop</div>
-      <div class="modal-title" data-vi>"Cây không cần bạn tưới" — Chiến dịch sen đá cho cửa hàng địa phương</div>
+      <div class="modal-type" data-en>Case Study</div>
+      <div class="modal-type" data-vi>Case Study</div>
+      <div class="modal-title" data-en>Loading...</div>
+      <div class="modal-title" data-vi>Đang tải...</div>
     </div>
-    <div class="modal-body">
-      <div class="modal-sec">
-        <h4 data-en>Brief</h4><h4 data-vi>Bối cảnh</h4>
-        <p class="brief-text" data-en-b>A small local plant shop wants to promote their succulent collection on Facebook. Target: busy urban people (25–40), mostly women, who <em>want greenery at home but think they'll kill every plant they touch.</em> Goal: drive walk-ins + direct messages. Budget: small. Tone: warm, relatable, lightly humorous.</p>
-        <p class="brief-text" data-vi-b>Một cửa hàng cây nhỏ ở địa phương muốn quảng bá bộ sưu tập sen đá trên Facebook. Đối tượng: người bận rộn (25–40 tuổi), chủ yếu nữ, <em>muốn có cây nhưng tự nhận "tay mình héo cây".</em> Mục tiêu: kéo khách đến shop + inbox hỏi mua. Ngân sách nhỏ. Giọng điệu: gần gũi, thật, hơi dí dỏm.</p>
-      </div>
-      <div class="modal-sec">
-        <h4 data-en>The copy (Vietnamese)</h4><h4 data-vi>Bài viết</h4>
-        <div class="copy-sample">
-          <div class="copy-hl">🌵 Loại cây duy nhất không ghét bạn dù bạn quên tưới nó 3 tuần.</div>
-          <div class="copy-hook">Sen đá — sống sót qua mọi thứ, kể cả sự bận rộn của bạn.</div>
-          <div class="copy-body">
-            <p>Bạn đã bao giờ mua cây về, đặt lên bàn, thề sẽ chăm sóc cẩn thận — rồi 2 tuần sau nhìn lại thấy nó đã trở thành rơm chưa?</p>
-            <p>Mình hiểu cảm giác đó.</p>
-            <p>Sen đá thì khác. <strong>Tưới ít, sáng nhiều, yêu thương vừa phải — đó là tất cả những gì nó cần.</strong> Thực ra tưới nhiều mới giết nó nhanh hơn quên tưới.</p>
-            <p>Cây phù hợp nhất với những ai:<br>✔ Hay quên tưới cây<br>✔ Bận việc, ít ở nhà<br>✔ Muốn góc nhà xanh mà không cần bỏ công chăm</p>
-            <p>Shop hiện có hơn <strong>30 loại sen đá</strong>, giá từ <strong>15.000đ</strong> — nhỏ đủ để đặt lên bàn làm việc, bàn học, kệ phòng ngủ.</p>
-            <p style="font-size:.83rem;color:var(--ink-muted);font-style:italic">📍 [Địa chỉ shop] · Mở cửa 8h–20h mỗi ngày</p>
-          </div>
-          <div class="copy-cta">💬 Inbox shop để được tư vấn chọn cây →</div>
-        </div>
-      </div>
-      <div class="modal-sec">
-        <h4 data-en>English version</h4><h4 data-vi>Bản tiếng Anh</h4>
-        <div class="copy-sample">
-          <div class="copy-hl">🌵 The only plant that won't judge you for forgetting to water it. For 3 weeks.</div>
-          <div class="copy-hook">Succulents — built to survive everything, including your schedule.</div>
-          <div class="copy-body">
-            <p>You've done it before. Bought a plant, promised yourself you'd take care of it — then looked up three weeks later to find something that looks more like hay.</p>
-            <p>We've all been there.</p>
-            <p>Succulents are different. <strong>A little light, a little water, zero guilt trips.</strong> In fact, overwatering kills them faster than forgetting.</p>
-            <p>Perfect for you if you:<br>✔ Always forget to water plants<br>✔ Travel or work long hours<br>✔ Want greenery at home without the commitment</p>
-            <p>We have <strong>30+ varieties</strong> starting at <strong>15,000đ</strong> — small enough to sit on your desk, shelf, or windowsill.</p>
-            <p style="font-size:.83rem;color:var(--ink-muted);font-style:italic">📍 [Shop address] · Open daily 8am–8pm</p>
-          </div>
-          <div class="copy-cta">💬 Message us to find your perfect plant →</div>
-        </div>
-      </div>
-      <div class="modal-sec">
-        <h4>Copywriting breakdown</h4>
-        <ul class="bk-list">
-          <li><span class="bk-tag">Hook</span><span>Headline calls out the exact fear ("quên tưới / forgetting to water") then instantly flips it into relief. The plant doesn't mind. Scroll-stopping because it's specific, not generic.</span></li>
-          <li><span class="bk-tag">P — Problem</span><span>"Bạn đã bao giờ..." / "You've done it before" — makes the reader feel seen, not judged. The dead plant story is universal. This is the P in PAS.</span></li>
-          <li><span class="bk-tag">A — Agitate</span><span>"Mình hiểu cảm giác đó" / "We've all been there" — validates the emotion before the solution. Short, human, creates connection.</span></li>
-          <li><span class="bk-tag">S — Solution</span><span>Succulents introduced as the logical answer. The twist ("tưới nhiều mới giết nhanh / overwatering kills faster") adds credibility and gives people a surprising fact to share.</span></li>
-          <li><span class="bk-tag">Social proof</span><span>30+ varieties signals variety. Price anchor (15k) removes the "is this expensive?" barrier before it forms.</span></li>
-          <li><span class="bk-tag">CTA</span><span>Soft "inbox" CTA instead of "buy now" — matches the warm local-shop tone and lowers resistance. Conversation leads to sale.</span></li>
-        </ul>
-      </div>
-    </div>
+    <div class="modal-body" id="modal-body"></div>
   </div>
 </div>
 
@@ -241,10 +253,12 @@
 <!-- BLOG -->
 <section id="blog">
   <div class="blog-inner">
-    <div class="sec-label" data-en>Blog</div><div class="sec-label" data-vi>Blog</div>
+    <div class="sec-label reveal">
+      <span data-en>Blog</span><span data-vi>Blog</span>
+    </div>
     <h2 class="sec-title hl-serif reveal" style="margin-bottom:2.5rem">
-      <span data-en-b>Thoughts on <span class="green">words</span> & work</span>
-      <span data-vi-b>Suy nghĩ về <span class="green">nghề & câu chữ</span></span>
+      <span data-en-b>Thoughts on <span class="green">words</span> &amp; work</span>
+      <span data-vi-b>Suy nghĩ về <span class="green">nghề &amp; câu chữ</span></span>
     </h2>
     <div class="blog-grid">
       <div class="blog-card reveal">
@@ -285,22 +299,20 @@
 <section id="contact">
   <div class="contact-inner">
     <div class="contact-l reveal">
-      <div class="sec-label" data-en>Get in touch</div><div class="sec-label" data-vi>Liên hệ</div>
+      <div class="sec-label">
+        <span data-en>Get in touch</span><span data-vi>Liên hệ</span>
+      </div>
       <h2 class="sec-title hl-serif" data-en-b>Let's make something <span class="green">worth reading.</span></h2>
       <h2 class="sec-title hl-serif" data-vi-b>Cùng tạo ra thứ gì đó <span class="green">đáng để đọc.</span></h2>
       <p data-en-b>Whether you need a landing page, Facebook ads, email sequences, or a brand story — I'm happy to talk. I work with clients in Vietnam and globally, in Vietnamese and English.</p>
       <p data-vi-b>Dù bạn cần landing page, quảng cáo Facebook, chuỗi email hay câu chuyện thương hiệu — mình luôn sẵn sàng nói chuyện. Làm việc với khách hàng trong và ngoài nước, bằng tiếng Việt và tiếng Anh.</p>
       <div class="contact-items">
-        <a href="mailto:xxx@gmail.com" class="contact-item">✉️&nbsp;   xxx@gmail.com</a>
-        <a href="https://www.facebook.com/hailuan.nguyen.609" class="contact-item">🗣️&nbsp;  Facebook</a>
+        <a href="mailto:xxx@gmail.com" class="contact-item">✉️&nbsp; xxx@gmail.com</a>
+        <a href="https://www.facebook.com/hailuan.nguyen.609" class="contact-item">🗣️&nbsp; Facebook</a>
         <a href="#" class="contact-item">📍&nbsp;<span data-en>Vietnam · Remote worldwide</span><span data-vi>Việt Nam · Remote toàn cầu</span></a>
       </div>
     </div>
 
-    <!-- CONTACT FORM — powered by Formspree -->
-    <!-- SETUP: Replace YOUR_FORM_ID below with your Formspree form ID -->
-    <!-- 1. Go to formspree.io → New Form → Copy the form ID from the endpoint URL -->
-    <!-- 2. Replace "YOUR_FORM_ID" with that ID (e.g. "xpwzgkrl") -->
     <div class="contact-form reveal">
       <div class="form-row2">
         <div class="fg">
@@ -331,9 +343,10 @@
 <footer>
   <span>© 2025 Hải Luân</span>
   <span><span data-en>Made with ☕ somewhere in Vietnam</span><span data-vi>Làm bằng ☕ đâu đó ở Việt Nam</span></span>
+  <a href="#hero"><span data-en>Back to top ↑</span><span data-vi>Lên đầu ↑</span></a>
 </footer>
 
-<script src="script.js"></script>
 <script src="content-loader.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
