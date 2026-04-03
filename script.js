@@ -77,7 +77,7 @@ function setModalLang(lang) {
 
 /* ══ ACTIVE NAV UNDERLINE on scroll ══ */
 (() => {
-  const sections = ['about', 'services', 'portfolio', 'blog', 'contact'];
+  const sections = ['about', 'portfolio', 'services', 'blog', 'contact'];
   const navH = 80;
 
   function updateActiveNav() {
