@@ -205,3 +205,18 @@ async function submitForm(e) {
       : '<span>Send message →</span>';
   }
 }
+/* ══ PLACEHOLDER LANG SYNC ══ */
+function syncPlaceholders() {
+  const isVI = document.body.classList.contains('vi');
+  document.querySelectorAll('[data-en-placeholder]').forEach(el => {
+    el.placeholder = isVI
+      ? el.getAttribute('data-vi-placeholder')
+      : el.getAttribute('data-en-placeholder');
+  });
+}
+// Patch setLang to also sync placeholders
+const _setLang = setLang;
+// eslint-disable-next-line no-global-assign
+setLang = function(lang) { _setLang(lang); syncPlaceholders(); };
+// Run once on load
+syncPlaceholders();

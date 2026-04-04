@@ -325,29 +325,29 @@
     </div>
  
     <div class="contact-form reveal">
-      <div class="form-row2">
-        <div class="fg">
-          <label data-en>Name</label><label data-vi>Tên</label>
-          <input type="text" id="f-name" placeholder="Your name" required>
-        </div>
-        <div class="fg">
-          <label>Email</label>
-          <input type="email" id="f-email" placeholder="your@email.com" required>
-        </div>
-      </div>
-      <div class="fg">
-        <label data-en>What do you need?</label><label data-vi>Bạn cần gì?</label>
-        <input type="text" id="f-need" placeholder="Landing page, ads, email...">
-      </div>
-      <div class="fg">
-        <label data-en>Message</label><label data-vi>Lời nhắn</label>
-        <textarea id="f-msg" rows="5" placeholder="Tell me about your project..." required></textarea>
-      </div>
-      <button class="form-submit" id="submitBtn" onclick="submitForm(event)">
-        <span data-en>Send message →</span><span data-vi>Gửi tin nhắn →</span>
-      </button>
-      <div class="form-msg" id="formMsg"></div>
+  <div class="form-row2">
+    <div class="fg">
+      <label data-en>Name</label><label data-vi>Tên</label>
+      <input type="text" id="f-name" data-en-placeholder="Your name" data-vi-placeholder="Tên của bạn" placeholder="Your name" required>
     </div>
+    <div class="fg">
+      <label>Email</label>
+      <input type="email" id="f-email" placeholder="your@email.com" required>
+    </div>
+  </div>
+  <div class="fg">
+    <label data-en>What do you need?</label><label data-vi>Bạn cần gì?</label>
+    <input type="text" id="f-need" data-en-placeholder="Landing page, ads, email..." data-vi-placeholder="Landing page, quảng cáo, email...">
+  </div>
+  <div class="fg">
+    <label data-en>Message</label><label data-vi>Lời nhắn</label>
+    <textarea id="f-msg" rows="5" data-en-placeholder="Tell me about your project..." data-vi-placeholder="Kể mình nghe về dự án của bạn..." placeholder="Tell me about your project..." required></textarea>
+  </div>
+  <button class="form-submit" id="submitBtn" onclick="submitForm(event)">
+    <span data-en>Send message →</span><span data-vi>Gửi tin nhắn →</span>
+  </button>
+  <div class="form-msg" id="formMsg"></div>
+</div>
   </div>
 </section>
 
