@@ -31,7 +31,7 @@ html.dark {
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; transition: background .3s, color .3s; }
+html { scroll-behavior: smooth; transition: background .3s, color .3s; overflow-x: hidden; }
 body { background: var(--bg); color: var(--ink); font-family: var(--sans); font-size: 16px; line-height: 1.75; overflow-x: hidden; transition: background .3s, color .3s; }
 
 /* ══ LANG ══ */
@@ -424,8 +424,11 @@ footer a:hover { color: var(--green); }
 
 /* ══ RESPONSIVE ══ */
 @media (max-width: 880px) {
-  nav { padding: 1rem 1.5rem; }
+  nav { padding: 1rem 1.25rem; gap: .5rem; }
   .nav-links { display: none; }
+  .nav-controls { gap: .4rem; flex-shrink: 0; }
+  .lang-btn { padding: .2rem .5rem; font-size: .68rem; }
+  .theme-btn { width: 30px; height: 30px; font-size: .85rem; }
   #hero { padding: 7rem 1.5rem 4rem; }
   .hero-deco { display: none; }
   #about, #portfolio, #blog, #contact, #services { padding: 4rem 1.5rem; }
@@ -433,6 +436,10 @@ footer a:hover { color: var(--green); }
   .port-grid { grid-template-columns: 1fr; }
   .blog-grid { grid-template-columns: 1fr; }
   .srv-grid { grid-template-columns: 1fr; }
+  .form-row2 { grid-template-columns: 1fr; }
+  .contact-form { width: 100%; }
+  .fg input, .fg textarea { width: 100%; max-width: 100%; }
   footer { flex-direction: column; gap: .75rem; text-align: center; padding: 1.5rem; }
   .modal-head, .modal-body { padding: 1.25rem 1.5rem; }
+  .modal-overlay { padding: 1rem; }
 }
