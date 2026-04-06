@@ -1,4 +1,3 @@
-
 (function () {
 
   localStorage.removeItem('hl_cms');
@@ -73,16 +72,17 @@
     var grid = document.querySelector('.blog-grid');
     if (!grid || !D.blog || !D.blog.length) return;
 
-    grid.innerHTML = D.blog.map(function(b) {
+    var LIMIT = 4; // 2 columns × 2 rows
+
+    var cards = D.blog.map(function(b, i) {
       var hasFull = !!(b.contentEN || b.contentVI);
       var link = b.link && b.link !== '' ? b.link : '#';
-      // If there's full content and no external link → open detail modal
       var clickAttr = (hasFull && (!b.link || b.link === '' || b.link === '#'))
         ? 'onclick="hlOpenBlog(\'' + b.id + '\'); return false;"'
         : '';
-
+      var extra = i >= LIMIT ? ' hl-extra' : '';
       return (
-        '<div class="blog-card reveal">' +
+        '<div class="blog-card reveal' + extra + '">' +
         '<div class="blog-meta">' +
         '<span class="blog-cat" data-en>' + esc(b.cat.en) + '</span>' +
         '<span class="blog-cat" data-vi>' + esc(b.cat.vi) + '</span>' +
@@ -102,6 +102,44 @@
         '</div>'
       );
     }).join('');
+
+    grid.innerHTML = cards;
+
+    // Remove old button if exists
+    var old = document.querySelector('.hl-more-wrap-blog');
+    if (old) old.remove();
+
+    if (D.blog.length > LIMIT) {
+      var wrap = document.createElement('div');
+      wrap.className = 'hl-more-wrap-blog';
+      wrap.innerHTML =
+        '<button class="hl-more-btn" id="hl-blog-btn" onclick="hlToggleBlog()">' +
+        '<span data-en>See all posts ↓</span>' +
+        '<span data-vi>Xem tất cả bài viết ↓</span>' +
+        '</button>';
+      grid.parentNode.insertBefore(wrap, grid.nextSibling);
+    }
+
+    window.hlToggleBlog = function() {
+      var btn = document.getElementById('hl-blog-btn');
+      var expanded = btn.classList.contains('expanded');
+      document.querySelectorAll('.blog-grid .hl-extra').forEach(function(el) {
+        el.style.display = expanded ? 'none' : 'block';
+      });
+      btn.classList.toggle('expanded', !expanded);
+      if (expanded) {
+        btn.querySelector('[data-en]').textContent = 'See all posts ↓';
+        btn.querySelector('[data-vi]').textContent = 'Xem tất cả bài viết ↓';
+      } else {
+        btn.querySelector('[data-en]').textContent = 'Show less ↑';
+        btn.querySelector('[data-vi]').textContent = 'Thu gọn ↑';
+      }
+    };
+
+    // Hide extra cards initially
+    document.querySelectorAll('.blog-grid .hl-extra').forEach(function(el) {
+      el.style.display = 'none';
+    });
   }
 
   /* ─────────────────────────────────────
@@ -113,15 +151,17 @@
 
     window._hlPortData = D.portfolio;
 
-    grid.innerHTML = D.portfolio.map(function(p, i) {
+    var LIMIT = 6; // 3 columns × 2 rows
+
+    var cards = D.portfolio.map(function(p, i) {
       var hasModal = !!(
         (p.brief && (p.brief.en || p.brief.vi)) ||
         p.copyVI || p.copyEN
       );
       var colorClass = 'port-top-' + (p.color || ((i % 6) + 1));
-
+      var extra = i >= LIMIT ? ' hl-extra' : '';
       return (
-        '<div class="port-card reveal"' +
+        '<div class="port-card reveal' + extra + '"' +
         (hasModal ? ' onclick="hlOpenModal(\'' + p.id + '\')"' : '') +
         '>' +
         '<div class="port-top ' + colorClass + '">' +
@@ -137,6 +177,44 @@
         '</div>'
       );
     }).join('');
+
+    grid.innerHTML = cards;
+
+    // Remove old button if exists
+    var old = document.querySelector('.hl-more-wrap-port');
+    if (old) old.remove();
+
+    if (D.portfolio.length > LIMIT) {
+      var wrap = document.createElement('div');
+      wrap.className = 'hl-more-wrap-port';
+      wrap.innerHTML =
+        '<button class="hl-more-btn" id="hl-port-btn" onclick="hlTogglePort()">' +
+        '<span data-en>See all works ↓</span>' +
+        '<span data-vi>Xem tất cả tác phẩm ↓</span>' +
+        '</button>';
+      grid.parentNode.insertBefore(wrap, grid.nextSibling);
+    }
+
+    window.hlTogglePort = function() {
+      var btn = document.getElementById('hl-port-btn');
+      var expanded = btn.classList.contains('expanded');
+      document.querySelectorAll('.port-grid .hl-extra').forEach(function(el) {
+        el.style.display = expanded ? 'none' : 'block';
+      });
+      btn.classList.toggle('expanded', !expanded);
+      if (expanded) {
+        btn.querySelector('[data-en]').textContent = 'See all works ↓';
+        btn.querySelector('[data-vi]').textContent = 'Xem tất cả tác phẩm ↓';
+      } else {
+        btn.querySelector('[data-en]').textContent = 'Show less ↑';
+        btn.querySelector('[data-vi]').textContent = 'Thu gọn ↑';
+      }
+    };
+
+    // Hide extra cards initially
+    document.querySelectorAll('.port-grid .hl-extra').forEach(function(el) {
+      el.style.display = 'none';
+    });
   }
 
   /* ─────────────────────────────────────

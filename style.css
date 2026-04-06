@@ -443,3 +443,31 @@ footer a:hover { color: var(--green); }
   .modal-head, .modal-body { padding: 1.25rem 1.5rem; }
   .modal-overlay { padding: 1rem; }
 }
+/* ══ SHOW MORE BUTTON ══ */
+.hl-more-wrap-blog,
+.hl-more-wrap-port {
+  text-align: center;
+  margin-top: 2rem;
+}
+.hl-more-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 2rem;
+  border-radius: 99px;
+  border: 1.5px solid var(--green);
+  background: transparent;
+  color: var(--green);
+  font-family: var(--sans);
+  font-size: .87rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background .2s, color .2s, transform .2s;
+  letter-spacing: .01em;
+}
+.hl-more-btn:hover {
+  background: var(--green);
+  color: #fff;
+  transform: translateY(-2px);
+}
+html.dark .hl-more-btn:hover { color: #0D0D0D; }
