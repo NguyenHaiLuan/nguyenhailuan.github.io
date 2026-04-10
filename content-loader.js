@@ -167,7 +167,7 @@
       style.textContent = [
         '.hl-bm-ov{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:9000;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .2s}',
         '.hl-bm-ov.open{opacity:1;pointer-events:all}',
-        '.hl-bm-box{background:var(--surface,#fff);border-radius:14px;width:100%;max-width:660px;max-height:88vh;display:flex;flex-direction:column;box-shadow:0 20px 60px rgba(0,0,0,.25);transform:scale(.96) translateY(14px);transition:transform .2s;overflow:hidden}',
+        '.hl-bm-box{background:var(--surface,#fff);border-radius:14px;width:100%;max-width:800px;max-height:92vh;display:flex;flex-direction:column;box-shadow:0 20px 60px rgba(0,0,0,.25);transform:scale(.96) translateY(14px);transition:transform .2s;overflow:hidden}',
         '.hl-bm-ov.open .hl-bm-box{transform:scale(1) translateY(0)}',
         '.hl-bm-head{padding:14px 20px;border-bottom:1px solid var(--border,#e5e2dc);display:flex;align-items:center;gap:10px;flex-shrink:0}',
         /* lang badges — text, no emoji */
@@ -270,63 +270,101 @@
   function buildPortModal(D) {
     window._hlPortData = D.portfolio;
 
+    // Inject CSS once
+    if (!document.getElementById('hl-port-modal-style')) {
+      var s = document.createElement('style');
+      s.id = 'hl-port-modal-style';
+      s.textContent = [
+        // EN/VI pill buttons (same style as blog modal)
+        '.hl-lb{display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;letter-spacing:.06em;border-radius:4px;padding:3px 8px;cursor:pointer;font-family:inherit;border:none;transition:all .15s}',
+        '.hl-lb.hl-lb-en{background:#1e3a5f;color:#93c5fd}',
+        '.hl-lb.hl-lb-vi{background:#7c1d1d;color:#fca5a5}',
+        '.hl-lb.active{outline:2px solid currentColor;outline-offset:2px;opacity:1}',
+        '.hl-lb:not(.active){opacity:.45}',
+        // Port lang row in modal head
+        '.hl-port-lb-row{display:flex;gap:.35rem;margin-bottom:.6rem}',
+        // Two-pane switch
+        '.hl-cs-pane{display:none}.hl-cs-pane.active{display:block}',
+        // Pane content styles
+        '.cs-pane-type{font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--green,#16a34a);margin-bottom:.4rem}',
+        '.cs-pane-title{font-size:1.35rem;font-weight:800;line-height:1.25;margin-bottom:0}'
+      ].join('');
+      document.head.appendChild(s);
+    }
+
+    // Wire lang buttons — set once and reuse via hlPortLang
+    var mlbEn = document.getElementById('mlb-en');
+    var mlbVi = document.getElementById('mlb-vi');
+    if (mlbEn) mlbEn.onclick = function() { window.hlPortLang('en'); };
+    if (mlbVi) mlbVi.onclick = function() { window.hlPortLang('vi'); };
+
+    window.hlPortLang = function(lang) {
+      var enPane = document.getElementById('hl-cs-en');
+      var viPane = document.getElementById('hl-cs-vi');
+      if (enPane) enPane.classList.toggle('active', lang === 'en');
+      if (viPane) viPane.classList.toggle('active', lang === 'vi');
+      var eBt = document.getElementById('mlb-en');
+      var vBt = document.getElementById('mlb-vi');
+      if (eBt) eBt.classList.toggle('active', lang === 'en');
+      if (vBt) vBt.classList.toggle('active', lang === 'vi');
+    };
+
     window.hlOpenModal = function(id) {
       var p = (window._hlPortData||[]).find(function(x){return x.id===id;});
       if (!p) return;
 
       var m = document.getElementById('modal');
       if (!m) return;
-
-      // Update header
-      var head = m.querySelector('.modal-head');
-      if (head) {
-        var types = head.querySelectorAll('.modal-type');
-        if (types[0]) types[0].textContent = 'Case Study — ' + p.type.en;
-        if (types[1]) types[1].textContent = 'Case Study — ' + p.type.vi;
-        var titles = head.querySelectorAll('.modal-title');
-        if (titles[0]) titles[0].textContent = p.title.en;
-        if (titles[1]) titles[1].textContent = p.title.vi;
-      }
-
-      // Build breakdown
-      var bkHTML = '';
-      if (p.breakdown) {
-        var lines = p.breakdown.split('\n').filter(Boolean);
-        bkHTML = '<div class="modal-sec"><h4>Copywriting breakdown</h4><ul class="bk-list">' +
-          lines.map(function(line) {
-            var parts = line.split('||');
-            var tag = parts[0]||'';
-            var body = parts.slice(1).join('||');
-            return '<li><span class="bk-tag">' + esc(tag) + '</span><span>' + esc(body) + '</span></li>';
-          }).join('') + '</ul></div>';
-      }
-
-      // Build body
       var body = m.querySelector('.modal-body');
-      if (body) {
-        var briefSection = (p.brief && (p.brief.en || p.brief.vi))
-          ? '<div class="modal-sec">' +
-            '<h4 data-en>Brief</h4><h4 data-vi>Bối cảnh</h4>' +
-            '<p class="brief-text" data-en-b>' + esc(p.brief.en||'') + '</p>' +
-            '<p class="brief-text" data-vi-b>' + esc(p.brief.vi||'') + '</p>' +
-            '</div>' : '';
+      if (!body) return;
 
-        var copyVISection = p.copyVI
-          ? '<div class="modal-sec"><h4 data-en>The copy (Vietnamese)</h4><h4 data-vi>Bài viết</h4>' +
-            '<div class="copy-sample"><div class="copy-body">' + renderMd(p.copyVI) + '</div></div></div>' : '';
-
-        var copyENSection = p.copyEN
-          ? '<div class="modal-sec"><h4 data-en>English version</h4><h4 data-vi>Bản tiếng Anh</h4>' +
-            '<div class="copy-sample"><div class="copy-body">' + renderMd(p.copyEN) + '</div></div></div>' : '';
-
-        body.innerHTML = briefSection + copyVISection + copyENSection + bkHTML;
+      // Helper: build breakdown list HTML
+      function buildBkList(raw) {
+        if (!raw) return '';
+        return '<ul class="bk-list">' + raw.split('\n').filter(Boolean).map(function(line) {
+          var parts = line.split('||');
+          return '<li><span class="bk-tag">' + esc(parts[0]||'') + '</span><span>' + esc(parts.slice(1).join('||')) + '</span></li>';
+        }).join('') + '</ul>';
       }
+
+      // Build one full pane per language — zero data-attribute dependence
+      function buildPane(lang) {
+        var isVI = lang === 'vi';
+        var typeLabel = isVI ? p.type.vi : p.type.en;
+        var titleLabel = isVI ? p.title.vi : p.title.en;
+        var brief = isVI ? (p.brief && p.brief.vi || '') : (p.brief && p.brief.en || '');
+        var copy = isVI ? (p.copyVI || '') : (p.copyEN || '');
+        var bkRaw = isVI
+          ? (p.breakdownVI || p.breakdown || '')
+          : (p.breakdownEN || (p.breakdown && !p.breakdownVI ? p.breakdown : '') || '');
+
+        var html = '<div class="cs-pane-type">Case Study — ' + esc(typeLabel) + '</div>' +
+                   '<div class="cs-pane-title">' + esc(titleLabel) + '</div>';
+
+        if (brief) {
+          html += '<div class="modal-sec"><h4>' + (isVI ? 'Bối cảnh' : 'Brief') + '</h4>' +
+                  '<p class="brief-text">' + esc(brief) + '</p></div>';
+        }
+        if (copy) {
+          html += '<div class="modal-sec"><h4>' + (isVI ? 'Bài viết' : 'The copy') + '</h4>' +
+                  '<div class="copy-sample"><div class="copy-body">' + renderMd(copy) + '</div></div></div>';
+        }
+        if (bkRaw) {
+          html += '<div class="modal-sec"><h4>Copywriting breakdown</h4>' + buildBkList(bkRaw) + '</div>';
+        }
+        return html;
+      }
+
+      body.innerHTML =
+        '<div class="hl-cs-pane active" id="hl-cs-en">' + buildPane('en') + '</div>' +
+        '<div class="hl-cs-pane" id="hl-cs-vi">' + buildPane('vi') + '</div>';
 
       if (typeof openModal === 'function') openModal();
-      else { m.classList.add('open'); document.body.style.overflow='hidden'; }
+      else { m.classList.add('open'); document.body.style.overflow = 'hidden'; }
 
-      var lang = document.body.className || 'en';
-      if (typeof setLang === 'function') setLang(lang);
+      // Sync pane to current site lang
+      var lang = document.body.className === 'vi' ? 'vi' : 'en';
+      window.hlPortLang(lang);
     };
   }
 

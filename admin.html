@@ -288,11 +288,17 @@
 
       <!-- Tab: Breakdown -->
       <div class="ed-tab-pane" id="tab-pbreakdown">
-        <div class="content-note"><strong>🔍 Copywriting Breakdown</strong>Mỗi dòng = 1 điểm phân tích. Format: <code>Tag||Nội dung giải thích</code></div>
+        <div class="content-note"><strong>🔍 Copywriting Breakdown</strong>Mỗi dòng = 1 điểm phân tích. Format: <code>Tag||Nội dung giải thích</code> — nhập riêng cho từng ngôn ngữ.</div>
         <div class="fg">
-          <label>Breakdown (hiện trong case study modal trên site)</label>
-          <textarea id="p-breakdown" rows="14" style="font-family:monospace;font-size:12.5px" placeholder="Hook||Headline gọi ra nỗi sợ cụ thể rồi lật ngược thành cảm giác nhẹ nhõm.&#10;P — Problem||&quot;Bạn đã bao giờ...&quot; — làm người đọc cảm thấy được hiểu.&#10;A — Agitate||Validate cảm xúc trước khi đưa ra giải pháp. Ngắn, thật.&#10;S — Solution||Sản phẩm được giới thiệu như câu trả lời logic với twist tạo credibility.&#10;Social proof||Số liệu xóa rào cản trước khi nó hình thành.&#10;CTA||CTA mềm phù hợp với tone — conversation leads to sale."></textarea>
-          <div class="field-hint">Mỗi dòng: <code>Tag||Giải thích</code></div>
+          <div class="ai-row"><span class="fg-label"><span class="lang-badge vi" style="margin-right:4px">VI</span> Breakdown (Tiếng Việt)</span></div>
+          <textarea id="p-breakdown-vi" rows="10" style="font-family:monospace;font-size:12.5px" placeholder="Hook||Headline gọi ra nỗi sợ cụ thể rồi lật ngược thành cảm giác nhẹ nhõm.&#10;P — Problem||&quot;Bạn đã bao giờ...&quot; — làm người đọc cảm thấy được hiểu.&#10;A — Agitate||Validate cảm xúc trước khi đưa ra giải pháp. Ngắn, thật.&#10;S — Solution||Sản phẩm được giới thiệu như câu trả lời logic với twist bất ngờ.&#10;Social proof||Số liệu xóa rào cản trước khi nó hình thành.&#10;CTA||CTA mềm phù hợp với tone — conversation leads to sale."></textarea>
+          <div class="field-hint">Mỗi dòng: <code>Tag||Giải thích tiếng Việt</code></div>
+        </div>
+        <div class="hr"></div>
+        <div class="fg">
+          <div class="ai-row"><span class="fg-label"><span class="lang-badge en" style="margin-right:4px">EN</span> Breakdown (English)</span></div>
+          <textarea id="p-breakdown-en" rows="10" style="font-family:monospace;font-size:12.5px" placeholder="Hook||Headline calls out a specific fear then flips it into relief. Scroll-stopping because it's specific.&#10;P — Problem||&quot;You've done it before...&quot; — reader feels understood, not judged.&#10;A — Agitate||&quot;We've all been there&quot; — validates emotion before offering a solution.&#10;S — Solution||Product introduced as the logical answer. Surprise twist builds credibility.&#10;Social proof||Numbers remove the &quot;is it expensive?&quot; objection before it forms.&#10;CTA||Soft &quot;message us&quot; over &quot;buy now&quot; — fits warm local shop tone."></textarea>
+          <div class="field-hint">Each line: <code>Tag||Explanation in English</code></div>
         </div>
       </div>
 
@@ -669,7 +675,8 @@ function openPortEd(id) {
   sv('p-meta',p?.meta||'');
   sv('p-brief-en',p?.brief?.en||''); sv('p-brief-vi',p?.brief?.vi||'');
   sv('p-copy-vi',p?.copyVI||''); sv('p-copy-en',p?.copyEN||'');
-  sv('p-breakdown',p?.breakdown||'');
+  sv('p-breakdown-vi', p?.breakdownVI || p?.breakdown || '');
+  sv('p-breakdown-en', p?.breakdownEN || '');
   selColor = p?.color || '1';
   document.querySelectorAll('.color-opts .co').forEach(el => el.classList.toggle('sel', el.dataset.c===selColor));
   clearAR(['ptitle-en','ptitle-vi','pcopy-vi','pcopy-en']);
@@ -687,7 +694,7 @@ function savePort() {
     meta:gv('p-meta'),
     brief:{en:gv('p-brief-en'),vi:gv('p-brief-vi')},
     copyVI:gv('p-copy-vi'), copyEN:gv('p-copy-en'),
-    breakdown:gv('p-breakdown'),
+    breakdownVI:gv('p-breakdown-vi'), breakdownEN:gv('p-breakdown-en'),
     createdAt:curPort?(D.portfolio.find(x=>x.id===curPort)?.createdAt||today()):today()
   };
   if (!p.title.en && !p.title.vi) { toast('Vui lòng nhập tiêu đề!',true); return; }
@@ -708,8 +715,9 @@ function buildCSHTML(p, lang) {
   const titleLabel = isVI?p.title.vi:p.title.en;
 
   const copyHTML = copy ? renderMd(copy) : '';
-  const bkHTML = p.breakdown
-    ? p.breakdown.split('\n').filter(Boolean).map(line=>{
+  const bkRaw = isVI ? (p.breakdownVI || p.breakdown || '') : (p.breakdownEN || p.breakdown || '');
+  const bkHTML = bkRaw
+    ? bkRaw.split('\n').filter(Boolean).map(line=>{
         const [tag,...rest]=line.split('||');
         return `<li class="cs-bk-item"><span class="cs-bk-tag">${h(tag)}</span><span>${h(rest.join('||'))}</span></li>`;
       }).join('')
