@@ -23,12 +23,9 @@ function setLang(lang) {
   const mlbEn = document.getElementById('mlb-en');
   const mlbVi = document.getElementById('mlb-vi');
   if (mlbEn && mlbVi) {
-    mlbEn.classList.toggle('active', lang === 'en');
-    mlbVi.classList.toggle('active', lang === 'vi');
     const modal = document.getElementById('modal');
-    if (modal) {
-      modal.classList.toggle('modal-lang-en', lang === 'en');
-      modal.classList.toggle('modal-lang-vi', lang === 'vi');
+    if (modal && modal.classList.contains('open')) {
+      if (typeof window.hlPortLang === 'function') window.hlPortLang(lang);
     }
   }
   localStorage.setItem('lang', lang);
@@ -39,16 +36,6 @@ function setLang(lang) {
   const saved = localStorage.getItem('lang');
   if (saved && saved !== 'en') setLang(saved);
 })();
-
-/* ══ MODAL LANG SWITCHER ══ */
-function setModalLang(lang) {
-  const modal = document.getElementById('modal');
-  if (!modal) return;
-  modal.classList.toggle('modal-lang-en', lang === 'en');
-  modal.classList.toggle('modal-lang-vi', lang === 'vi');
-  document.getElementById('mlb-en').classList.toggle('active', lang === 'en');
-  document.getElementById('mlb-vi').classList.toggle('active', lang === 'vi');
-}
 
 /* ══ SCROLL REVEAL ══ */
 (() => {
@@ -131,9 +118,9 @@ function setModalLang(lang) {
 function openModal() {
   const modal = document.getElementById('modal');
   modal.classList.add('open');
-  // Sync modal lang to site lang
+  // Sync modal pane to site lang
   const lang = document.body.className === 'vi' ? 'vi' : 'en';
-  setModalLang(lang);
+  if (typeof window.hlPortLang === 'function') window.hlPortLang(lang);
   document.body.style.overflow = 'hidden';
 }
 function closeModal() {

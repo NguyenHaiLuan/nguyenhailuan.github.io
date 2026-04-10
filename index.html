@@ -164,15 +164,11 @@
 <div class="modal-overlay" id="modal" onclick="closeIfOutside(event)">
   <div class="modal">
     <div class="modal-head" id="modal-head">
-      <div class="modal-lang-row">
-        <button class="modal-lang-btn active" id="mlb-en" onclick="setModalLang('en')">🇬🇧 EN</button>
-        <button class="modal-lang-btn" id="mlb-vi" onclick="setModalLang('vi')">🇻🇳 VI</button>
+      <div class="hl-port-lb-row">
+        <button class="hl-lb hl-lb-en active" id="mlb-en">EN</button>
+        <button class="hl-lb hl-lb-vi" id="mlb-vi">VI</button>
       </div>
       <button class="modal-close" onclick="closeModal()">✕</button>
-      <div class="modal-type" data-en>Case Study</div>
-      <div class="modal-type" data-vi>Case Study</div>
-      <div class="modal-title" data-en>Loading...</div>
-      <div class="modal-title" data-vi>Đang tải...</div>
     </div>
     <div class="modal-body" id="modal-body"></div>
   </div>
