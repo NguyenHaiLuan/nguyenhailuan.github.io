@@ -167,7 +167,7 @@
       style.textContent = [
         '.hl-bm-ov{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:9000;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .2s}',
         '.hl-bm-ov.open{opacity:1;pointer-events:all}',
-        '.hl-bm-box{background:var(--surface,#fff);border-radius:14px;width:100%;max-width:800px;max-height:92vh;display:flex;flex-direction:column;box-shadow:0 20px 60px rgba(0,0,0,.25);transform:scale(.96) translateY(14px);transition:transform .2s;overflow:hidden}',
+        '.hl-bm-box{background:var(--surface,#fff);border-radius:14px;width:100%;max-width:1100px;max-height:92vh;display:flex;flex-direction:column;box-shadow:0 20px 60px rgba(0,0,0,.25);transform:scale(.96) translateY(14px);transition:transform .2s;overflow:hidden}',
         '.hl-bm-ov.open .hl-bm-box{transform:scale(1) translateY(0)}',
         '.hl-bm-head{padding:14px 20px;border-bottom:1px solid var(--border,#e5e2dc);display:flex;align-items:center;gap:10px;flex-shrink:0}',
         /* lang badges — text, no emoji */
@@ -178,7 +178,7 @@
         '.hl-lb:not(.active){opacity:.55}',
         '.hl-bm-close{margin-left:auto;width:28px;height:28px;border-radius:7px;border:none;background:transparent;cursor:pointer;font-size:15px;display:flex;align-items:center;justify-content:center;color:var(--ink-muted,#6b6660);transition:background .15s}',
         '.hl-bm-close:hover{background:var(--surface2,#f4f2ee)}',
-        '.hl-bm-body{padding:24px 28px;overflow-y:auto;flex:1}',
+        '.hl-bm-body{padding:28px 40px;overflow-y:auto;flex:1;max-width:820px;margin:0 auto;width:100%}',
         '.hl-bm-meta{display:flex;align-items:center;gap:8px;margin-bottom:14px;flex-wrap:wrap}',
         '.hl-bm-cat{background:var(--green-dim,#dcfce7);color:var(--green,#16a34a);padding:3px 11px;border-radius:20px;font-size:11px;font-weight:700}',
         '.hl-bm-rt{font-size:12px;color:var(--ink-muted,#6b6660)}',

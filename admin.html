@@ -178,22 +178,24 @@
 
       <!-- Tab: Content EN -->
       <div class="ed-tab-pane" id="tab-bcontent-en">
-        <div class="content-note"><strong>📄 Nội dung bài viết (English)</strong>Dùng toolbar bên dưới để định dạng. Xuống dòng 2 lần = đoạn mới.</div>
         <div class="fg">
           <div class="ai-row"><span class="fg-label">Nội dung bài viết (EN)</span><button class="btn-ai" onclick="aiAssist('bcontent-en')">✨ AI viết thử</button></div>
-          <div class="md-toolbar" id="tb-b-content-en"><!-- toolbar injected by JS --></div>
-          <textarea id="b-content-en" rows="20" placeholder="## Heading&#10;&#10;Normal paragraph text here.&#10;&#10;**bold text** and *italic text*&#10;&#10;> This is a blockquote&#10;&#10;- Bullet item one&#10;- Bullet item two"></textarea>
+          <div class="wysiwyg-wrap" id="wrap-b-content-en">
+            <div class="wysiwyg-toolbar" id="tb-b-content-en"></div>
+            <div class="wysiwyg-editor" id="b-content-en" contenteditable="true" data-placeholder="Start writing your post… Select text then use the toolbar to format."></div>
+          </div>
           <div id="ar-bcontent-en"></div>
         </div>
       </div>
 
       <!-- Tab: Content VI -->
       <div class="ed-tab-pane" id="tab-bcontent-vi">
-        <div class="content-note"><strong>📄 Nội dung bài viết (Tiếng Việt)</strong>Dùng toolbar bên dưới để định dạng. Xuống dòng 2 lần = đoạn mới.</div>
         <div class="fg">
           <div class="ai-row"><span class="fg-label">Nội dung bài viết (VI)</span><button class="btn-ai" onclick="aiAssist('bcontent-vi')">✨ AI viết thử</button></div>
-          <div class="md-toolbar" id="tb-b-content-vi"><!-- toolbar injected by JS --></div>
-          <textarea id="b-content-vi" rows="20" placeholder="## Tiêu đề&#10;&#10;Đoạn văn thông thường ở đây.&#10;&#10;**in đậm** và *in nghiêng*&#10;&#10;> Đây là blockquote&#10;&#10;- Gạch đầu dòng một&#10;- Gạch đầu dòng hai"></textarea>
+          <div class="wysiwyg-wrap" id="wrap-b-content-vi">
+            <div class="wysiwyg-toolbar" id="tb-b-content-vi"></div>
+            <div class="wysiwyg-editor" id="b-content-vi" contenteditable="true" data-placeholder="Bắt đầu viết bài… Bôi đen chữ rồi dùng toolbar để định dạng."></div>
+          </div>
           <div id="ar-bcontent-vi"></div>
         </div>
       </div>
@@ -275,14 +277,20 @@
       <div class="ed-tab-pane" id="tab-pcopy">
         <div class="fg">
           <div class="ai-row"><span class="fg-label"><span class="lang-badge vi" style="margin-right:4px">VI</span> Bài copy mẫu</span><button class="btn-ai" onclick="aiAssist('pcopy-vi')">✨ AI viết thử</button></div>
-          <div class="md-toolbar" id="tb-p-copy-vi"></div>
-          <textarea id="p-copy-vi" rows="11" placeholder="Headline mạnh…&#10;&#10;Hook — câu dẫn dắt.&#10;&#10;Phát triển vấn đề.&#10;&#10;Giải pháp.&#10;&#10;💬 CTA →"></textarea><div id="ar-pcopy-vi"></div>
+          <div class="wysiwyg-wrap" id="wrap-p-copy-vi">
+            <div class="wysiwyg-toolbar" id="tb-p-copy-vi"></div>
+            <div class="wysiwyg-editor" id="p-copy-vi" contenteditable="true" data-placeholder="Headline mạnh…&#10;&#10;Hook — câu dẫn dắt. Phát triển vấn đề. Giải pháp.&#10;&#10;💬 CTA →"></div>
+          </div>
+          <div id="ar-pcopy-vi"></div>
         </div>
         <div class="hr"></div>
         <div class="fg">
           <div class="ai-row"><span class="fg-label"><span class="lang-badge en" style="margin-right:4px">EN</span> Bài copy mẫu</span><button class="btn-ai" onclick="aiAssist('pcopy-en')">✨ AI viết thử</button></div>
-          <div class="md-toolbar" id="tb-p-copy-en"></div>
-          <textarea id="p-copy-en" rows="11" placeholder="Strong headline…&#10;&#10;Hook — the opener.&#10;&#10;Develop the problem.&#10;&#10;The solution.&#10;&#10;💬 CTA →"></textarea><div id="ar-pcopy-en"></div>
+          <div class="wysiwyg-wrap" id="wrap-p-copy-en">
+            <div class="wysiwyg-toolbar" id="tb-p-copy-en"></div>
+            <div class="wysiwyg-editor" id="p-copy-en" contenteditable="true" data-placeholder="Strong headline…&#10;&#10;Hook — the opener. Develop the problem. The solution.&#10;&#10;💬 CTA →"></div>
+          </div>
+          <div id="ar-pcopy-en"></div>
         </div>
       </div>
 
@@ -334,86 +342,282 @@
 
 <script>
 // ═══════════════════════════════════════════════════════
-// MARKDOWN TOOLBAR
+// WYSIWYG ENGINE
 // ═══════════════════════════════════════════════════════
-const TOOLBAR_ACTIONS = [
-  { label:'H2', title:'Heading 2', prefix:'## ', suffix:'', placeholder:'Tiêu đề lớn' },
-  { label:'H3', title:'Heading 3', prefix:'### ', suffix:'', placeholder:'Tiêu đề nhỏ' },
-  { sep: true },
-  { label:'B', title:'In đậm (Bold)', prefix:'**', suffix:'**', placeholder:'văn bản đậm', style:'font-weight:800' },
-  { label:'I', title:'In nghiêng (Italic)', prefix:'*', suffix:'*', placeholder:'văn bản nghiêng', style:'font-style:italic' },
-  { label:'~~', title:'Gạch ngang (Strike)', prefix:'~~', suffix:'~~', placeholder:'văn bản' },
-  { label:'<>', title:'Inline code', prefix:'`', suffix:'`', placeholder:'code' },
-  { sep: true },
-  { label:'" "', title:'Blockquote / Trích dẫn', prefix:'> ', suffix:'', placeholder:'Nội dung trích dẫn', block:true },
-  { label:'—', title:'Gạch ngang divider', insert:'\n\n---\n\n' },
-  { sep: true },
-  { label:'• List', title:'Bullet list', prefix:'- ', suffix:'', placeholder:'Mục danh sách', block:true },
-  { label:'1. List', title:'Numbered list', prefix:'1. ', suffix:'', placeholder:'Mục danh sách', block:true },
-  { sep: true },
-  { label:'Link', title:'Thêm link', prefix:'[', suffix:'](url)', placeholder:'tên link' },
+
+const WYSIWYG_IDS = ['b-content-en','b-content-vi','p-copy-vi','p-copy-en'];
+
+// Per-editor: saved selection range (so toolbar clicks don't lose it)
+const _wySel = {};
+
+const WY_ACTIONS = [
+  { id:'h2',    label:'H2',               title:'Tiêu đề lớn (H2)',        tag:'h2' },
+  { id:'h3',    label:'H3',               title:'Tiêu đề nhỏ (H3)',        tag:'h3' },
+  { sep:true },
+  { id:'bold',  label:'<b>B</b>',         title:'In đậm (Ctrl+B)',          cmd:'bold' },
+  { id:'italic',label:'<i>I</i>',         title:'In nghiêng (Ctrl+I)',      cmd:'italic' },
+  { id:'strike',label:'<s>S</s>',         title:'Gạch ngang',               cmd:'strikeThrough' },
+  { sep:true },
+  { id:'quote', label:'❝',               title:'Blockquote — toggle',      tag:'blockquote' },
+  { id:'hr',    label:'—',               title:'Đường kẻ ngang',            insert:'hr' },
+  { sep:true },
+  { id:'ul',    label:'• List',           title:'Danh sách không số',       cmd:'insertUnorderedList' },
+  { id:'ol',    label:'1. List',          title:'Danh sách có số',          cmd:'insertOrderedList' },
+  { sep:true },
+  { id:'link',  label:'🔗',              title:'Thêm link',                 action:'link' },
+  { id:'clear', label:'✕',              title:'Xóa định dạng',             cmd:'removeFormat', className:'wy-clear' },
 ];
 
-function buildToolbar(tbId, taId) {
+function buildAllToolbars() {
+  WYSIWYG_IDS.forEach(id => buildWyToolbar('tb-'+id, id));
+}
+
+function buildWyToolbar(tbId, edId) {
   const tb = document.getElementById(tbId);
   if (!tb) return;
-  tb.innerHTML = TOOLBAR_ACTIONS.map((a, i) => {
-    if (a.sep) return '<div class="md-sep"></div>';
-    return `<button type="button" class="md-btn" title="${a.title}" onclick="mdInsert('${taId}',${JSON.stringify(a)})">${a.label}</button>`;
-  }).join('') + '<span class="md-hint">Ctrl+Z để undo</span>';
+  tb.innerHTML = WY_ACTIONS.map(a => {
+    if (a.sep) return '<div class="wy-sep"></div>';
+    // Use click (not mousedown) — editor blur → selection saved first, then click fires
+    return `<button type="button" class="wy-btn${a.className?' '+a.className:''}" title="${a.title}"
+      data-edid="${edId}" data-action='${JSON.stringify(a)}'>${a.label}</button>`;
+  }).join('');
+
+  // Attach listeners once
+  tb.querySelectorAll('.wy-btn').forEach(btn => {
+    btn.addEventListener('mousedown', e => {
+      // Save selection BEFORE the editor loses focus
+      const ed = document.getElementById(btn.dataset.edid);
+      if (ed) _wySavedSel(btn.dataset.edid);
+      // Prevent focus shift
+      e.preventDefault();
+    });
+    btn.addEventListener('click', e => {
+      e.preventDefault();
+      const edId = btn.dataset.edid;
+      const action = JSON.parse(btn.dataset.action);
+      wyCmd(edId, action);
+    });
+  });
 }
 
-function mdInsert(taId, action) {
-  const ta = document.getElementById(taId);
-  if (!ta) return;
-  ta.focus();
-  const start = ta.selectionStart, end = ta.selectionEnd;
-  const sel = ta.value.slice(start, end);
-  let insert = '';
-
-  if (action.insert) {
-    // Fixed insert (like ---)
-    insert = action.insert;
-    const newVal = ta.value.slice(0, start) + insert + ta.value.slice(end);
-    ta.value = newVal;
-    ta.selectionStart = ta.selectionEnd = start + insert.length;
-  } else if (action.block && !sel) {
-    // Block prefix at start of line
-    const lineStart = ta.value.lastIndexOf('\n', start - 1) + 1;
-    const newVal = ta.value.slice(0, lineStart) + action.prefix + ta.value.slice(lineStart);
-    ta.value = newVal;
-    ta.selectionStart = ta.selectionEnd = start + action.prefix.length;
-  } else {
-    const text = sel || action.placeholder || '';
-    insert = action.prefix + text + (action.suffix || '');
-    const newVal = ta.value.slice(0, start) + insert + ta.value.slice(end);
-    ta.value = newVal;
-    if (!sel && action.placeholder) {
-      // Select the placeholder so user can type over it
-      ta.selectionStart = start + action.prefix.length;
-      ta.selectionEnd = start + action.prefix.length + text.length;
-    } else {
-      ta.selectionStart = ta.selectionEnd = start + insert.length;
-    }
+// Save current selection for an editor
+function _wySavedSel(edId) {
+  const sel = window.getSelection();
+  if (sel && sel.rangeCount > 0) {
+    _wySel[edId] = sel.getRangeAt(0).cloneRange();
   }
-  // Trigger autosave state change
-  ta.dispatchEvent(new Event('input'));
 }
 
-// Build all toolbars after DOM ready
-function buildAllToolbars() {
-  buildToolbar('tb-b-content-en', 'b-content-en');
-  buildToolbar('tb-b-content-vi', 'b-content-vi');
-  buildToolbar('tb-p-copy-vi', 'p-copy-vi');
-  buildToolbar('tb-p-copy-en', 'p-copy-en');
+// Restore saved selection and focus editor
+function _wyRestoreSel(edId) {
+  const ed = document.getElementById(edId);
+  if (!ed) return;
+  ed.focus();
+  const saved = _wySel[edId];
+  if (!saved) return;
+  const sel = window.getSelection();
+  sel.removeAllRanges();
+  sel.addRange(saved);
 }
 
-// ═══════════════════════════════════════════════════════
-// MARKDOWN RENDERER (for preview)
-// ═══════════════════════════════════════════════════════
-function renderMd(raw) {
+// Get the direct-child block element of the editor containing the cursor
+function _wyGetBlock(edId) {
+  const ed = document.getElementById(edId);
+  if (!ed) return null;
+  const sel = window.getSelection();
+  if (!sel || sel.rangeCount === 0) return null;
+  let node = sel.getRangeAt(0).startContainer;
+  if (node.nodeType === 3) node = node.parentNode;
+  // Walk up until direct child of editor
+  while (node && node.parentNode !== ed) node = node.parentNode;
+  return (node && node !== ed) ? node : null;
+}
+
+function wyCmd(edId, action) {
+  _wyRestoreSel(edId);
+
+  if (action.cmd) {
+    document.execCommand(action.cmd, false, null);
+    _wyUpdateState(edId);
+    return;
+  }
+
+  if (action.insert === 'hr') {
+    document.execCommand('insertHTML', false, '<hr><p><br></p>');
+    _wyUpdateState(edId);
+    return;
+  }
+
+  if (action.action === 'link') {
+    const selText = window.getSelection()?.toString() || '';
+    const url = prompt('Nhập URL:', 'https://');
+    if (!url || url === 'https://') return;
+    if (selText) {
+      document.execCommand('createLink', false, url);
+    } else {
+      const txt = prompt('Tên hiển thị (để trống = dùng URL):', '') || url;
+      document.execCommand('insertHTML', false, `<a href="${url}" target="_blank" rel="noopener">${txt}</a>`);
+    }
+    return;
+  }
+
+  if (action.tag) {
+    const ed = document.getElementById(edId);
+    if (!ed) return;
+    const block = _wyGetBlock(edId);
+    const curTag = block ? block.tagName.toLowerCase() : '';
+
+    if (curTag === action.tag) {
+      // ── Toggle OFF: unwrap back to <p> ──
+      const p = document.createElement('p');
+      p.innerHTML = block.innerHTML || '<br>';
+      block.replaceWith(p);
+      // Move cursor into new p
+      const range = document.createRange();
+      const sel = window.getSelection();
+      range.selectNodeContents(p);
+      range.collapse(false);
+      sel.removeAllRanges();
+      sel.addRange(range);
+    } else if (block) {
+      // ── Toggle ON: wrap existing block ──
+      const newEl = document.createElement(action.tag);
+      newEl.innerHTML = block.innerHTML || '<br>';
+      block.replaceWith(newEl);
+      const range = document.createRange();
+      const sel = window.getSelection();
+      range.selectNodeContents(newEl);
+      range.collapse(false);
+      sel.removeAllRanges();
+      sel.addRange(range);
+    } else {
+      // No block found — insert new
+      const newEl = document.createElement(action.tag);
+      newEl.innerHTML = '<br>';
+      const sel = window.getSelection();
+      if (sel && sel.rangeCount > 0) {
+        const range = sel.getRangeAt(0);
+        range.deleteContents();
+        range.insertNode(newEl);
+        range.setStartAfter(newEl);
+        range.collapse(true);
+        sel.removeAllRanges();
+        sel.addRange(range);
+      } else {
+        ed.appendChild(newEl);
+      }
+    }
+    _wyUpdateState(edId);
+    return;
+  }
+}
+
+// Update active state of toolbar buttons based on cursor position
+function _wyUpdateState(edId) {
+  const tb = document.getElementById('tb-'+edId);
+  if (!tb) return;
+
+  // Inline format states via queryCommandState
+  const stateMap = { bold:'bold', italic:'italic', strike:'strikeThrough', ul:'insertUnorderedList', ol:'insertOrderedList' };
+  tb.querySelectorAll('.wy-btn[data-action]').forEach(btn => {
+    const a = JSON.parse(btn.dataset.action);
+    if (a.cmd && stateMap[a.id]) {
+      try { btn.classList.toggle('active', document.queryCommandState(stateMap[a.id])); } catch(e){}
+    }
+  });
+
+  // Block-level states
+  const block = _wyGetBlock(edId);
+  const curTag = block ? block.tagName.toLowerCase() : '';
+  tb.querySelectorAll('.wy-btn[data-action]').forEach(btn => {
+    const a = JSON.parse(btn.dataset.action);
+    if (a.tag) btn.classList.toggle('active', curTag === a.tag);
+  });
+}
+
+// ── Attach per-editor keyboard listeners ──
+function initWysiwygListeners() {
+  WYSIWYG_IDS.forEach(id => {
+    const ed = document.getElementById(id);
+    if (!ed) return;
+
+    // Save selection on every interaction so toolbar can restore it
+    ed.addEventListener('keyup',   () => { _wySavedSel(id); _wyUpdateState(id); });
+    ed.addEventListener('mouseup', () => { _wySavedSel(id); _wyUpdateState(id); });
+    ed.addEventListener('focus',   () => { _wyUpdateState(id); });
+
+    ed.addEventListener('keydown', e => {
+      // Ctrl+B / Ctrl+I shortcuts
+      if ((e.ctrlKey||e.metaKey) && e.key==='b') { e.preventDefault(); document.execCommand('bold'); _wyUpdateState(id); }
+      if ((e.ctrlKey||e.metaKey) && e.key==='i') { e.preventDefault(); document.execCommand('italic'); _wyUpdateState(id); }
+
+      // ── Enter key: escape block-level formatting ──
+      if (e.key === 'Enter' && !e.shiftKey) {
+        const block = _wyGetBlock(id);
+        if (!block) return;
+        const tag = block.tagName.toLowerCase();
+
+        // For blockquote / h2 / h3: pressing Enter on an empty line exits the block
+        if (tag === 'blockquote' || tag === 'h2' || tag === 'h3') {
+          const sel = window.getSelection();
+          if (!sel || sel.rangeCount === 0) return;
+          const range = sel.getRangeAt(0);
+
+          // Check if line is empty (just <br> or empty)
+          const blockText = block.textContent.trim();
+          if (blockText === '') {
+            // Exit: insert a plain <p> after the block
+            e.preventDefault();
+            const p = document.createElement('p');
+            p.innerHTML = '<br>';
+            block.after(p);
+            // If block is now empty, remove it
+            if (!block.textContent.trim()) block.remove();
+            // Move cursor into the new p
+            const r = document.createRange();
+            r.setStart(p, 0);
+            r.collapse(true);
+            sel.removeAllRanges();
+            sel.addRange(r);
+            return;
+          }
+
+          // For blockquote: Enter creates a plain <p> after, not another <blockquote>
+          if (tag === 'blockquote') {
+            e.preventDefault();
+            // Split blockquote at cursor
+            const afterRange = range.cloneRange();
+            afterRange.setEndAfter(block.lastChild || block);
+            const afterFrag = afterRange.extractContents();
+            const afterText = afterFrag.textContent.trim();
+
+            const p = document.createElement('p');
+            p.innerHTML = afterText ? '' : '<br>';
+            block.after(p);
+
+            if (afterText) {
+              // Move remaining content to a new blockquote
+              const bq2 = document.createElement('blockquote');
+              bq2.appendChild(afterFrag);
+              p.after(bq2);
+            }
+
+            const r = document.createRange();
+            r.setStart(p, 0);
+            r.collapse(true);
+            sel.removeAllRanges();
+            sel.addRange(r);
+            return;
+          }
+        }
+      }
+    });
+  });
+}
+
+// ── MARKDOWN → HTML (for loading into editor) ──
+function mdToHtml(raw) {
   if (!raw) return '';
-  // Process line by line
   const lines = raw.split('\n');
   let html = '';
   let inUl = false, inOl = false;
@@ -422,12 +626,11 @@ function renderMd(raw) {
     if (inUl) { html += '</ul>'; inUl = false; }
     if (inOl) { html += '</ol>'; inOl = false; }
   }
-
-  function inlineFormat(s) {
+  function inlineFmt(s) {
     return s
       .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
       .replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>')
-      .replace(/~~(.*?)~~/g,'<del>$1</del>')
+      .replace(/~~(.*?)~~/g,'<s>$1</s>')
       .replace(/\*(.*?)\*/g,'<em>$1</em>')
       .replace(/`(.*?)`/g,'<code>$1</code>')
       .replace(/\[([^\]]+)\]\(([^)]+)\)/g,'<a href="$2" target="_blank">$1</a>');
@@ -436,38 +639,17 @@ function renderMd(raw) {
   let i = 0;
   while (i < lines.length) {
     const line = lines[i];
-
-    if (/^---+$/.test(line.trim())) {
-      closeLists(); html += '<hr>'; i++; continue;
-    }
-    if (/^## (.+)/.test(line)) {
-      closeLists(); html += `<h2>${inlineFormat(line.slice(3))}</h2>`; i++; continue;
-    }
-    if (/^### (.+)/.test(line)) {
-      closeLists(); html += `<h3>${inlineFormat(line.slice(4))}</h3>`; i++; continue;
-    }
-    if (/^> (.+)/.test(line)) {
-      closeLists(); html += `<blockquote>${inlineFormat(line.slice(2))}</blockquote>`; i++; continue;
-    }
-    if (/^- (.+)/.test(line)) {
-      if (!inUl) { closeLists(); html += '<ul>'; inUl = true; }
-      html += `<li>${inlineFormat(line.slice(2))}</li>`; i++; continue;
-    }
-    if (/^\d+\. (.+)/.test(line)) {
-      if (!inOl) { closeLists(); html += '<ol>'; inOl = true; }
-      html += `<li>${inlineFormat(line.replace(/^\d+\. /,''))}</li>`; i++; continue;
-    }
-    if (line.trim() === '') {
-      closeLists(); i++;
-      // Collect blank lines, then next non-blank is a paragraph
-      while (i < lines.length && lines[i].trim() === '') i++;
-      continue;
-    }
-    // Regular paragraph — collect consecutive non-empty, non-special lines
+    if (/^---+$/.test(line.trim())) { closeLists(); html += '<hr>'; i++; continue; }
+    if (/^## /.test(line))  { closeLists(); html += `<h2>${inlineFmt(line.slice(3))}</h2>`; i++; continue; }
+    if (/^### /.test(line)) { closeLists(); html += `<h3>${inlineFmt(line.slice(4))}</h3>`; i++; continue; }
+    if (/^> /.test(line))   { closeLists(); html += `<blockquote>${inlineFmt(line.slice(2))}</blockquote>`; i++; continue; }
+    if (/^- /.test(line))   { if (!inUl) { closeLists(); html += '<ul>'; inUl = true; } html += `<li>${inlineFmt(line.slice(2))}</li>`; i++; continue; }
+    if (/^\d+\. /.test(line)) { if (!inOl) { closeLists(); html += '<ol>'; inOl = true; } html += `<li>${inlineFmt(line.replace(/^\d+\. /,''))}</li>`; i++; continue; }
+    if (line.trim() === '') { closeLists(); i++; while (i < lines.length && lines[i].trim() === '') i++; continue; }
     closeLists();
     let para = '';
     while (i < lines.length && lines[i].trim() !== '' && !/^(## |### |> |- |\d+\. |---+)/.test(lines[i])) {
-      para += (para ? '<br>' : '') + inlineFormat(lines[i]);
+      para += (para ? ' ' : '') + inlineFmt(lines[i]);
       i++;
     }
     if (para) html += `<p>${para}</p>`;
@@ -475,6 +657,93 @@ function renderMd(raw) {
   closeLists();
   return html;
 }
+
+// ── HTML → MARKDOWN (for saving from editor) ──
+function htmlToMd(html) {
+  if (!html) return '';
+  // Create a temp element to walk the DOM properly
+  const tmp = document.createElement('div');
+  tmp.innerHTML = html;
+
+  function nodeToMd(node, ctx) {
+    ctx = ctx || {};
+    if (node.nodeType === 3) {
+      // Text node
+      let t = node.textContent;
+      if (ctx.bold)   t = `**${t}**`;
+      if (ctx.italic) t = `*${t}*`;
+      if (ctx.strike) t = `~~${t}~~`;
+      if (ctx.code)   t = `\`${t}\``;
+      return t;
+    }
+    if (node.nodeType !== 1) return '';
+    const tag = node.tagName.toLowerCase();
+    const inner = (newCtx) => Array.from(node.childNodes).map(c => nodeToMd(c, newCtx||ctx)).join('');
+
+    if (tag === 'br')   return '\n';
+    if (tag === 'hr')   return '\n\n---\n\n';
+    if (tag === 'h2')   return `\n\n## ${inner()}\n\n`;
+    if (tag === 'h3')   return `\n\n### ${inner()}\n\n`;
+    if (tag === 'blockquote') return `\n\n> ${inner().replace(/\n/g,' ').trim()}\n\n`;
+    if (tag === 'strong' || tag === 'b') return `**${inner({...ctx,bold:false})}**`;
+    if (tag === 'em' || tag === 'i')     return `*${inner({...ctx,italic:false})}*`;
+    if (tag === 's' || tag === 'del' || tag === 'strike') return `~~${inner({...ctx,strike:false})}~~`;
+    if (tag === 'code') return `\`${node.textContent}\``;
+    if (tag === 'a') {
+      const href = node.getAttribute('href') || '';
+      return `[${inner()}](${href})`;
+    }
+    if (tag === 'ul') {
+      return '\n\n' + Array.from(node.children).map(li => `- ${liContent(li)}`).join('\n') + '\n\n';
+    }
+    if (tag === 'ol') {
+      return '\n\n' + Array.from(node.children).map((li,i) => `${i+1}. ${liContent(li)}`).join('\n') + '\n\n';
+    }
+    if (tag === 'li') return inner();
+    if (tag === 'p')  return `\n\n${inner()}\n\n`;
+    if (tag === 'div') return `\n${inner()}\n`;
+    return inner();
+  }
+
+  function liContent(li) {
+    return Array.from(li.childNodes).map(c => nodeToMd(c, {})).join('').replace(/\n/g,' ').trim();
+  }
+
+  let md = nodeToMd(tmp);
+  // Clean up excessive blank lines
+  md = md.replace(/\n{3,}/g, '\n\n').trim();
+  return md;
+}
+
+// ── SET value into WYSIWYG editor ──
+function wySv(id, markdownVal) {
+  const ed = document.getElementById(id);
+  if (!ed) return;
+  ed.innerHTML = markdownVal ? mdToHtml(markdownVal) : '';
+  // Place cursor at start
+  if (markdownVal) {
+    try {
+      const range = document.createRange();
+      range.setStart(ed, 0);
+      range.collapse(true);
+      const sel = window.getSelection();
+      sel.removeAllRanges();
+      sel.addRange(range);
+    } catch(e) {}
+  }
+}
+
+// ── GET markdown value from WYSIWYG editor ──
+function wyGv(id) {
+  const ed = document.getElementById(id);
+  if (!ed) return '';
+  return htmlToMd(ed.innerHTML).trim();
+}
+
+// ═══════════════════════════════════════════════════════
+// MARKDOWN RENDERER (preview reuses mdToHtml)
+// ═══════════════════════════════════════════════════════
+function renderMd(raw) { return mdToHtml(raw); }
 
 // ═══════════════════════════════════════════════════════
 // DATA
@@ -486,7 +755,7 @@ let _prevBlogId = null, _prevPortId = null, _csLang = 'en';
 async function initData() {
   try {
     const c = localStorage.getItem('hl_cms');
-    if (c) { D = JSON.parse(c); renderDash(); buildAllToolbars(); return; }
+    if (c) { D = JSON.parse(c); renderDash(); buildAllToolbars(); initWysiwygListeners(); return; }
   } catch(e){}
   try {
     const r = await fetch('hl-portfolio-data.json');
@@ -494,11 +763,11 @@ async function initData() {
       D = await r.json();
       localStorage.setItem('hl_cms', JSON.stringify(D));
       renderDash(); toast('Đã tải dữ liệu từ hl-portfolio-data.json ✓');
-      buildAllToolbars(); return;
+      buildAllToolbars(); initWysiwygListeners(); return;
     }
   } catch(e){}
   D = { blog: [], portfolio: [], lastSaved: null };
-  renderDash(); buildAllToolbars();
+  renderDash(); buildAllToolbars(); initWysiwygListeners();
 }
 
 function saveAll() {
@@ -575,7 +844,8 @@ function openBlogEd(id) {
   sv('b-time-en',b?.readTime?.en||''); sv('b-time-vi',b?.readTime?.vi||'');
   sv('b-title-en',b?.title?.en||''); sv('b-title-vi',b?.title?.vi||'');
   sv('b-excerpt-en',b?.excerpt?.en||''); sv('b-excerpt-vi',b?.excerpt?.vi||'');
-  sv('b-content-en',b?.contentEN||''); sv('b-content-vi',b?.contentVI||'');
+  wySv('b-content-en', b?.contentEN||'');
+  wySv('b-content-vi', b?.contentVI||'');
   sv('b-link',b?.link||'');
   clearAR(['btitle-en','btitle-vi','bexcerpt-en','bexcerpt-vi','bcontent-en','bcontent-vi']);
   resetTabs('blog');
@@ -590,7 +860,8 @@ function saveBlog() {
     readTime:{en:gv('b-time-en')||'5 min',vi:gv('b-time-vi')||'5 phút'},
     title:{en:gv('b-title-en'),vi:gv('b-title-vi')},
     excerpt:{en:gv('b-excerpt-en'),vi:gv('b-excerpt-vi')},
-    contentEN:gv('b-content-en'), contentVI:gv('b-content-vi'),
+    contentEN: htmlToMd(document.getElementById('b-content-en')?.innerHTML||''),
+    contentVI: htmlToMd(document.getElementById('b-content-vi')?.innerHTML||''),
     link:gv('b-link'),
     createdAt:curBlog?(D.blog.find(x=>x.id===curBlog)?.createdAt||today()):today()
   };
@@ -674,7 +945,8 @@ function openPortEd(id) {
   sv('p-title-en',p?.title?.en||''); sv('p-title-vi',p?.title?.vi||'');
   sv('p-meta',p?.meta||'');
   sv('p-brief-en',p?.brief?.en||''); sv('p-brief-vi',p?.brief?.vi||'');
-  sv('p-copy-vi',p?.copyVI||''); sv('p-copy-en',p?.copyEN||'');
+  wySv('p-copy-vi', p?.copyVI||'');
+  wySv('p-copy-en', p?.copyEN||'');
   sv('p-breakdown-vi', p?.breakdownVI || p?.breakdown || '');
   sv('p-breakdown-en', p?.breakdownEN || '');
   selColor = p?.color || '1';
@@ -693,7 +965,8 @@ function savePort() {
     title:{en:gv('p-title-en'),vi:gv('p-title-vi')},
     meta:gv('p-meta'),
     brief:{en:gv('p-brief-en'),vi:gv('p-brief-vi')},
-    copyVI:gv('p-copy-vi'), copyEN:gv('p-copy-en'),
+    copyVI: htmlToMd(document.getElementById('p-copy-vi')?.innerHTML||''),
+    copyEN: htmlToMd(document.getElementById('p-copy-en')?.innerHTML||''),
     breakdownVI:gv('p-breakdown-vi'), breakdownEN:gv('p-breakdown-en'),
     createdAt:curPort?(D.portfolio.find(x=>x.id===curPort)?.createdAt||today()):today()
   };
@@ -823,7 +1096,13 @@ async function aiAssist(key) {
 
 function applyAI(targetId, btn) {
   const text = btn.previousElementSibling?.textContent||'';
-  const t = document.getElementById(targetId); if(t){t.value=text;t.focus();}
+  const t = document.getElementById(targetId);
+  if (t && t.isContentEditable) {
+    t.innerHTML = mdToHtml(text);
+    t.focus();
+  } else if (t) {
+    t.value = text; t.focus();
+  }
   btn.parentElement.innerHTML='';
 }
 
