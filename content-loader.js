@@ -6,7 +6,7 @@
    - Language badges use text (EN/VI) instead of flag emoji
 */
 (function () {
-
+  localStorage.removeItem('hl_cms');
   var raw = localStorage.getItem('hl_cms');
   if (raw) {
     try { renderContent(JSON.parse(raw)); } catch(e) { console.warn('[HL CMS]', e); }
