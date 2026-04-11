@@ -95,8 +95,11 @@ nav {
   transition: background .3s, border-color .3s;
 }
 html.dark nav { background: rgba(13,13,13,.88); }
-.nav-logo { font-family: var(--serif-en); font-size: 1.2rem; color: var(--ink); text-decoration: none; transition: color .3s; }
-.nav-logo span { color: var(--green); }
+.nav-logo { display: flex; align-items: center; gap: .45rem; text-decoration: none; color: var(--ink); transition: color .3s; }
+.nav-book-gif { height: 36px; width: auto; display: block; filter: drop-shadow(0 1px 3px rgba(0,0,0,.08)); transition: transform .3s; }
+.nav-logo:hover .nav-book-gif { transform: rotate(-6deg) scale(1.08); }
+.nav-logo-text { font-family: var(--serif-en); font-size: 1.15rem; color: var(--ink); transition: color .3s; line-height: 1; }
+.nav-logo-text span { color: var(--green); }
 .nav-links { display: flex; gap: 2rem; list-style: none; }
 .nav-links a {
   text-decoration: none;
