@@ -207,3 +207,38 @@ const _setLang = setLang;
 setLang = function(lang) { _setLang(lang); syncPlaceholders(); };
 // Run once on load
 syncPlaceholders();
+/* ══ REFRESH DATA ══ */
+function hlRefreshData() {
+  const btn = document.getElementById('refreshBtn');
+  const isVI = document.body.classList.contains('vi');
+
+  // Spin animation
+  btn.classList.add('spinning');
+  btn.disabled = true;
+
+  // Clear CMS cache so content-loader fetches fresh from JSON
+  localStorage.removeItem('hl_cms');
+
+  // Fetch fresh JSON
+  fetch('hl-portfolio-data.json?t=' + Date.now())
+    .then(function(r) {
+      if (!r.ok) throw new Error('not found');
+      return r.json();
+    })
+    .then(function(data) {
+      localStorage.setItem('hl_cms', JSON.stringify(data));
+      // Show brief "done" state then reload to re-render everything
+      btn.classList.remove('spinning');
+      btn.classList.add('refreshed');
+      setTimeout(function() { window.location.reload(); }, 400);
+    })
+    .catch(function() {
+      btn.classList.remove('spinning');
+      btn.disabled = false;
+      // Show error tooltip briefly
+      btn.title = isVI ? 'Không tìm thấy file JSON' : 'JSON file not found';
+      setTimeout(function() {
+        btn.title = isVI ? 'Tải dữ liệu mới nhất' : 'Refresh content';
+      }, 3000);
+    });
+}
