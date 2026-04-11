@@ -72,27 +72,27 @@
   ],
   "portfolio": [
     {
-      "id": "p1775790521238",
-      "color": "2",
-      "type": {
-        "en": "fb ads",
-        "vi": "qc fb"
-      },
-      "title": {
-        "en": "tiêu đề tiếng anh",
-        "vi": "tiêu đề tiếng việt"
-      },
-      "meta": "ehehehehe",
-      "brief": {
-        "en": "bối cảnh tiếng anh",
-        "vi": "bối cảnh tiếng việt"
-      },
-      "copyVI": "nội dung tiếng việt",
-      "copyEN": "nội dung tiếng việt",
-      "breakdownVI": "break down tiếng việt",
-      "breakdownEN": "break down tiếng anh",
-      "createdAt": "2026-04-10"
-    }
+  "id": "p1775790999999",
+  "color": "2",
+  "type": {
+    "en": "fb ads",
+    "vi": "qc fb"
+  },
+  "title": {
+    "en": "From Low Trust to High Conversion: Scaling a Local Skincare Brand with Facebook Ads",
+    "vi": "Từ mất niềm tin đến bùng nổ chuyển đổi: Scale thương hiệu skincare nội địa bằng Facebook Ads"
+  },
+  "meta": "beauty, ecommerce, performance marketing, vietnam market",
+  "brief": {
+    "en": "A Vietnamese local skincare brand faced a critical challenge: despite generating high traffic from ads, their conversion rate remained extremely low due to lack of trust and unclear messaging. The goal was to rebuild trust, clarify product benefits, and ultimately improve purchase conversion.",
+    "vi": "Một thương hiệu skincare nội địa tại Việt Nam gặp vấn đề nghiêm trọng: dù traffic từ quảng cáo rất cao nhưng tỷ lệ chuyển đổi lại cực thấp do thiếu niềm tin và thông điệp chưa rõ ràng. Mục tiêu là xây dựng lại niềm tin, làm rõ lợi ích sản phẩm và tăng tỷ lệ mua hàng."
+  },
+  "copyVI": "Bạn đã thử bao nhiêu sản phẩm rồi mà da vẫn không cải thiện?\n\nĐây không phải là một sản phẩm 'thần kỳ'. Nhưng nếu bạn kiên trì 14 ngày, bạn sẽ thấy sự khác biệt rõ rệt.\n\n✔️ Không corticoid\n✔️ Thành phần lành tính, phù hợp da nhạy cảm\n✔️ Đã có hơn 12.000 khách hàng sử dụng\n\n👉 Xem kết quả thật từ người dùng bên dưới.",
+  "copyEN": "How many products have you tried, yet your skin still doesn’t improve?\n\nThis is not a 'miracle product'. But if you stay consistent for 14 days, you will notice a real difference.\n\n✔️ No steroids\n✔️ Safe ingredients for sensitive skin\n✔️ Trusted by 12,000+ customers\n\n👉 See real user results below.",
+  "breakdownVI": "Vấn đề chính:\n- Traffic cao nhưng CR thấp (~0.8%)\n- Khách hàng nghi ngờ sản phẩm nội địa\n- Nội dung quảng cáo quá generic, thiếu bằng chứng\n\nInsight:\n- Người dùng skincare tại Việt Nam bị 'burn trust' do quảng cáo sai sự thật\n- Họ cần bằng chứng thực tế hơn là lời hứa\n\nChiến lược:\n1. Thay đổi góc nội dung: từ 'bán sản phẩm' → 'giải quyết vấn đề da thật'\n2. Tăng social proof: before/after, review thật, UGC video\n3. Hook đánh vào pain point (mất niềm tin, thử nhiều nhưng không hiệu quả)\n4. Retarget bằng testimonial thay vì hard sell\n\nKết quả:\n- CR tăng từ 0.8% → 2.7%\n- CPA giảm 35%\n- ROAS tăng 2.1x sau 3 tuần",
+  "breakdownEN": "Core problems:\n- High traffic but low conversion rate (~0.8%)\n- Low trust toward local skincare brands\n- Generic messaging without proof\n\nInsight:\n- Vietnamese users have 'trust fatigue' from misleading ads\n- They respond better to real proof than promises\n\nStrategy:\n1. Shift messaging from 'selling product' → 'solving real skin problems'\n2. Increase social proof: before/after, real reviews, UGC videos\n3. Strong hook targeting emotional pain (lost trust, tried everything)\n4. Retargeting with testimonials instead of hard selling\n\nResults:\n- Conversion rate increased from 0.8% → 2.7%\n- CPA reduced by 35%\n- ROAS increased 2.1x within 3 weeks",
+  "createdAt": "2026-04-11"
+}
   ],
   "lastSaved": "2026-04-11T04:26:55.464Z"
 }
