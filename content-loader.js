@@ -212,8 +212,16 @@
         '.hl-bm-pane{display:none}.hl-bm-pane.active{display:block}',
         /* empty state */
         '.hl-bm-empty{background:var(--surface2,#f4f2ee);border:1px dashed var(--border,#e5e2dc);border-radius:10px;padding:2rem;text-align:center;color:var(--ink-muted,#6b6660);font-size:.85rem}',
+        /* decoration flowers */
+        '.hl-bm-box{position:relative}',
+        '.hl-deco{position:absolute;pointer-events:none;user-select:none;z-index:0;opacity:.55;transition:opacity .3s}',
+        '.hl-bm-ov.open .hl-deco{opacity:.55}',
+        '.hl-deco-l2{left:-60px;top:380px;width:130px;transform:scaleX(-1) rotate(10deg);filter:drop-shadow(0 2px 8px rgba(0,0,0,.08))}',
+        '.hl-deco-r2{right:-49px;top:380px;width:110px;transform:rotate(-8deg);filter:drop-shadow(0 2px 8px rgba(0,0,0,.08))}',
+        '.hl-deco-l{left:-77px;top:90px;width:150px;transform:scaleX(-1) rotate(-8deg);filter:drop-shadow(0 2px 8px rgba(0,0,0,.08))}',
+        '.hl-deco-r{right:-55px;top:70px;width:130px;transform:rotate(6deg);filter:drop-shadow(0 2px 8px rgba(0,0,0,.08))}',
         /* mobile */
-        '@media(max-width:640px){.hl-bm-body{padding:1.5rem 1.25rem 2rem}.hl-bm-title{font-size:1.35rem}}'
+        '@media(max-width:640px){.hl-bm-body{padding:1.5rem 1.25rem 2rem}.hl-bm-title{font-size:1.35rem}.hl-deco{display:none}}'
       ].join('');
       document.head.appendChild(style);
     }
@@ -226,6 +234,10 @@
       div.onclick = function(e) { if (e.target === div) hlCloseBlog(); };
       div.innerHTML =
         '<div class="hl-bm-box">' +
+        '<img src="assets/images/blog_decoration_4.png" class="hl-deco hl-deco-l" aria-hidden="true">' +
+        '<img src="assets/images/blog_decoration_3.png" class="hl-deco hl-deco-r" aria-hidden="true">' +
+        '<img src="assets/images/blog_decoration_3.png" class="hl-deco hl-deco-l2" aria-hidden="true">' +
+        '<img src="assets/images/blog_decoration_4.png" class="hl-deco hl-deco-r2" aria-hidden="true">' +
         '<div class="hl-bm-head">' +
         '<button class="hl-lb hl-lb-en active" id="hl-bm-en-btn" onclick="hlBlogLang(\'en\')">EN</button>' +
         '<button class="hl-lb hl-lb-vi" id="hl-bm-vi-btn" onclick="hlBlogLang(\'vi\')">VI</button>' +
