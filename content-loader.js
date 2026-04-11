@@ -317,7 +317,7 @@
         '.hl-cs-pane{display:none}.hl-cs-pane.active{display:block}',
         // Pane content styles
         '.cs-pane-type{font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--green,#16a34a);margin-bottom:.4rem}',
-        '.cs-pane-title{font-size:1.35rem;font-weight:800;line-height:1.25;margin-bottom:0}'
+        '.cs-pane-title{font-size:1.35rem;font-weight:800;line-height:1.25;margin-bottom:2rem}'
       ].join('');
       document.head.appendChild(s);
     }
