@@ -72,27 +72,92 @@
   ],
   "portfolio": [
     {
-      "id": "p1775790999999",
-      "color": "2",
+      "id": "p001",
+      "color": "green",
       "type": {
-        "en": "fb ads",
-        "vi": "qc fb"
+        "en": "Landing Page + Ads",
+        "vi": "Landing Page + Quảng cáo"
       },
       "title": {
-        "en": "From Low Trust to High Conversion: Scaling a Local Skincare Brand with Facebook Ads",
-        "vi": "Từ mất niềm tin đến bùng nổ chuyển đổi: Scale thương hiệu skincare nội địa bằng Facebook Ads"
+        "en": "Increase Conversion Rate for a Local Plant Shop",
+        "vi": "Tăng tỷ lệ chuyển đổi cho shop cây cảnh địa phương"
       },
-      "meta": "beauty, ecommerce, performance marketing, vietnam market",
+      "meta": "Conversion Optimization • Facebook Ads • Landing Page",
       "brief": {
-        "en": "A Vietnamese local skincare brand faced a critical challenge: despite generating high traffic from ads, their conversion rate remained extremely low due to lack of trust and unclear messaging. The goal was to rebuild trust, clarify product benefits, and ultimately improve purchase conversion.",
-        "vi": "Một thương hiệu skincare nội địa tại Việt Nam gặp vấn đề nghiêm trọng: dù traffic từ quảng cáo rất cao nhưng tỷ lệ chuyển đổi lại cực thấp do thiếu niềm tin và thông điệp chưa rõ ràng. Mục tiêu là xây dựng lại niềm tin, làm rõ lợi ích sản phẩm và tăng tỷ lệ mua hàng."
+        "en": "A local plant shop had stable traffic but low conversion. The messaging was redesigned to remove psychological barriers for beginners.",
+        "vi": "Shop cây cảnh có traffic ổn định nhưng chuyển đổi thấp. Nội dung được viết lại để gỡ bỏ rào cản tâm lý của người mới."
       },
-      "copyVI": "Bạn đã thử bao nhiêu sản phẩm rồi mà da vẫn không cải thiện?\n\nĐây không phải là một sản phẩm 'thần kỳ'. Nhưng nếu bạn kiên trì 14 ngày, bạn sẽ thấy sự khác biệt rõ rệt.\n\n✔️ Không corticoid\n✔️ Thành phần lành tính, phù hợp da nhạy cảm\n✔️ Đã có hơn 12.000 khách hàng sử dụng\n\n👉 Xem kết quả thật từ người dùng bên dưới.",
-      "copyEN": "How many products have you tried, yet your skin still doesn’t improve?\n\nThis is not a 'miracle product'. But if you stay consistent for 14 days, you will notice a real difference.\n\n✔️ No steroids\n✔️ Safe ingredients for sensitive skin\n✔️ Trusted by 12,000+ customers\n\n👉 See real user results below.",
-      "breakdownVI": "Vấn đề chính:\n- Traffic cao nhưng CR thấp (~0.8%)\n- Khách hàng nghi ngờ sản phẩm nội địa\n- Nội dung quảng cáo quá generic, thiếu bằng chứng\n\nInsight:\n- Người dùng skincare tại Việt Nam bị 'burn trust' do quảng cáo sai sự thật\n- Họ cần bằng chứng thực tế hơn là lời hứa\n\nChiến lược:\n1. Thay đổi góc nội dung: từ 'bán sản phẩm' → 'giải quyết vấn đề da thật'\n2. Tăng social proof: before/after, review thật, UGC video\n3. Hook đánh vào pain point (mất niềm tin, thử nhiều nhưng không hiệu quả)\n4. Retarget bằng testimonial thay vì hard sell\n\nKết quả:\n- CR tăng từ 0.8% → 2.7%\n- CPA giảm 35%\n- ROAS tăng 2.1x sau 3 tuần",
-      "breakdownEN": "Core problems:\n- High traffic but low conversion rate (~0.8%)\n- Low trust toward local skincare brands\n- Generic messaging without proof\n\nInsight:\n- Vietnamese users have 'trust fatigue' from misleading ads\n- They respond better to real proof than promises\n\nStrategy:\n1. Shift messaging from 'selling product' → 'solving real skin problems'\n2. Increase social proof: before/after, real reviews, UGC videos\n3. Strong hook targeting emotional pain (lost trust, tried everything)\n4. Retargeting with testimonials instead of hard selling\n\nResults:\n- Conversion rate increased from 0.8% → 2.7%\n- CPA reduced by 35%\n- ROAS increased 2.1x within 3 weeks",
-      "createdAt": "2026-04-11"
+      "copyVI": "Bạn không cần biết chăm cây — cây vẫn sống khỏe.\n\nNhững loại cây được chọn lọc dành riêng cho người “hay làm chết cây”.\n\nBạn từng mua cây… nhưng chỉ sau 1–2 tuần, lá bắt đầu vàng? Không phải vì bạn tệ — mà vì bạn đang chọn sai loại cây ngay từ đầu.\n\nChúng tôi chọn sẵn những loại cây:\n\n- Ít cần chăm sóc\n- Sống tốt trong môi trường phòng\n- Phù hợp cho người mới bắt đầu\n\n👉 Bắt đầu với một chậu cây bạn không thể làm chết.",
+      "copyEN": "You don’t need to know how to take care of plants — they will still thrive.\n\nCarefully selected plants for people who 'always kill plants'.\n\nEver bought a plant… and watched it slowly die after a week? It’s not your fault — you just picked the wrong type.\n\nWe select plants that:\n\n- Require minimal care\n- Thrive indoors\n- Are beginner-friendly\n\n👉 Start with a plant you can’t kill.",
+      "breakdownVI": "Hook || Đánh thẳng vào nỗi sợ chăm chết cây\nProblem || Trải nghiệm thất bại quen thuộc\nInsight || Người dùng nghĩ họ không hợp trồng cây\nSolution || Đổi góc nhìn: vấn đề là do chọn sai cây\nCTA || Giảm áp lực mua",
+      "breakdownEN": "Hook || Fear of killing plants\nProblem || Relatable failure\nInsight || Users think they are bad at plant care\nSolution || Wrong plant selection\nCTA || Soft conversion",
+      "adPlatforms": [
+        "fb",
+        "insta"
+      ],
+      "adVersions": [
+        {
+          "platform": "facebook",
+          "label": "Pain + Twist",
+          "imageLabel": "plant beginner friendly ad",
+          "ctaText": "Chọn cây dễ sống",
+          "linkUrl": "https://mybrand.vn",
+          "caption": "Bạn từng mua cây… rồi nhìn nó chết dần?\n\nKhông phải vì bạn tệ.\nBạn chỉ đang chọn sai loại cây.\n\n👉 Bắt đầu với một chậu cây bạn không thể làm chết."
+        },
+        {
+          "platform": "insta",
+          "label": "Relatable Failure",
+          "imageLabel": "cozy indoor plant lifestyle",
+          "ctaText": "Xem cây phù hợp",
+          "linkUrl": "https://mybrand.vn",
+          "caption": "Mình từng làm chết 3 chậu cây trước khi tìm ra loại này 🌿\n\nNếu bạn cũng vậy — đây là mấy loại cây cực dễ sống.\n\nKhông cần kinh nghiệm.\nChỉ cần thích là đủ.\n\n👉 Xem cây phù hợp với bạn"
+        }
+      ],
+      "emailSequence": [],
+      "results": [
+        {
+          "metric": "+216%",
+          "label": "Conversion Rate"
+        },
+        {
+          "metric": "-40%",
+          "label": "Bounce Rate"
+        },
+        {
+          "metric": "+65%",
+          "label": "Time on Page"
+        }
+      ],
+      "resultsVI": [
+        {
+          "metric": "+216%",
+          "label": "Tăng tỷ lệ chuyển đổi"
+        },
+        {
+          "metric": "-40%",
+          "label": "Giảm tỷ lệ thoát"
+        },
+        {
+          "metric": "+65%",
+          "label": "Thời gian ở lại trang"
+        }
+      ],
+      "resultsEN": [
+        {
+          "metric": "+216%",
+          "label": "Conversion Rate Increase"
+        },
+        {
+          "metric": "-40%",
+          "label": "Bounce Rate"
+        },
+        {
+          "metric": "+65%",
+          "label": "Time on Page"
+        }
+      ],
+      "createdAt": "2026-05-14"
     }
   ],
-  "lastSaved": "2026-04-24T11:41:00.098Z"
+  "lastSaved": "2026-05-14"
 }

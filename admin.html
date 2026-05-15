@@ -154,20 +154,20 @@
           <div class="fg"><label>Thời gian đọc (VI)</label><input id="b-time-vi" placeholder="5 phút"></div>
         </div>
         <div class="fg">
-          <div class="ai-row"><span class="fg-label">Tiêu đề (EN)</span><button class="btn-ai" onclick="aiAssist('btitle-en')">✨ AI gợi ý</button></div>
-          <input id="b-title-en" placeholder="Blog title in English…"><div id="ar-btitle-en"></div>
+          <label>Tiêu đề (EN)</label>
+          <input id="b-title-en" placeholder="Blog title in English…">
         </div>
         <div class="fg">
-          <div class="ai-row"><span class="fg-label">Tiêu đề (VI)</span><button class="btn-ai" onclick="aiAssist('btitle-vi')">✨ AI gợi ý</button></div>
-          <input id="b-title-vi" placeholder="Tiêu đề tiếng Việt…"><div id="ar-btitle-vi"></div>
+          <label>Tiêu đề (VI)</label>
+          <input id="b-title-vi" placeholder="Tiêu đề tiếng Việt…">
         </div>
         <div class="fg">
-          <div class="ai-row"><span class="fg-label">Excerpt — Preview card (EN)</span><button class="btn-ai" onclick="aiAssist('bexcerpt-en')">✨ AI gợi ý</button></div>
-          <textarea id="b-excerpt-en" rows="3" placeholder="Short preview shown on the blog card…"></textarea><div id="ar-bexcerpt-en"></div>
+          <label>Excerpt — Preview card (EN)</label>
+          <textarea id="b-excerpt-en" rows="3" placeholder="Short preview shown on the blog card…"></textarea>
         </div>
         <div class="fg">
-          <div class="ai-row"><span class="fg-label">Excerpt — Preview card (VI)</span><button class="btn-ai" onclick="aiAssist('bexcerpt-vi')">✨ AI gợi ý</button></div>
-          <textarea id="b-excerpt-vi" rows="3" placeholder="Mô tả ngắn trên blog card…"></textarea><div id="ar-bexcerpt-vi"></div>
+          <label>Excerpt — Preview card (VI)</label>
+          <textarea id="b-excerpt-vi" rows="3" placeholder="Mô tả ngắn trên blog card…"></textarea>
         </div>
         <div class="fg">
           <label>Link bài viết (để trống = mở detail ngay trên site)</label>
@@ -179,24 +179,22 @@
       <!-- Tab: Content EN -->
       <div class="ed-tab-pane" id="tab-bcontent-en">
         <div class="fg">
-          <div class="ai-row"><span class="fg-label">Nội dung bài viết (EN)</span><button class="btn-ai" onclick="aiAssist('bcontent-en')">✨ AI viết thử</button></div>
+          <label>Nội dung bài viết (EN)</label>
           <div class="wysiwyg-wrap" id="wrap-b-content-en">
             <div class="wysiwyg-toolbar" id="tb-b-content-en"></div>
             <div class="wysiwyg-editor" id="b-content-en" contenteditable="true" data-placeholder="Start writing your post… Select text then use the toolbar to format."></div>
           </div>
-          <div id="ar-bcontent-en"></div>
         </div>
       </div>
 
       <!-- Tab: Content VI -->
       <div class="ed-tab-pane" id="tab-bcontent-vi">
         <div class="fg">
-          <div class="ai-row"><span class="fg-label">Nội dung bài viết (VI)</span><button class="btn-ai" onclick="aiAssist('bcontent-vi')">✨ AI viết thử</button></div>
+          <label>Nội dung bài viết (VI)</label>
           <div class="wysiwyg-wrap" id="wrap-b-content-vi">
             <div class="wysiwyg-toolbar" id="tb-b-content-vi"></div>
             <div class="wysiwyg-editor" id="b-content-vi" contenteditable="true" data-placeholder="Bắt đầu viết bài… Bôi đen chữ rồi dùng toolbar để định dạng."></div>
           </div>
-          <div id="ar-bcontent-vi"></div>
         </div>
       </div>
 
@@ -237,6 +235,8 @@
       <div class="ed-tab active" data-tab="pmeta" onclick="switchTab('port',this)">📋 Thông tin</div>
       <div class="ed-tab" data-tab="pcopy" onclick="switchTab('port',this)">✍️ Copy mẫu</div>
       <div class="ed-tab" data-tab="pbreakdown" onclick="switchTab('port',this)">🔍 Phân tích</div>
+      <div class="ed-tab" data-tab="pplatforms" onclick="switchTab('port',this)">📱 Nền tảng</div>
+      <div class="ed-tab" data-tab="presults" onclick="switchTab('port',this)">📊 Kết quả</div>
     </div>
     <div class="ed-body">
 
@@ -247,12 +247,12 @@
           <div class="fg"><label>Loại content (VI)</label><input id="p-type-vi" placeholder="Quảng cáo Facebook…"></div>
         </div>
         <div class="fg">
-          <div class="ai-row"><span class="fg-label">Tiêu đề dự án (EN)</span><button class="btn-ai" onclick="aiAssist('ptitle-en')">✨ AI gợi ý</button></div>
-          <input id="p-title-en" placeholder="Project title in English…"><div id="ar-ptitle-en"></div>
+          <label>Tiêu đề dự án (EN)</label>
+          <input id="p-title-en" placeholder="Project title in English…">
         </div>
         <div class="fg">
-          <div class="ai-row"><span class="fg-label">Tiêu đề dự án (VI)</span><button class="btn-ai" onclick="aiAssist('ptitle-vi')">✨ AI gợi ý</button></div>
-          <input id="p-title-vi" placeholder="Tên dự án tiếng Việt…"><div id="ar-ptitle-vi"></div>
+          <label>Tiêu đề dự án (VI)</label>
+          <input id="p-title-vi" placeholder="Tên dự án tiếng Việt…">
         </div>
         <div class="fg-row">
           <div class="fg"><label>Meta tag</label><input id="p-meta" placeholder="Local biz · PAS · VI/EN"><div class="field-hint">Ngành · Framework · Ngôn ngữ</div></div>
@@ -276,21 +276,19 @@
       <!-- Tab: Copy -->
       <div class="ed-tab-pane" id="tab-pcopy">
         <div class="fg">
-          <div class="ai-row"><span class="fg-label"><span class="lang-badge vi" style="margin-right:4px">VI</span> Bài copy mẫu</span><button class="btn-ai" onclick="aiAssist('pcopy-vi')">✨ AI viết thử</button></div>
+          <label><span class="lang-badge vi" style="margin-right:4px">VI</span> Bài copy mẫu</label>
           <div class="wysiwyg-wrap" id="wrap-p-copy-vi">
             <div class="wysiwyg-toolbar" id="tb-p-copy-vi"></div>
             <div class="wysiwyg-editor" id="p-copy-vi" contenteditable="true" data-placeholder="Headline mạnh…&#10;&#10;Hook — câu dẫn dắt. Phát triển vấn đề. Giải pháp.&#10;&#10;💬 CTA →"></div>
           </div>
-          <div id="ar-pcopy-vi"></div>
         </div>
         <div class="hr"></div>
         <div class="fg">
-          <div class="ai-row"><span class="fg-label"><span class="lang-badge en" style="margin-right:4px">EN</span> Bài copy mẫu</span><button class="btn-ai" onclick="aiAssist('pcopy-en')">✨ AI viết thử</button></div>
+          <label><span class="lang-badge en" style="margin-right:4px">EN</span> Bài copy mẫu</label>
           <div class="wysiwyg-wrap" id="wrap-p-copy-en">
             <div class="wysiwyg-toolbar" id="tb-p-copy-en"></div>
             <div class="wysiwyg-editor" id="p-copy-en" contenteditable="true" data-placeholder="Strong headline…&#10;&#10;Hook — the opener. Develop the problem. The solution.&#10;&#10;💬 CTA →"></div>
           </div>
-          <div id="ar-pcopy-en"></div>
         </div>
       </div>
 
@@ -298,15 +296,89 @@
       <div class="ed-tab-pane" id="tab-pbreakdown">
         <div class="content-note"><strong>🔍 Copywriting Breakdown</strong>Mỗi dòng = 1 điểm phân tích. Format: <code>Tag||Nội dung giải thích</code> — nhập riêng cho từng ngôn ngữ.</div>
         <div class="fg">
-          <div class="ai-row"><span class="fg-label"><span class="lang-badge vi" style="margin-right:4px">VI</span> Breakdown (Tiếng Việt)</span></div>
+          <label><span class="lang-badge vi" style="margin-right:4px">VI</span> Breakdown (Tiếng Việt)</label>
           <textarea id="p-breakdown-vi" rows="10" style="font-family:monospace;font-size:12.5px" placeholder="Hook||Headline gọi ra nỗi sợ cụ thể rồi lật ngược thành cảm giác nhẹ nhõm.&#10;P — Problem||&quot;Bạn đã bao giờ...&quot; — làm người đọc cảm thấy được hiểu.&#10;A — Agitate||Validate cảm xúc trước khi đưa ra giải pháp. Ngắn, thật.&#10;S — Solution||Sản phẩm được giới thiệu như câu trả lời logic với twist bất ngờ.&#10;Social proof||Số liệu xóa rào cản trước khi nó hình thành.&#10;CTA||CTA mềm phù hợp với tone — conversation leads to sale."></textarea>
           <div class="field-hint">Mỗi dòng: <code>Tag||Giải thích tiếng Việt</code></div>
         </div>
         <div class="hr"></div>
         <div class="fg">
-          <div class="ai-row"><span class="fg-label"><span class="lang-badge en" style="margin-right:4px">EN</span> Breakdown (English)</span></div>
-          <textarea id="p-breakdown-en" rows="10" style="font-family:monospace;font-size:12.5px" placeholder="Hook||Headline calls out a specific fear then flips it into relief. Scroll-stopping because it's specific.&#10;P — Problem||&quot;You've done it before...&quot; — reader feels understood, not judged.&#10;A — Agitate||&quot;We've all been there&quot; — validates emotion before offering a solution.&#10;S — Solution||Product introduced as the logical answer. Surprise twist builds credibility.&#10;Social proof||Numbers remove the &quot;is it expensive?&quot; objection before it forms.&#10;CTA||Soft &quot;message us&quot; over &quot;buy now&quot; — fits warm local shop tone."></textarea>
+          <label><span class="lang-badge en" style="margin-right:4px">EN</span> Breakdown (English)</label>
+          <textarea id="p-breakdown-en" rows="10" style="font-family:monospace;font-size:12.5px" placeholder="Hook||Headline calls out a specific fear then flips it into relief.&#10;P — Problem||&quot;You've done it before...&quot; — reader feels understood, not judged.&#10;A — Agitate||Validates emotion before offering a solution.&#10;S — Solution||Product introduced as the logical answer.&#10;Social proof||Numbers remove objections before they form.&#10;CTA||Soft CTA fits warm local shop tone."></textarea>
           <div class="field-hint">Each line: <code>Tag||Explanation in English</code></div>
+        </div>
+      </div>
+
+      <!-- Tab: Platforms -->
+      <div class="ed-tab-pane" id="tab-pplatforms">
+        <div class="content-note"><strong>📱 Nền tảng quảng bá</strong>Chọn nền tảng để hiển thị mockup trong modal portfolio. Mỗi nền tảng có thể có nhiều phiên bản (version). FB Ads &amp; Instagram dùng chung bảng "Ad Versions"; Email dùng "Email Sequence".</div>
+
+        <!-- Platform checkboxes -->
+        <div class="fg">
+          <label>Nền tảng hiển thị</label>
+          <div class="platform-checks">
+            <label class="plat-check" id="plc-fb">
+              <input type="checkbox" id="p-plat-fb" onchange="togglePlatformSection()">
+              <span class="plat-icon">📘</span> <span>Facebook Ads</span>
+            </label>
+            <label class="plat-check" id="plc-insta">
+              <input type="checkbox" id="p-plat-insta" onchange="togglePlatformSection()">
+              <span class="plat-icon">📸</span> <span>Instagram Ads</span>
+            </label>
+            <label class="plat-check" id="plc-email">
+              <input type="checkbox" id="p-plat-email" onchange="togglePlatformSection()">
+              <span class="plat-icon">✉️</span> <span>Email / Chuỗi email</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- AD VERSIONS (FB + Instagram) -->
+        <div id="plat-ad-section" style="display:none">
+          <div class="hr"></div>
+          <div class="sec-divider">📘📸 Ad Versions — FB &amp; Instagram</div>
+          <div class="content-note" style="margin-bottom:12px"><strong>Mỗi version</strong> có thể là FB hoặc Insta (hoặc cả hai). Nhập riêng tiếng Việt và tiếng Anh.</div>
+
+          <div id="ad-versions-list"></div>
+          <button class="btn btn-s btn-sm" onclick="addAdVersion()" style="margin-top:8px">+ Thêm version</button>
+        </div>
+
+        <!-- EMAIL SEQUENCE -->
+        <div id="plat-email-section" style="display:none">
+          <div class="hr"></div>
+          <div class="sec-divider">✉️ Email Sequence</div>
+          <div class="content-note" style="margin-bottom:12px"><strong>Mỗi email</strong> trong chuỗi. Nhập riêng tiếng Việt và tiếng Anh.</div>
+
+          <div id="email-seq-list"></div>
+          <button class="btn btn-s btn-sm" onclick="addEmailItem()" style="margin-top:8px">+ Thêm email</button>
+        </div>
+      </div>
+
+      <!-- Tab: Results -->
+      <div class="ed-tab-pane" id="tab-presults">
+        <div class="content-note"><strong>📊 Kết quả đạt được</strong>Mỗi metric = 1 thẻ kết quả (VD: CR tăng 2.7x, CPA giảm 35%). Có thể nhập riêng VI/EN hoặc dùng chung.</div>
+
+        <div class="fg-row" style="align-items:center">
+          <span style="font-size:13px;font-weight:600">Dùng chung VI/EN</span>
+          <label class="toggle-switch">
+            <input type="checkbox" id="p-results-shared" onchange="toggleResultsLang()" checked>
+            <span class="toggle-knob"></span>
+          </label>
+        </div>
+
+        <div id="results-shared-section">
+          <div class="hr" style="margin:10px 0"></div>
+          <div id="results-shared-list"></div>
+          <button class="btn btn-s btn-sm" onclick="addResultItem('shared')" style="margin-top:8px">+ Thêm metric</button>
+        </div>
+
+        <div id="results-split-section" style="display:none">
+          <div class="hr"></div>
+          <div class="sec-divider"><span class="lang-badge vi">VI</span> Kết quả (Tiếng Việt)</div>
+          <div id="results-vi-list"></div>
+          <button class="btn btn-s btn-sm" onclick="addResultItem('vi')" style="margin-top:8px">+ Thêm metric (VI)</button>
+          <div class="hr"></div>
+          <div class="sec-divider"><span class="lang-badge en">EN</span> Results (English)</div>
+          <div id="results-en-list"></div>
+          <button class="btn btn-s btn-sm" onclick="addResultItem('en')" style="margin-top:8px">+ Thêm metric (EN)</button>
         </div>
       </div>
 
@@ -847,7 +919,6 @@ function openBlogEd(id) {
   wySv('b-content-en', b?.contentEN||'');
   wySv('b-content-vi', b?.contentVI||'');
   sv('b-link',b?.link||'');
-  clearAR(['btitle-en','btitle-vi','bexcerpt-en','bexcerpt-vi','bcontent-en','bcontent-vi']);
   resetTabs('blog');
   document.getElementById('blogOverlay').classList.add('open');
 }
@@ -951,14 +1022,377 @@ function openPortEd(id) {
   sv('p-breakdown-en', p?.breakdownEN || '');
   selColor = p?.color || '1';
   document.querySelectorAll('.color-opts .co').forEach(el => el.classList.toggle('sel', el.dataset.c===selColor));
-  clearAR(['ptitle-en','ptitle-vi','pcopy-vi','pcopy-en']);
+
+  // Load platforms
+  const platforms = p?.adPlatforms || [];
+  document.getElementById('p-plat-fb').checked    = platforms.includes('fb');
+  document.getElementById('p-plat-insta').checked = platforms.includes('insta');
+  document.getElementById('p-plat-email').checked = platforms.includes('email');
+  togglePlatformSection();
+
+  // Load ad versions
+  const versions = p?.adVersions || [];
+  renderAdVersionsList(versions);
+
+  // Load email sequence
+  const seq = p?.emailSequence || [];
+  renderEmailSeqList(seq);
+
+  // Load results
+  const sharedResults = p?.results || [];
+  const viResults     = p?.resultsVI || [];
+  const enResults     = p?.resultsEN || [];
+  const isShared = !p || (!viResults.length && !enResults.length);
+  document.getElementById('p-results-shared').checked = isShared;
+  toggleResultsLang();
+  renderResultsList('shared', isShared ? sharedResults : (p?.results||[]));
+  renderResultsList('vi', viResults);
+  renderResultsList('en', enResults);
+
   resetTabs('port');
   document.getElementById('portOverlay').classList.add('open');
 }
 function closePortEd() { document.getElementById('portOverlay').classList.remove('open'); }
 function pickColor(el) { selColor=el.dataset.c; document.querySelectorAll('.color-opts .co').forEach(e=>e.classList.remove('sel')); el.classList.add('sel'); }
 
+// ── PLATFORM SECTION TOGGLE ──
+function togglePlatformSection() {
+  const hasFb    = document.getElementById('p-plat-fb').checked;
+  const hasInsta = document.getElementById('p-plat-insta').checked;
+  const hasEmail = document.getElementById('p-plat-email').checked;
+  document.getElementById('plat-ad-section').style.display    = (hasFb||hasInsta) ? 'block' : 'none';
+  document.getElementById('plat-email-section').style.display = hasEmail ? 'block' : 'none';
+}
+
+// ── RESULTS LANG TOGGLE ──
+function toggleResultsLang() {
+  const shared = document.getElementById('p-results-shared').checked;
+  document.getElementById('results-shared-section').style.display = shared ? 'block' : 'none';
+  document.getElementById('results-split-section').style.display  = shared ? 'none' : 'block';
+}
+
+// ─────────────────────────────────────
+// AD VERSIONS (FB + Instagram)
+// Each version: { platform:'fb'|'insta', label, pageName/username, primaryText/caption, imageLabel, linkUrl, linkTitle, linkDesc, ctaText }
+// Stored as: adVersions[] (shared), or adVersionsVI / adVersionsEN if needed
+// For simplicity: one adVersions array; platform field distinguishes FB vs IG
+// ─────────────────────────────────────
+
+function renderAdVersionsList(versions) {
+  const list = document.getElementById('ad-versions-list');
+  list.innerHTML = '';
+  (versions||[]).forEach((v, i) => list.appendChild(buildAdVersionCard(v, i)));
+}
+
+function buildAdVersionCard(v, i) {
+  const card = document.createElement('div');
+  card.className = 'version-card';
+  card.dataset.idx = i;
+
+  const isFb    = v.platform === 'fb';
+  const isInsta = v.platform === 'insta';
+
+  card.innerHTML = `
+    <div class="version-card-head">
+      <div class="version-card-label">
+        <span class="version-badge ${isFb?'badge-fb':isInsta?'badge-ig':''}">${isFb?'📘 FB':'📸 IG'}</span>
+        <strong>${h(v.label || ('Version ' + (i+1)))}</strong>
+      </div>
+      <div style="display:flex;gap:6px">
+        <button class="btn-icon" title="Di chuyển lên" onclick="moveVersion(${i},-1)">↑</button>
+        <button class="btn-icon" title="Di chuyển xuống" onclick="moveVersion(${i},1)">↓</button>
+        <button class="btn-icon" title="Xóa" onclick="delVersion(${i})">🗑️</button>
+      </div>
+    </div>
+    <div class="version-card-body">
+      <div class="fg-row">
+        <div class="fg">
+          <label>Nền tảng</label>
+          <select class="ver-platform" onchange="saveVersionField(${i},'platform',this.value);rebuildVersionCard(${i})">
+            <option value="fb" ${isFb?'selected':''}>📘 Facebook Ads</option>
+            <option value="insta" ${isInsta?'selected':''}>📸 Instagram Ads</option>
+          </select>
+        </div>
+        <div class="fg">
+          <label>Label (hiển thị tab)</label>
+          <input class="ver-label" value="${h(v.label||'')}" placeholder="Version A, Version B..." oninput="saveVersionField(${i},'label',this.value)">
+        </div>
+      </div>
+      ${isFb ? `
+      <div class="fg">
+        <label>Tên Page</label>
+        <input value="${h(v.pageName||'')}" placeholder="Tên fanpage..." oninput="saveVersionField(${i},'pageName',this.value)">
+      </div>
+      <div class="fg">
+        <label>Primary Text (nội dung bài đăng)</label>
+        <textarea rows="4" placeholder="Nội dung quảng cáo..." oninput="saveVersionField(${i},'primaryText',this.value)">${h(v.primaryText||'')}</textarea>
+      </div>
+      <div class="fg-row">
+        <div class="fg"><label>Link URL</label><input value="${h(v.linkUrl||'')}" placeholder="yourbrand.vn" oninput="saveVersionField(${i},'linkUrl',this.value)"></div>
+        <div class="fg"><label>Link Title</label><input value="${h(v.linkTitle||'')}" placeholder="Tên sản phẩm / trang" oninput="saveVersionField(${i},'linkTitle',this.value)"></div>
+      </div>
+      <div class="fg">
+        <label>Link Description</label>
+        <input value="${h(v.linkDesc||'')}" placeholder="Mô tả ngắn dưới link..." oninput="saveVersionField(${i},'linkDesc',this.value)">
+      </div>
+      ` : `
+      <div class="fg">
+        <label>Username</label>
+        <input value="${h(v.username||'')}" placeholder="@username" oninput="saveVersionField(${i},'username',this.value)">
+      </div>
+      <div class="fg">
+        <label>Caption</label>
+        <textarea rows="4" placeholder="Caption quảng cáo Instagram..." oninput="saveVersionField(${i},'caption',this.value)">${h(v.caption||v.primaryText||'')}</textarea>
+      </div>
+      <div class="fg">
+        <label>Link URL</label>
+        <input value="${h(v.linkUrl||'')}" placeholder="yourpage.com" oninput="saveVersionField(${i},'linkUrl',this.value)">
+      </div>
+      `}
+      <div class="fg-row">
+        <div class="fg">
+          <label>Image Label <span style="font-weight:400;color:var(--muted)">(mô tả ảnh hiển thị trong mockup)</span></label>
+          <input value="${h(v.imageLabel||'')}" placeholder="🖼 Banner quảng cáo sản phẩm X" oninput="saveVersionField(${i},'imageLabel',this.value)">
+        </div>
+        <div class="fg">
+          <label>CTA Button</label>
+          <input value="${h(v.ctaText||'')}" placeholder="Tìm hiểu thêm / Shop Now" oninput="saveVersionField(${i},'ctaText',this.value)">
+        </div>
+      </div>
+    </div>`;
+  return card;
+}
+
+function saveVersionField(idx, field, val) {
+  const versions = collectAdVersions();
+  if (versions[idx]) versions[idx][field] = val;
+  // persist silently — actual save happens on savePort
+}
+
+function collectAdVersions() {
+  // Read from current DOM state of ad-versions-list cards
+  const cards = document.querySelectorAll('#ad-versions-list .version-card');
+  const result = [];
+  cards.forEach(card => {
+    const i = parseInt(card.dataset.idx);
+    // Get all inputs/selects/textareas within this card
+    const get = (sel) => card.querySelector(sel);
+    const plat = get('.ver-platform')?.value || 'fb';
+    const isFb = plat === 'fb';
+    const obj = {
+      platform: plat,
+      label:       get('.ver-label')?.value || '',
+      imageLabel:  Array.from(card.querySelectorAll('input')).find(el=>el.placeholder.includes('Banner'))?.value || '',
+      ctaText:     Array.from(card.querySelectorAll('input')).find(el=>el.placeholder.includes('Shop Now')||el.placeholder.includes('Tìm hiểu'))?.value || '',
+      linkUrl:     Array.from(card.querySelectorAll('input')).find(el=>el.placeholder.includes('.vn')||el.placeholder.includes('.com'))?.value || '',
+    };
+    if (isFb) {
+      obj.pageName    = Array.from(card.querySelectorAll('input')).find(el=>el.placeholder.includes('fanpage'))?.value || '';
+      obj.primaryText = card.querySelector('textarea')?.value || '';
+      obj.linkTitle   = Array.from(card.querySelectorAll('input')).find(el=>el.placeholder.includes('trang'))?.value || '';
+      obj.linkDesc    = Array.from(card.querySelectorAll('input')).find(el=>el.placeholder.includes('ngắn'))?.value || '';
+    } else {
+      obj.username = Array.from(card.querySelectorAll('input')).find(el=>el.placeholder.includes('@'))?.value || '';
+      obj.caption  = card.querySelector('textarea')?.value || '';
+    }
+    result.push(obj);
+  });
+  return result;
+}
+
+function rebuildVersionCard(idx) {
+  const versions = collectAdVersions();
+  const list = document.getElementById('ad-versions-list');
+  const cards = list.querySelectorAll('.version-card');
+  if (cards[idx]) {
+    const newCard = buildAdVersionCard(versions[idx], idx);
+    cards[idx].replaceWith(newCard);
+  }
+}
+
+function addAdVersion() {
+  const versions = collectAdVersions();
+  // Determine default platform based on what's checked
+  const hasFb = document.getElementById('p-plat-fb').checked;
+  const defPlatform = hasFb ? 'fb' : 'insta';
+  versions.push({ platform: defPlatform, label: '', primaryText: '', caption: '', imageLabel: '', ctaText: '' });
+  renderAdVersionsList(versions);
+}
+
+function delVersion(idx) {
+  const versions = collectAdVersions();
+  versions.splice(idx, 1);
+  renderAdVersionsList(versions);
+}
+
+function moveVersion(idx, dir) {
+  const versions = collectAdVersions();
+  const newIdx = idx + dir;
+  if (newIdx < 0 || newIdx >= versions.length) return;
+  [versions[idx], versions[newIdx]] = [versions[newIdx], versions[idx]];
+  renderAdVersionsList(versions);
+}
+
+// ─────────────────────────────────────
+// EMAIL SEQUENCE
+// Each email: { label, senderName, senderEmail, subject, body, ctaText, footer }
+// ─────────────────────────────────────
+
+function renderEmailSeqList(seq) {
+  const list = document.getElementById('email-seq-list');
+  list.innerHTML = '';
+  (seq||[]).forEach((e, i) => list.appendChild(buildEmailCard(e, i)));
+}
+
+function buildEmailCard(e, i) {
+  const card = document.createElement('div');
+  card.className = 'version-card';
+  card.dataset.eidx = i;
+  card.innerHTML = `
+    <div class="version-card-head">
+      <div class="version-card-label">
+        <span class="version-badge badge-email">✉️</span>
+        <strong>${h(e.label || ('Email ' + (i+1)))}</strong>
+      </div>
+      <div style="display:flex;gap:6px">
+        <button class="btn-icon" onclick="moveEmail(${i},-1)">↑</button>
+        <button class="btn-icon" onclick="moveEmail(${i},1)">↓</button>
+        <button class="btn-icon" onclick="delEmail(${i})">🗑️</button>
+      </div>
+    </div>
+    <div class="version-card-body">
+      <div class="fg-row">
+        <div class="fg">
+          <label>Label (hiển thị tab)</label>
+          <input class="em-label" value="${h(e.label||'')}" placeholder="Email 1, Welcome Email..." oninput="">
+        </div>
+        <div class="fg">
+          <label>Tiêu đề email (Subject line)</label>
+          <input class="em-subject" value="${h(e.subject||'')}" placeholder="Subject dạng gây tò mò...">
+        </div>
+      </div>
+      <div class="fg-row">
+        <div class="fg">
+          <label>Tên người gửi</label>
+          <input class="em-sender-name" value="${h(e.senderName||'')}" placeholder="Hải Luân">
+        </div>
+        <div class="fg">
+          <label>Email người gửi</label>
+          <input class="em-sender-email" value="${h(e.senderEmail||'')}" placeholder="hailuan@brand.com">
+        </div>
+      </div>
+      <div class="fg">
+        <label>Nội dung email</label>
+        <textarea class="em-body" rows="6" placeholder="Nội dung email (Shift+Enter = xuống dòng)...">${h(e.body||'')}</textarea>
+      </div>
+      <div class="fg-row">
+        <div class="fg">
+          <label>CTA Button (để trống nếu không có)</label>
+          <input class="em-cta" value="${h(e.ctaText||'')}" placeholder="Xem ngay / Đăng ký">
+        </div>
+        <div class="fg">
+          <label>Footer text</label>
+          <input class="em-footer" value="${h(e.footer||'')}" placeholder="Hủy đăng ký tại đây...">
+        </div>
+      </div>
+    </div>`;
+  return card;
+}
+
+function collectEmailSeq() {
+  const cards = document.querySelectorAll('#email-seq-list .version-card');
+  return Array.from(cards).map(card => ({
+    label:       card.querySelector('.em-label')?.value       || '',
+    subject:     card.querySelector('.em-subject')?.value     || '',
+    senderName:  card.querySelector('.em-sender-name')?.value || '',
+    senderEmail: card.querySelector('.em-sender-email')?.value|| '',
+    body:        card.querySelector('.em-body')?.value        || '',
+    ctaText:     card.querySelector('.em-cta')?.value         || '',
+    footer:      card.querySelector('.em-footer')?.value      || '',
+  }));
+}
+
+function addEmailItem() {
+  const seq = collectEmailSeq();
+  seq.push({ label: 'Email ' + (seq.length + 1), subject: '', senderName: '', senderEmail: '', body: '', ctaText: '', footer: '' });
+  renderEmailSeqList(seq);
+}
+
+function delEmail(idx) {
+  const seq = collectEmailSeq();
+  seq.splice(idx, 1);
+  renderEmailSeqList(seq);
+}
+
+function moveEmail(idx, dir) {
+  const seq = collectEmailSeq();
+  const newIdx = idx + dir;
+  if (newIdx < 0 || newIdx >= seq.length) return;
+  [seq[idx], seq[newIdx]] = [seq[newIdx], seq[idx]];
+  renderEmailSeqList(seq);
+}
+
+// ─────────────────────────────────────
+// RESULTS (metric cards)
+// Each result: { metric, label }
+// ─────────────────────────────────────
+
+function renderResultsList(type, items) {
+  const listId = type === 'shared' ? 'results-shared-list' : `results-${type}-list`;
+  const list = document.getElementById(listId);
+  if (!list) return;
+  list.innerHTML = '';
+  (items||[]).forEach((r, i) => list.appendChild(buildResultRow(type, r, i)));
+}
+
+function buildResultRow(type, r, i) {
+  const row = document.createElement('div');
+  row.className = 'result-row';
+  row.innerHTML = `
+    <div class="result-metric-wrap">
+      <input class="res-metric" value="${h(r.metric||'')}" placeholder="CR ↑ 2.7x" style="font-weight:700;font-size:1.1rem;width:110px">
+      <input class="res-label" value="${h(r.label||'')}" placeholder="Tỉ lệ chuyển đổi" style="flex:1">
+      <button class="btn-icon" onclick="this.closest('.result-row').remove()" title="Xóa">✕</button>
+    </div>`;
+  return row;
+}
+
+function addResultItem(type) {
+  const listId = type === 'shared' ? 'results-shared-list' : `results-${type}-list`;
+  const list = document.getElementById(listId);
+  if (!list) return;
+  const i = list.querySelectorAll('.result-row').length;
+  list.appendChild(buildResultRow(type, {metric:'',label:''}, i));
+}
+
+function collectResults(listId) {
+  const list = document.getElementById(listId);
+  if (!list) return [];
+  return Array.from(list.querySelectorAll('.result-row')).map(row => ({
+    metric: row.querySelector('.res-metric')?.value || '',
+    label:  row.querySelector('.res-label')?.value  || '',
+  })).filter(r => r.metric || r.label);
+}
+
 function savePort() {
+  // Collect platforms
+  const adPlatforms = [];
+  if (document.getElementById('p-plat-fb').checked)    adPlatforms.push('fb');
+  if (document.getElementById('p-plat-insta').checked) adPlatforms.push('insta');
+  if (document.getElementById('p-plat-email').checked) adPlatforms.push('email');
+
+  // Collect ad versions
+  const adVersions = collectAdVersions();
+
+  // Collect email sequence
+  const emailSequence = collectEmailSeq();
+
+  // Collect results
+  const sharedResults = document.getElementById('p-results-shared').checked;
+  const results   = sharedResults ? collectResults('results-shared-list') : [];
+  const resultsVI = sharedResults ? [] : collectResults('results-vi-list');
+  const resultsEN = sharedResults ? [] : collectResults('results-en-list');
+
   const p = {
     id:curPort||'p'+Date.now(), color:selColor,
     type:{en:gv('p-type-en')||'Copy',vi:gv('p-type-vi')||'Copy'},
@@ -968,6 +1402,10 @@ function savePort() {
     copyVI: htmlToMd(document.getElementById('p-copy-vi')?.innerHTML||''),
     copyEN: htmlToMd(document.getElementById('p-copy-en')?.innerHTML||''),
     breakdownVI:gv('p-breakdown-vi'), breakdownEN:gv('p-breakdown-en'),
+    adPlatforms,
+    adVersions,
+    emailSequence,
+    results, resultsVI, resultsEN,
     createdAt:curPort?(D.portfolio.find(x=>x.id===curPort)?.createdAt||today()):today()
   };
   if (!p.title.en && !p.title.vi) { toast('Vui lòng nhập tiêu đề!',true); return; }
@@ -1060,51 +1498,8 @@ function resetTabs(type) {
   document.querySelectorAll(overlay+' .ed-tab-pane').forEach((p,i)=>p.classList.toggle('active',i===0));
 }
 
-// ── AI ASSISTANT ──
-const AI_P = {
-  'btitle-en': ctx=>`You are a copywriting expert. Generate 3 compelling blog titles IN ENGLISH for a bilingual copywriter's portfolio. Topic: "${ctx||'copywriting tips'}". Numbered 1-3, one per line, under 12 words each, curiosity-driven. No explanations.`,
-  'btitle-vi': ctx=>`Bạn là chuyên gia copywriting. Tạo 3 tiêu đề blog TIẾNG VIỆT cho portfolio copywriter song ngữ. Chủ đề: "${ctx||'kỹ năng copywriting'}". Đánh số 1-3, mỗi dòng một tiêu đề, dưới 15 từ, gây tò mò. Không giải thích.`,
-  'bexcerpt-en': ctx=>`Write 3 short blog excerpt options IN ENGLISH (2 sentences each) for the post: "${ctx}". Hook reader immediately. Numbered 1-3.`,
-  'bexcerpt-vi': ctx=>`Viết 3 đoạn excerpt TIẾNG VIỆT (2 câu) cho bài: "${ctx}". Thu hút ngay câu đầu. Đánh số 1-3.`,
-  'bcontent-en': ctx=>`Write a complete blog post IN ENGLISH on: "${ctx||'copywriting for tech products'}". Use markdown: ## for headings, **bold**, *italic*, > for quotes, - for bullet lists. Structure: hook opening, 3-4 paragraphs with examples, strong conclusion. ~400 words.`,
-  'bcontent-vi': ctx=>`Viết bài blog đầy đủ TIẾNG VIỆT về: "${ctx||'copywriting cho sản phẩm tech'}". Dùng markdown: ## cho heading, **đậm**, *nghiêng*, > cho quote, - cho bullet. Cấu trúc: hook, 3-4 đoạn với ví dụ, kết luận. ~400 từ.`,
-  'ptitle-en': ctx=>`Generate 3 portfolio project titles IN ENGLISH. Type: "${ctx||'copywriting project'}". Short, specific, memorable. Numbered 1-3.`,
-  'ptitle-vi': ctx=>`Tạo 3 tiêu đề dự án portfolio TIẾNG VIỆT. Loại: "${ctx||'dự án copywriting'}". Ngắn, cụ thể. Đánh số 1-3.`,
-  'pcopy-vi': ctx=>`Viết copy TIẾNG VIỆT theo PAS dựa trên brief: "${ctx||'sản phẩm cần quảng bá'}". Không label framework. Giọng gần gũi, kết CTA mềm. 150-200 từ.`,
-  'pcopy-en': ctx=>`Write copy IN ENGLISH using PAS based on: "${ctx||'product brief'}". No section labels. Conversational, soft CTA. 150-200 words.`
-};
-const AI_CTX = {'btitle-en':'b-cat-en','btitle-vi':'b-cat-vi','bexcerpt-en':'b-title-en','bexcerpt-vi':'b-title-vi','bcontent-en':'b-title-en','bcontent-vi':'b-title-vi','ptitle-en':'p-type-en','ptitle-vi':'p-type-vi','pcopy-vi':'p-brief-vi','pcopy-en':'p-brief-en'};
-const AI_APPLY = {'btitle-en':'b-title-en','btitle-vi':'b-title-vi','bexcerpt-en':'b-excerpt-en','bexcerpt-vi':'b-excerpt-vi','bcontent-en':'b-content-en','bcontent-vi':'b-content-vi','ptitle-en':'p-title-en','ptitle-vi':'p-title-vi','pcopy-vi':'p-copy-vi','pcopy-en':'p-copy-en'};
-
-async function aiAssist(key) {
-  const el = document.getElementById('ar-'+key); if(!el) return;
-  const ctx = gv(AI_CTX[key]||'') || '';
-  const fn = AI_P[key]; if(!fn) return;
-  el.innerHTML = `<div class="ai-loading"><div class="ai-dot"></div><div class="ai-dot"></div><div class="ai-dot"></div><span>AI đang viết…</span></div>`;
-  const btn = el.closest('.fg')?.querySelector('.btn-ai'); if(btn) btn.disabled=true;
-  try {
-    const res = await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,messages:[{role:'user',content:fn(ctx)}]})});
-    const d = await res.json();
-    const text = d.content?.map(c=>c.text||'').join('')||'Không có kết quả.';
-    const tid = AI_APPLY[key];
-    el.innerHTML = `<div class="ai-result-box">${h(text).replace(/\n/g,'<br>')}</div>
-      <button class="btn btn-s btn-sm" style="margin-top:6px" onclick="applyAI('${tid}',this)">📋 Dùng nội dung này</button>`;
-  } catch {
-    el.innerHTML = `<div class="ai-result-box" style="background:#fef2f2;border-color:#fecaca;color:#b91c1c">❌ Lỗi kết nối. Thử lại sau.</div>`;
-  } finally { if(btn) btn.disabled=false; }
-}
-
-function applyAI(targetId, btn) {
-  const text = btn.previousElementSibling?.textContent||'';
-  const t = document.getElementById(targetId);
-  if (t && t.isContentEditable) {
-    t.innerHTML = mdToHtml(text);
-    t.focus();
-  } else if (t) {
-    t.value = text; t.focus();
-  }
-  btn.parentElement.innerHTML='';
-}
+// ── AI ASSISTANT (removed) ──
+// AI recommend đã được bỏ theo yêu cầu.
 
 // ── EXPORT/IMPORT ──
 const SNIPPET = `<script src="content-loader.js"><\/script>`;
