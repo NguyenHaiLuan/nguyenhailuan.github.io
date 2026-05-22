@@ -12,8 +12,8 @@
   --border:     #dddddd;
   --border-lit: #e0e2e6;
   --shadow:     0 4px 12px rgba(0,0,0,.04);
-  --serif-en:   'Haas Groot Disp', 'Inter Display', -apple-system, sans-serif;
-  --sans:       'Haas', 'Inter', -apple-system, system-ui, sans-serif;
+  --serif:      'Playfair Display', Georgia, serif;
+  --sans:       'Inter', 'Be Vietnam Pro', -apple-system, system-ui, sans-serif;
 }
 
 /* ══ DARK MODE ══ */
@@ -47,8 +47,7 @@ body.vi [data-vi-b] { display: block; }
 body.vi [data-en-b] { display: none; }
 
 /* Font strategy */
-body.en .hl-serif { font-family: var(--serif-en); font-style: italic; font-weight: 400; }
-body.vi .hl-serif { font-family: var(--sans); font-weight: 700; font-style: normal; letter-spacing: -.025em; }
+.hl-serif { font-family: var(--serif); font-style: italic; font-weight: 500; letter-spacing: -.01em; }
 
 /* ══ LANG TOOLTIP ══ */
 .lang-tooltip {
@@ -100,7 +99,7 @@ html.dark nav { background: rgba(13,13,13,.88); }
 .nav-logo { display: flex; align-items: center; gap: .45rem; text-decoration: none; color: var(--ink); transition: color .3s; }
 .nav-book-gif { height: 36px; width: auto; display: block; filter: drop-shadow(0 1px 3px rgba(0,0,0,.08)); transition: transform .3s; }
 .nav-logo:hover .nav-book-gif { transform: rotate(-6deg) scale(1.08); }
-.nav-logo-text { font-family: var(--serif-en); font-size: 1.15rem; color: var(--ink); transition: color .3s; line-height: 1; }
+.nav-logo-text { font-family: var(--serif); font-size: 1.15rem; color: var(--ink); transition: color .3s; line-height: 1; }
 .nav-logo-text span { color: var(--green); }
 .nav-links { display: flex; gap: 2rem; list-style: none; }
 .nav-links a {
@@ -178,7 +177,7 @@ html.dark .btn-primary { color: #181d26; background: #fff; }
 .hero-scroll { position: absolute; bottom: 2.5rem; left: 3rem; display: flex; align-items: center; gap: .75rem; color: var(--ink-muted); font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; opacity: 0; animation: up .6s .8s forwards; }
 .scroll-bar { width: 36px; height: 1px; background: var(--border); position: relative; overflow: hidden; }
 .scroll-bar::after { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: var(--green); animation: slid 2s 1.4s infinite; }
-.hero-deco { position: absolute; right: -1rem; top: 50%; transform: translateY(-50%); font-family: var(--serif-en); font-size: 22vw; font-style: italic; color: transparent; -webkit-text-stroke: 1px var(--border); pointer-events: none; user-select: none; line-height: 1; z-index: -1; }
+.hero-deco { position: absolute; right: -1rem; top: 50%; transform: translateY(-50%); font-family: var(--serif); font-size: 22vw; font-style: italic; color: transparent; -webkit-text-stroke: 1px var(--border); pointer-events: none; user-select: none; line-height: 1; z-index: -1; }
 
 /* ══ DIVIDER ══ */
 .div { border: none; border-top: 1px solid var(--border); max-width: 100%; transition: border-color .3s; }
@@ -200,7 +199,7 @@ html.dark .pull-quote { color: var(--ink-muted); }
 .stat-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 2rem; }
 .stat-box { padding: 1.25rem; border: 1px solid var(--border); border-radius: 10px; transition: border-color .2s, background .3s; background: var(--bg); }
 .stat-box:hover { border-color: var(--green); }
-.stat-n { font-family: var(--serif-en); font-size: 2.2rem; color: var(--green); line-height: 1; }
+.stat-n { font-family: var(--serif); font-size: 2.2rem; color: var(--green); line-height: 1; }
 .stat-l { font-size: .77rem; color: var(--ink-muted); margin-top: .2rem; }
 
 .about-cta { margin-top: 2rem; }
