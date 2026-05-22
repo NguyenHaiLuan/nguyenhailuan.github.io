@@ -157,7 +157,143 @@
         }
       ],
       "createdAt": "2026-05-14"
+    },
+    {
+      "id": "p002",
+      "color": "2",
+      "type": { "en": "Landing Page + Ads", "vi": "Landing Page + Quảng cáo" },
+      "title": { "en": "Driving Trial Signups for a Task Management SaaS", "vi": "Tăng lượt dùng thử cho SaaS Quản lý công việc" },
+      "meta": "SaaS • B2B • PAS Framework",
+      "brief": {
+        "en": "(Concept Project) A task management tool for agency owners had a highly technical landing page. I rewrote the hero section and ads to focus on the emotional pain of agency owners: working 14-hour days just tracking who is doing what.",
+        "vi": "(Dự án mẫu) Một phần mềm quản lý công việc cho các agency có trang chủ quá nặng về kỹ thuật. Mình viết lại phần Hero và bài chạy Ads để xoáy vào nỗi đau thật sự của founder: làm việc 14 tiếng/ngày chỉ để theo dõi tiến độ nhân sự."
+      },
+      "copyVI": "### Hero Banner Landing Page\n**Bạn mở agency để tự do. Nhưng cuối cùng lại làm việc 14 tiếng/ngày chỉ để đi hỏi \"Cái này ai làm?\"**\n\nPhần lớn các agency owner không kiệt sức vì làm việc với khách hàng. Họ kiệt sức vì phải quản lý mớ hỗn độn nội bộ.\n[Tên SaaS] giúp bạn theo dõi toàn bộ tiến độ dự án trên một màn hình duy nhất. Không cần họp hành vô bổ. Không cần lội tin nhắn.\n\n👉 Bắt đầu dùng thử miễn phí 14 ngày (Không cần thẻ tín dụng)\n\n---\n### Facebook Ad Copy\n\n**Hook:** Nếu bạn là agency owner, câu hỏi đáng sợ nhất mỗi sáng thứ Hai không phải là về KPI của khách hàng.\n\nMà là: *\"Trời ơi, task này cuối cùng là ai đang giữ?\"*\n\nBạn thuê nhân sự giỏi để rảnh tay hơn, nhưng cuối cùng lại biến thành một \"bảo mẫu dự án\" đi nhắc việc từng người. Mỗi lần cần check tiến độ là một lần phải bới tung Zalo, Slack, Google Drive.\n\nĐó không phải là cách một agency mở rộng quy mô. Đó là cách làm bạn kiệt sức.\n\n[Tên SaaS] được thiết kế riêng cho các agency dưới 20 người. Chúng tôi đưa toàn bộ mớ bòng bong đó lên một giao diện duy nhất.\n- Biết ngay ai đang làm gì, chậm deadline bao nhiêu ngày.\n- Tự động nhắc việc nhân sự (bạn không cần phải đóng vai ác).\n- Khách hàng có thể tự vào xem tiến độ (bớt đi 3 cuộc họp mỗi tuần).\n\nĐừng để agency của bạn phụ thuộc vào trí nhớ của bạn.\n\n👇 Click vào link để dùng thử miễn phí 14 ngày. Cài đặt xong trong đúng 5 phút.",
+      "copyEN": "### Hero Banner Landing Page\n**You started an agency for freedom. Now you work 14-hour days just asking \"Who is doing this?\"**\n\nMost agency owners don't burn out from client work. They burn out from managing internal chaos.\n[SaaS Name] gives you a bird's-eye view of every project on one screen. No useless meetings. No digging through chat threads.\n\n👉 Start your 14-day free trial (No credit card required)\n\n---\n### Facebook Ad Copy\n\n**Hook:** If you run an agency, the scariest question on a Monday morning isn't about client KPIs.\n\nIt's: *\"Wait, who is actually handling this task?\"*\n\nYou hired smart people to free up your time, but you ended up becoming a \"project babysitter\" chasing updates. Checking progress means digging through Slack, WhatsApp, and Google Drive.\n\nThat's not how you scale an agency. That's how you burn out.\n\n[SaaS Name] is built specifically for agencies under 20 people. We put all that chaos onto one simple dashboard.\n- See exactly who is doing what, and who is missing deadlines.\n- Automated reminders (so you don't have to be the bad guy).\n- Client portal for progress tracking (saves you 3 meetings a week).\n\nDon't let your agency run on your memory alone.\n\n👇 Click the link to start your 14-day free trial. Set it up in exactly 5 minutes.",
+      "breakdownVI": "Hero Headline||Đánh thẳng vào sự mâu thuẫn: Muốn tự do nhưng lại thành nô lệ của công việc.\nProblem (Ad)||Nêu đúng câu hỏi ám ảnh các chủ agency mỗi sáng thứ Hai.\nAgitate (Ad)||Khuếch đại nỗi đau: việc phải đi làm \"bảo mẫu dự án\" và lội tin nhắn.\nSolution (Ad)||Đưa ra tính năng như là giải pháp chữa lành: Tự động nhắc việc, giao diện duy nhất.\nCTA (Ad)||Xóa rào cản hành động bằng lời hứa \"Cài đặt xong trong 5 phút\".",
+      "breakdownEN": "Hero Headline||Calls out the paradox: Starting an agency for freedom but ending up overworked.\nProblem (Ad)||Identifies the exact painful thought of agency owners on Monday mornings.\nAgitate (Ad)||Amplifies the pain: becoming a 'project babysitter' and digging through apps.\nSolution (Ad)||Presents features as direct relief: Auto-reminders, single dashboard.\nCTA (Ad)||Removes friction by promising a 5-minute setup time.",
+      "adPlatforms": ["fb"],
+      "adVersions": [
+        {
+          "platform": "facebook",
+          "label": "Direct Pain Point",
+          "pageName": "TaskFlow SaaS",
+          "primaryText": "Nếu bạn là agency owner, câu hỏi đáng sợ nhất mỗi sáng thứ Hai không phải là về KPI khách hàng. Mà là: \"Trời ơi, task này cuối cùng là ai đang giữ?\"...\n\nĐừng để agency chạy bằng trí nhớ của bạn.",
+          "imageLabel": "Chủ agency ôm đầu trước 10 tab Slack",
+          "linkUrl": "https://yoursaas.com/agency",
+          "linkTitle": "Giải phóng bạn khỏi việc quản lý vi mô",
+          "linkDesc": "Dùng thử miễn phí 14 ngày",
+          "ctaText": "Đăng ký ngay"
+        }
+      ],
+      "emailSequence": [],
+      "results": [
+        { "metric": "+45%", "label": "Click-Through Rate" },
+        { "metric": "-20%", "label": "Cost Per Acquisition" }
+      ],
+      "resultsVI": [],
+      "resultsEN": [],
+      "createdAt": "2026-05-20"
+    },
+    {
+      "id": "p003",
+      "color": "3",
+      "type": { "en": "Content Social", "vi": "Content Social" },
+      "title": { "en": "Building Community for a Specialty Coffee Brand", "vi": "Xây dựng cộng đồng cho quán Specialty Coffee" },
+      "meta": "F&B • Instagram • Facebook • Storytelling",
+      "brief": {
+        "en": "(Concept Project) A local specialty coffee shop wanted to stop competing on price and start competing on brand loyalty. The goal was to educate casual drinkers about specialty coffee without sounding snobby, using relatable social media content.",
+        "vi": "(Dự án mẫu) Một quán Specialty Coffee địa phương muốn ngừng cạnh tranh bằng giá và bắt đầu xây dựng tệp khách hàng trung thành. Mục tiêu là giáo dục người uống cà phê phổ thông về specialty coffee mà không tỏ ra trịch thượng, thông qua nội dung mạng xã hội gần gũi."
+      },
+      "copyVI": "*(Được hiển thị trong phần Nền tảng bên dưới)*",
+      "copyEN": "*(Displayed in the Platforms section below)*",
+      "breakdownVI": "Facebook Post||Dùng storytelling (kể chuyện) để tạo sự đồng cảm. Thay vì nói \"cà phê của chúng tôi xịn\", hãy kể về sự vất vả để có ly cà phê ngon.\nInstagram Post||Tập trung vào visual và quick-tip (mẹo nhanh). Đặt câu hỏi gợi tò mò \"Tại sao cà phê sáng nay bị chua?\" để giữ chân người đọc.\nTone of Voice||Chân thành, khiêm tốn, như một người bạn đam mê cà phê đang chia sẻ kinh nghiệm.",
+      "breakdownEN": "Facebook Post||Uses storytelling to build empathy. Instead of saying 'our coffee is premium', it tells the story of the hard work behind a good cup.\nInstagram Post||Visual-first with a quick-tip format. Uses a curiosity hook 'Why did your morning coffee taste sour?' to retain attention.\nTone of Voice||Sincere, humble, like a coffee-passionate friend sharing their experience.",
+      "adPlatforms": ["fb", "insta"],
+      "adVersions": [
+        {
+          "platform": "facebook",
+          "label": "Storytelling (FB)",
+          "pageName": "The Roastery",
+          "primaryText": "Lần đầu tiên mình nếm thử Specialty Coffee, mình đã nhăn mặt: \"Sao nó chua lè vậy?\"\n\nLúc đó mình nghĩ cà phê ngon là phải đen, đặc, và đắng nghét.\n\nPhải mất 2 năm làm nghề, đổ đi hàng trăm mẻ rang hỏng, mình mới hiểu: Cà phê vốn dĩ là một loại trái cây. Và vị chua đó—nếu được rang đúng cách—không phải là vị chua của sự hư hỏng, mà là vị chua thanh tao của một quả mọng chín dưới nắng cao nguyên.\n\nSáng nay, tụi mình vừa về một mẻ hạt mới từ Khe Sanh. Tụi mình đã rang nó ở mức light-medium để giữ lại đúng cái hậu vị ngòn ngọt, chua thanh ấy.\n\nNếu bạn chưa từng thử cà phê có vị trái cây, ghé quán sáng nay nhé. Mình sẽ tự tay pha cho bạn một ly pour-over. \n\nKhông đắng nghét. Không cần thêm đường. Chỉ có hương vị nguyên bản.\n\n📍 Hẹn bạn ở góc quán quen.",
+          "imageLabel": "Barista cẩn thận rót nước pha Pour-over, nắng sớm",
+          "linkUrl": "",
+          "linkTitle": "",
+          "linkDesc": "",
+          "ctaText": "Gửi tin nhắn"
+        },
+        {
+          "platform": "insta",
+          "label": "Quick Tip (IG)",
+          "username": "@theroastery.vn",
+          "caption": "Tại sao ly cà phê tự pha sáng nay của bạn lại có vị chua gắt? ☕️\n\nNhiều bạn nhắn tin hỏi tụi mình: \"Sao mua hạt xịn về pha nhà vẫn dở?\"\nSự thật là: 90% nguyên nhân nằm ở nhiệt độ nước.\n\n❌ Nước quá nguội (dưới 85 độ): Cà phê chưa kịp chiết xuất hết, dẫn đến vị chua gắt khó chịu.\n❌ Nước vừa sôi sùng sục (100 độ): Cà phê bị cháy, đắng chát.\n✅ Hoàn hảo (90 - 93 độ): Nước vừa sôi, mở nắp ấm để khoảng 1 phút rồi mới pha.\n\nChỉ một thay đổi nhỏ xíu thôi, ly cà phê sáng mai của bạn sẽ khác bọt hoàn toàn.\n\nBạn thuộc team tự pha ở nhà hay ra quán? Comment bên dưới nhé! 👇\n\n#specialtycoffee #caphe #baristalife",
+          "imageLabel": "Infographic Minimalist về nhiệt độ nước pha cà phê",
+          "linkUrl": "",
+          "ctaText": ""
+        }
+      ],
+      "emailSequence": [],
+      "results": [
+        { "metric": "+120%", "label": "Engagement Rate" },
+        { "metric": "+40%", "label": "In-store Foot Traffic" }
+      ],
+      "resultsVI": [],
+      "resultsEN": [],
+      "createdAt": "2026-05-21"
+    },
+    {
+      "id": "p004",
+      "color": "4",
+      "type": { "en": "Email Sequence", "vi": "Chuỗi Email" },
+      "title": { "en": "Welcome Sequence for a Time Management Course", "vi": "Chuỗi Email Chào Mừng cho khóa học Quản lý thời gian" },
+      "meta": "Email Marketing • Welcome Series • EdTech",
+      "brief": {
+        "en": "(Concept Project) A 3-day welcome email sequence for subscribers of a productivity newsletter. The goal is to build trust, shift their mindset from 'I don't have enough time' to 'I need better focus', and gently pitch the premium course in the final email.",
+        "vi": "(Dự án mẫu) Chuỗi 3 email chào mừng dành cho người đăng ký bản tin về năng suất làm việc. Mục tiêu là xây dựng lòng tin, thay đổi tư duy từ 'Tôi không có thời gian' sang 'Tôi cần sự tập trung', và khéo léo giới thiệu khóa học chuyên sâu ở email cuối."
+      },
+      "copyVI": "*(Được hiển thị trong phần Nền tảng bên dưới)*",
+      "copyEN": "*(Displayed in the Platforms section below)*",
+      "breakdownVI": "Email 1||Tạo sự đồng cảm. Phá bỏ lầm tưởng rằng làm việc chăm chỉ là phải bận rộn 24/7. Tặng một tip nhỏ có thể áp dụng ngay để tạo \"Quick Win\".\nEmail 2||Kể câu chuyện cá nhân về sự thất bại trong quản lý thời gian, đưa ra Insight: Quản lý thời gian thực chất là quản lý sự tập trung.\nEmail 3||Soft Pitch. Khéo léo giới thiệu khóa học như giải pháp tự nhiên cho những ai muốn đi sâu hơn, không dùng lời lẽ ép buộc mua hàng.",
+      "breakdownEN": "Email 1||Builds empathy. Breaks the myth that hard work equals being busy 24/7. Gives a quick tip for an immediate 'Quick Win'.\nEmail 2||Tells a personal story of failure in time management, pivoting to the Insight: Time management is actually focus management.\nEmail 3||Soft Pitch. Gently introduces the course as a logical next step for those who want to dive deeper, avoiding aggressive sales tactics.",
+      "adPlatforms": ["email"],
+      "adVersions": [],
+      "emailSequence": [
+        {
+          "label": "Email 1: Sự thật về sự bận rộn",
+          "subject": "Bạn không thiếu thời gian. Bạn chỉ đang quá bận rộn thôi.",
+          "senderName": "Hải Luân",
+          "senderEmail": "luan@productivity.vn",
+          "body": "Chào bạn,\n\nCảm ơn bạn đã đăng ký nhận bản tin của mình.\n\nMình có một câu hỏi nhỏ:\nHôm nay bạn đã nói câu \"Mình bận quá\" bao nhiêu lần rồi?\n\nNếu bạn giống mình của 2 năm trước, câu trả lời chắc là... đếm không xuể. Mình từng nghĩ việc ngồi trước máy tính 12 tiếng mỗi ngày là minh chứng cho sự nỗ lực. Cho đến khi mình nhận ra: Cuối ngày nhìn lại, những việc quan trọng nhất vẫn chưa hoàn thành.\n\nSự thật là: Bận rộn không đồng nghĩa với hiệu quả.\n\nNgày mai, mình sẽ chia sẻ với bạn một sai lầm chết người trong cách chúng ta lên To-do list mỗi sáng, và cách mình đã sửa nó.\n\nNhưng trước mắt, hôm nay hãy làm một việc thôi: Tắt thông báo điện thoại trong đúng 1 tiếng đồng hồ để làm việc.\n\nThử xem nhé.\n\nHẹn gặp lại bạn vào ngày mai.",
+          "ctaText": "",
+          "footer": "Nếu bạn không muốn nhận email nữa, click unsubscribe tại đây."
+        },
+        {
+          "label": "Email 2: Lầm tưởng về To-do list",
+          "subject": "To-do list đang giết chết sự tập trung của bạn",
+          "senderName": "Hải Luân",
+          "senderEmail": "luan@productivity.vn",
+          "body": "Chào bạn,\n\nNhư đã hứa hôm qua, hôm nay mình sẽ nói về chiếc To-do list.\n\nBạn có thói quen viết ra 10-15 việc cần làm mỗi sáng không? Và đến chiều tối, bạn chỉ tích được 3 việc, cảm thấy tội lỗi và mang 12 việc còn lại sang ngày hôm sau?\n\nĐó là công thức hoàn hảo để tự làm bản thân kiệt sức.\n\nVấn đề không phải là bạn lười. Vấn đề là bạn đang quản lý thời gian, chứ không phải quản lý sự tập trung.\n\nNão bộ con người chỉ có thể thực sự tập trung cao độ (Deep Work) khoảng 3-4 tiếng mỗi ngày. Việc nhét 15 task vào To-do list chỉ tạo ra ảo giác về mặt năng suất.\n\nCách mình thay đổi: Quy tắc 1-3-5.\nMỗi ngày, mình chỉ cho phép bản thân chọn:\n- 1 việc Quan Trọng Nhất (phải làm bằng mọi giá)\n- 3 việc Vừa (làm xong việc 1 mới được đụng tới)\n- 5 việc Nhỏ (trả lời email, họp hành, vặt vãnh)\n\nChỉ vậy thôi. Nó buộc mình phải ưu tiên.\n\nNgày mai, mình sẽ chia sẻ cách ép bản thân hoàn thành cái \"1 việc Quan Trọng Nhất\" đó, ngay cả khi bạn cực kỳ lười.\n\nChúc bạn một ngày tập trung.",
+          "ctaText": "",
+          "footer": ""
+        },
+        {
+          "label": "Email 3: Giải pháp",
+          "subject": "Cách mình ngừng trì hoãn (và hệ thống đứng sau nó)",
+          "senderName": "Hải Luân",
+          "senderEmail": "luan@productivity.vn",
+          "body": "Chào bạn,\n\nBạn đã thử quy tắc 1-3-5 ngày hôm qua chưa?\n\nBiết quy tắc là một chuyện. Việc ngồi xuống ghế, mở máy tính lên và đối mặt với \"1 việc Quan Trọng Nhất\" mà không bấm vào Facebook lại là chuyện khác.\n\nSự trì hoãn không đến từ việc bạn kém cỏi. Nó đến từ việc hệ thống làm việc của bạn quá nhiều rào cản.\n\nĐó là lý do mình đóng gói toàn bộ quy trình làm việc của mình—từ cách lên kế hoạch, cách triệt tiêu sự xao nhãng, đến cách duy trì sự tập trung 4 tiếng liên tục—vào một khóa học tên là Deep Focus Masterclass.\n\nNó không phải là lý thuyết sáo rỗng. Nó là hệ thống mình dùng hàng ngày để vừa làm việc full-time, vừa duy trì bản tin này mà không bị burnout.\n\nNếu bạn đã mệt mỏi với cảm giác \"bận rộn nhưng không hiệu quả\", khóa học này là dành cho bạn.\n\n👉 Click vào nút bên dưới để xem chi tiết nhé. Hôm nay mình có một món quà nhỏ dành riêng cho bạn ở cuối trang.\n\nCảm ơn bạn đã đọc chuỗi email này. Chúc bạn sẽ luôn làm chủ được thời gian của mình.",
+          "ctaText": "Tìm hiểu Deep Focus Masterclass",
+          "footer": ""
+        }
+      ],
+      "results": [
+        { "metric": "42%", "label": "Open Rate" },
+        { "metric": "15%", "label": "Click-to-Sales Rate" }
+      ],
+      "resultsVI": [],
+      "resultsEN": [],
+      "createdAt": "2026-05-22"
     }
   ],
-  "lastSaved": "2026-05-14"
+  "lastSaved": "2026-05-22"
 }
