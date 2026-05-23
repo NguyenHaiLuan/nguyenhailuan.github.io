@@ -156,9 +156,11 @@
         '<div class="port-title" data-vi>' + esc(p.title.vi) + '</div>' +
         '</div>' +
         '<div class="port-bottom">' +
+        '<div class="port-b-left">' +
         '<span class="port-meta">' + esc(p.meta) + '</span>' +
         platformBadges +
-        '<span class="port-arrow">' + (hasModal ? '→' : '') + '</span>' +
+        '</div>' +
+        (hasModal ? '<div class="port-read-btn"><span data-en>View</span><span data-vi>Xem</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></div>' : '') +
         '</div></div>';
     }).join('');
   }
@@ -302,13 +304,13 @@
         /* Platform tabs */
         '.cs-platform-wrap{margin-top:1rem}',
         '.cs-platform-tabs{display:flex;gap:.5rem;margin-bottom:1.25rem;flex-wrap:wrap}',
-        '.cs-platform-tab{display:inline-flex;align-items:center;gap:.4rem;font-size:.72rem;font-weight:700;letter-spacing:.05em;padding:.35rem .85rem;border-radius:99px;cursor:pointer;border:1.5px solid var(--border,#e5e2dc);background:var(--surface,#fff);color:var(--muted,#888);transition:all .15s;white-space:nowrap}',
-        '.cs-platform-tab.active{border-color:var(--green,#16a34a);color:var(--green,#16a34a);background:var(--green-tint,#dcfce7)}',
+        '.cs-platform-tab{display:inline-flex;align-items:center;gap:.4rem;font-size:.72rem;font-weight:700;letter-spacing:.05em;padding:.35rem .85rem;border-radius:99px;cursor:pointer;border:1.5px solid var(--border);background:var(--surface);color:var(--ink-muted);transition:all .15s;white-space:nowrap}',
+        '.cs-platform-tab.active{border-color:var(--ink);color:var(--bg);background:var(--ink)}',
         '.cs-platform-pane{display:none}.cs-platform-pane.active{display:block}',
         /* Version sub-tabs */
         '.cs-ver-tabs{display:flex;gap:.4rem;margin-bottom:1rem;flex-wrap:wrap}',
-        '.cs-ver-tab{font-size:.68rem;font-weight:700;padding:.25rem .7rem;border-radius:99px;cursor:pointer;border:1.5px solid var(--border,#e5e2dc);background:transparent;color:var(--muted,#888);transition:all .12s}',
-        '.cs-ver-tab.active{border-color:#1877f2;color:#1877f2;background:#e7f0fd}',
+        '.cs-ver-tab{font-size:.68rem;font-weight:700;padding:.25rem .7rem;border-radius:99px;cursor:pointer;border:1.5px solid var(--border);background:transparent;color:var(--ink-muted);transition:all .12s}',
+        '.cs-ver-tab.active{border-color:var(--ink);color:var(--bg);background:var(--ink)}',
         '.hl-ver-pane{display:none}.hl-ver-pane.show{display:block}',
         /* FB mock */
         '.fb-mock{max-width:500px;border:1px solid #ddd;border-radius:12px;overflow:hidden;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#fff;box-shadow:0 2px 12px rgba(0,0,0,.1)}',
@@ -343,8 +345,8 @@
         /* Email/Gmail mock */
         '.email-mock-wrap{max-width:620px}',
         '.email-seq-tabs{display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:1rem}',
-        '.email-seq-tab{font-size:.68rem;font-weight:700;padding:.25rem .75rem;border-radius:99px;cursor:pointer;border:1.5px solid var(--border,#e5e2dc);background:transparent;color:var(--muted,#888);transition:all .12s}',
-        '.email-seq-tab.active{border-color:#ea4335;color:#ea4335;background:#fce8e6}',
+        '.email-seq-tab{font-size:.68rem;font-weight:700;padding:.25rem .75rem;border-radius:99px;cursor:pointer;border:1.5px solid var(--border);background:transparent;color:var(--ink-muted);transition:all .12s}',
+        '.email-seq-tab.active{border-color:var(--ink);color:var(--bg);background:var(--ink)}',
         '.email-pane{display:none}.email-pane.active{display:block}',
         '.gmail-chrome{background:#f1f3f4;border-radius:12px 12px 0 0;overflow:hidden;box-shadow:0 2px 16px rgba(0,0,0,.12);border:1px solid #dadce0}',
         '.gmail-topbar{background:#fff;display:flex;align-items:center;gap:.5rem;padding:.45rem .75rem;border-bottom:1px solid #e0e0e0}',
@@ -363,7 +365,7 @@
         '.gmail-footer-strip{background:#f8f9fa;border-top:1px solid #e0e0e0;padding:.65rem 1.5rem;font-size:.68rem;color:#80868b;line-height:1.5}',
         /* port-card badges */
         '.port-platforms{display:flex;gap:.3rem;flex-wrap:wrap;margin-top:.4rem}',
-        '.port-platform-badge{font-size:.6rem;font-weight:700;background:rgba(255,255,255,.22);color:#fff;padding:.15rem .5rem;border-radius:99px;letter-spacing:.03em}',
+        '.port-platform-badge{font-size:.6rem;font-weight:700;background:var(--surface2);border:1px solid var(--border);color:var(--ink-muted);padding:.15rem .5rem;border-radius:99px;letter-spacing:.03em}',
       ].join('');
       document.head.appendChild(s);
     }
