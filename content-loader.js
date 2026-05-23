@@ -5,18 +5,19 @@
 */
 (function () {
 
-  var raw = localStorage.getItem('hl_cms');
-  if (raw) {
-    try { renderContent(JSON.parse(raw)); } catch(e) { console.warn('[HL CMS]', e); }
-  } else {
-    fetch('hl-portfolio-data.json')
-      .then(function(r) { if (!r.ok) throw new Error('not found'); return r.json(); })
-      .then(function(data) {
-        localStorage.setItem('hl_cms', JSON.stringify(data));
-        renderContent(data);
-      })
-      .catch(function() { /* use default HTML */ });
-  }
+  fetch('hl-portfolio-data.json?t=' + Date.now())
+    .then(function(r) { if (!r.ok) throw new Error('not found'); return r.json(); })
+    .then(function(data) {
+      localStorage.setItem('hl_cms', JSON.stringify(data));
+      renderContent(data);
+    })
+    .catch(function(err) {
+      console.warn('[HL CMS] Fetch failed, falling back to cache:', err);
+      var raw = localStorage.getItem('hl_cms');
+      if (raw) {
+        try { renderContent(JSON.parse(raw)); } catch(e) { console.warn('[HL CMS] Local cache parse failed:', e); }
+      }
+    });
 
   /* ── MARKDOWN RENDERER ── */
   function esc(s) {
