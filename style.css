@@ -190,6 +190,7 @@ h2.sec-title .accent { color: var(--accent); }
 /* ══ ABOUT ══ */
 #about { padding: 96px 3rem; background: var(--surface); transition: background .3s; }
 .about-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 2fr; gap: 4rem; align-items: start; }
+.about-left { position: sticky; top: 120px; }
 .about-body p { color: var(--ink-muted); font-weight: 300; margin-bottom: 1.15rem; }
 .about-body p strong { color: var(--ink); font-weight: 600; }
 .about-body p em { color: var(--green); font-style: normal; font-weight: 500; }
