@@ -100,7 +100,10 @@
     var grid = document.querySelector('.blog-grid');
     if (!grid || !D.blog || !D.blog.length) return;
 
-    grid.innerHTML = D.blog.map(function(b) {
+    var activeBlogs = D.blog.filter(function(b) { return b.show !== false; });
+    if (!activeBlogs.length) return;
+
+    grid.innerHTML = activeBlogs.map(function(b) {
       var hasFull = !!(b.contentEN || b.contentVI);
       var link = b.link && b.link !== '' ? b.link : '#';
       var clickAttr = (hasFull && (!b.link || b.link === '' || b.link === '#'))
@@ -131,9 +134,13 @@
   function injectPortfolio(D) {
     var grid = document.querySelector('.port-grid');
     if (!grid || !D.portfolio || !D.portfolio.length) return;
-    window._hlPortData = D.portfolio;
+    
+    var activePorts = D.portfolio.filter(function(p) { return p.show !== false; });
+    window._hlPortData = activePorts;
 
-    grid.innerHTML = D.portfolio.map(function(p, i) {
+    if (!activePorts.length) return;
+
+    grid.innerHTML = activePorts.map(function(p, i) {
       var hasModal = !!(
         (p.brief && (p.brief.en || p.brief.vi)) || p.copyVI || p.copyEN
       );

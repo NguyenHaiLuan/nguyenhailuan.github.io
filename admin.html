@@ -174,6 +174,13 @@
           <input id="b-link" placeholder="https://… hoặc bỏ trống">
           <div class="field-hint">Có URL → mở link ngoài. Trống → mở blog detail modal ngay trên site.</div>
         </div>
+        <div class="fg-row" style="align-items:center;margin-top:16px;padding:12px;background:var(--bg);border-radius:6px;border:1px solid var(--border)">
+          <span style="font-size:14px;font-weight:600">Hiển thị bài viết trên Website</span>
+          <label class="toggle-switch" style="margin-left:auto">
+            <input type="checkbox" id="b-show" checked>
+            <span class="toggle-knob"></span>
+          </label>
+        </div>
       </div>
 
       <!-- Tab: Content EN -->
@@ -271,6 +278,13 @@
         <div class="sec-divider">Brief / Bối cảnh dự án</div>
         <div class="fg"><label>Brief (EN)</label><textarea id="p-brief-en" rows="4" placeholder="Client, target audience, goal, tone, budget…"></textarea></div>
         <div class="fg"><label>Brief (VI)</label><textarea id="p-brief-vi" rows="4" placeholder="Khách hàng, đối tượng, mục tiêu, tone, ngân sách…"></textarea></div>
+        <div class="fg-row" style="align-items:center;margin-top:16px;padding:12px;background:var(--bg);border-radius:6px;border:1px solid var(--border)">
+          <span style="font-size:14px;font-weight:600">Hiển thị dự án trên Website</span>
+          <label class="toggle-switch" style="margin-left:auto">
+            <input type="checkbox" id="p-show" checked>
+            <span class="toggle-knob"></span>
+          </label>
+        </div>
       </div>
 
       <!-- Tab: Copy -->
@@ -891,10 +905,11 @@ function renderBlogList() {
   if (!D.blog.length) { el.innerHTML = `<div class="empty"><div class="empty-icon">📝</div><div class="empty-title">Chưa có bài viết nào</div><div class="empty-sub">Nhấn "+ Thêm bài viết" để tạo bài đầu tiên</div><button class="btn btn-p" onclick="openBlogEd(null)">+ Thêm bài viết</button></div>`; return; }
   el.innerHTML = D.blog.map(b => {
     const full = !!(b.contentEN||b.contentVI);
+    const hiddenTag = (b.show === false) ? '<span style="font-size:10px;background:#fef2f2;color:#ef4444;padding:2px 4px;border-radius:3px;margin-left:6px;border:1px solid #fca5a5">Đang Ẩn</span>' : '';
     return `<div class="item-row" onclick="openBlogEd('${b.id}')">
       <div class="${full?'dot-full':'dot-empty'}" title="${full?'Có nội dung đầy đủ':'Chỉ có excerpt'}"></div>
       <span class="item-badge">${h(b.cat.en)}</span>
-      <span class="item-title">${h(b.title.en)}</span>
+      <span class="item-title" style="${b.show===false?'color:var(--muted);text-decoration:line-through':''}">${h(b.title.en)}${hiddenTag}</span>
       <span class="item-meta">${h(b.readTime.en)}</span>
       <div class="item-acts">
         <button class="btn-icon" title="Preview" onclick="event.stopPropagation();openBlogPrev('${b.id}')">👁</button>
@@ -919,6 +934,7 @@ function openBlogEd(id) {
   wySv('b-content-en', b?.contentEN||'');
   wySv('b-content-vi', b?.contentVI||'');
   sv('b-link',b?.link||'');
+  document.getElementById('b-show').checked = b ? (b.show !== false) : true;
   resetTabs('blog');
   document.getElementById('blogOverlay').classList.add('open');
 }
@@ -934,6 +950,7 @@ function saveBlog() {
     contentEN: htmlToMd(document.getElementById('b-content-en')?.innerHTML||''),
     contentVI: htmlToMd(document.getElementById('b-content-vi')?.innerHTML||''),
     link:gv('b-link'),
+    show: document.getElementById('b-show').checked,
     createdAt:curBlog?(D.blog.find(x=>x.id===curBlog)?.createdAt||today()):today()
   };
   if (!b.title.en && !b.title.vi) { toast('Vui lòng nhập tiêu đề!',true); return; }
@@ -990,11 +1007,12 @@ function renderPortList() {
   if (!D.portfolio.length) { el.innerHTML = `<div class="empty"><div class="empty-icon">🗂️</div><div class="empty-title">Chưa có dự án nào</div><div class="empty-sub">Nhấn "+ Thêm dự án" để bắt đầu</div><button class="btn btn-p" onclick="openPortEd(null)">+ Thêm dự án</button></div>`; return; }
   el.innerHTML = D.portfolio.map(p => {
     const full = !!(p.brief?.en||p.brief?.vi||p.copyVI||p.copyEN);
+    const hiddenTag = (p.show === false) ? '<span style="font-size:10px;background:#fef2f2;color:#ef4444;padding:2px 4px;border-radius:3px;margin-left:6px;border:1px solid #fca5a5">Đang Ẩn</span>' : '';
     return `<div class="item-row" onclick="openPortEd('${p.id}')">
       <div class="${full?'dot-full':'dot-empty'}" title="${full?'Có case study':'Chưa có nội dung'}"></div>
       <div class="co co-${p.color||1}" style="width:13px;height:13px;border-radius:3px;flex-shrink:0;pointer-events:none"></div>
       <span class="item-badge bl">${h(p.type.en)}</span>
-      <span class="item-title">${h(p.title.en)}</span>
+      <span class="item-title" style="${p.show===false?'color:var(--muted);text-decoration:line-through':''}">${h(p.title.en)}${hiddenTag}</span>
       <span class="item-meta">${h(p.meta)}</span>
       <div class="item-acts">
         ${full?`<button class="btn-icon" title="Preview" onclick="event.stopPropagation();openPortPrev('${p.id}')">👁</button>`:''}
@@ -1020,6 +1038,7 @@ function openPortEd(id) {
   wySv('p-copy-en', p?.copyEN||'');
   sv('p-breakdown-vi', p?.breakdownVI || p?.breakdown || '');
   sv('p-breakdown-en', p?.breakdownEN || '');
+  document.getElementById('p-show').checked = p ? (p.show !== false) : true;
   selColor = p?.color || '1';
   document.querySelectorAll('.color-opts .co').forEach(el => el.classList.toggle('sel', el.dataset.c===selColor));
 
@@ -1406,6 +1425,7 @@ function savePort() {
     adVersions,
     emailSequence,
     results, resultsVI, resultsEN,
+    show: document.getElementById('p-show').checked,
     createdAt:curPort?(D.portfolio.find(x=>x.id===curPort)?.createdAt||today()):today()
   };
   if (!p.title.en && !p.title.vi) { toast('Vui lòng nhập tiêu đề!',true); return; }
